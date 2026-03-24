@@ -1,0 +1,27 @@
+name: Sheets Write
+on:
+  workflow_dispatch:
+    inputs:
+      sheet_name:
+        description: '대상 시트명'
+        required: true
+        type: string
+      row_json:
+        description: '추가할 행 데이터 (JSON)'
+        required: true
+        type: string
+jobs:
+  append-row:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install gspread google-auth
+      - env:
+          GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
+          SHEET_NAME: ${{ inputs.sheet_name }}
+          ROW_JSON: ${{ inputs.row_json }}
+        run: python scripts/append_row.py
