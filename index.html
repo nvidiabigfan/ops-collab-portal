@@ -125,7 +125,54 @@
 </style>
 </head>
 <body>
+  <!-- ===== 비밀번호 인증 팝업 ===== -->
+<div id="auth-overlay" style="
+  position:fixed; inset:0; background:rgba(0,0,0,0.6);
+  z-index:9999; display:flex; align-items:center; justify-content:center;">
+  <div style="background:#fff; padding:36px 32px; border-radius:12px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.2); min-width:320px; text-align:center;">
+    <div style="font-size:22px; font-weight:700; margin-bottom:8px;">🔒 운영협업포털</div>
+    <div style="font-size:13px; color:#666; margin-bottom:24px;">접속 비밀번호를 입력하세요</div>
+    <input id="auth-input" type="password" placeholder="비밀번호"
+      style="width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:8px;
+      font-size:15px; box-sizing:border-box; margin-bottom:12px;"
+      onkeydown="if(event.key==='Enter') checkAuth()" />
+    <div id="auth-error" style="color:#e53935; font-size:12px; margin-bottom:10px; display:none;">
+      비밀번호가 올바르지 않습니다
+    </div>
+    <button onclick="checkAuth()" style="width:100%; padding:11px; background:#1a73e8;
+      color:#fff; border:none; border-radius:8px; font-size:15px; font-weight:600; cursor:pointer;">
+      확인
+    </button>
+  </div>
+</div>
 
+<script>
+  const PORTAL_PASSWORD = 'P@ssword1!'; // ★ 비밀번호 여기서 변경
+
+  function checkAuth() {
+    const input = document.getElementById('auth-input').value;
+    if (input === PORTAL_PASSWORD) {
+      localStorage.setItem('ops_portal_auth', 'true');
+      document.getElementById('auth-overlay').style.display = 'none';
+    } else {
+      document.getElementById('auth-error').style.display = 'block';
+      document.getElementById('auth-input').value = '';
+      document.getElementById('auth-input').focus();
+    }
+  }
+
+  (function() {
+    if (localStorage.getItem('ops_portal_auth') !== 'true') {
+      document.getElementById('auth-overlay').style.display = 'flex';
+    } else {
+      document.getElementById('auth-overlay').style.display = 'none';
+    }
+  })();
+</script>
+<!-- ===== /비밀번호 인증 팝업 ===== -->
+
+  
 <!-- 사이드바 -->
 <div id="sidebar">
   <div class="logo">운영협업포털<span>Ops Collab Portal</span></div>
