@@ -1,13 +1,13 @@
-// ── 원본 renderImpact 즉시 무력화 (캐시된 index.html 대응) ──────
+// ââ ìë³¸ renderImpact ì¦ì ë¬´ë ¥í (ìºìë index.html ëì) ââââââ
 (function() {
-  // index.html의 원본 renderImpact 본체를 noop으로 교체
-  // product_impact.js 하단의 window.renderImpact = ... 가 이후 재정의함
+  // index.htmlì ìë³¸ renderImpact ë³¸ì²´ë¥¼ noopì¼ë¡ êµì²´
+  // product_impact.js íë¨ì window.renderImpact = ... ê° ì´í ì¬ì ìí¨
   if (typeof window.renderImpact === "function"
       && window.renderImpact.toString().indexOf("replaced by product_impact") === -1
       && window.renderImpact.toString().indexOf("switchImpactTab") === -1) {
     window.renderImpact = async function() {};
   }
-  // showPage 패치 — impact 케이스에서 우리 renderImpact 호출 보장
+  // showPage í¨ì¹ â impact ì¼ì´ì¤ìì ì°ë¦¬ renderImpact í¸ì¶ ë³´ì¥
   if (typeof window.showPage === "function") {
     const _orig = window.showPage;
     window.showPage = function(page) {
@@ -16,11 +16,11 @@
     };
   }
 })();
-/* product_impact.js v2 Ã¢ÂÂ gviz ÃªÂ¸Â°Ã«Â°Â, SheetsAPI Ã¬ÂÂÃ¬Â¡Â´ Ã¬ÂÂÃ¬ÂÂ */
+/* product_impact.js v2 ÃÂ¢ÃÂÃÂ gviz ÃÂªÃÂ¸ÃÂ°ÃÂ«ÃÂ°ÃÂ, SheetsAPI ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ¡ÃÂ´ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ */
 
 const _PI_SID = "12ZpwaDPNCV1V48xUtuWv2cooGtAjBZLIbClu3R88HoU";
 
-// gviz CSV fetch Ã¢ÂÂ ÃªÂ°ÂÃ¬Â²Â´ Ã«Â°Â°Ã¬ÂÂ´ (Ã­ÂÂÃ¬ÂÂÃ¬ÂÂÃ¬ÂÂ Ã¬ÂÂÃ¬ÂÂ)
+// gviz CSV fetch ÃÂ¢ÃÂÃÂ ÃÂªÃÂ°ÃÂÃÂ¬ÃÂ²ÃÂ´ ÃÂ«ÃÂ°ÃÂ°ÃÂ¬ÃÂÃÂ´ (ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ)
 async function _gvizFetch(sheetName) {
   const url = "https://docs.google.com/spreadsheets/d/" + _PI_SID
     + "/gviz/tq?tqx=out:csv&sheet=" + encodeURIComponent(sheetName);
@@ -42,34 +42,34 @@ async function _gvizFetch(sheetName) {
   });
 }
 
-// Ã¬Â±ÂÃ«ÂÂ Ã«Â±ÂÃ¬Â§Â
+// ÃÂ¬ÃÂ±ÃÂÃÂ«ÃÂÃÂ ÃÂ«ÃÂ±ÃÂÃÂ¬ÃÂ§ÃÂ
 function _chBadge(ch) {
-  return ch === "Ã«ÂÂÃ­ÂÂÃ­ÂÂÃ­ÂÂÃ¬ÂÂ´Ã¬Â§Â"
-    ? '<span style="background:#e3f0ff;color:#1a6cbf;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600">Ã«ÂÂÃ­ÂÂÃ­ÂÂ</span>'
-    : '<span style="background:#e8f5e9;color:#2e7d32;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600">Ã«ÂÂ¤Ã¬ÂÂ´Ã«Â ÂÃ­ÂÂ¸</span>';
+  return ch === "ÃÂ«ÃÂÃÂÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ"
+    ? '<span style="background:#e3f0ff;color:#1a6cbf;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600">ÃÂ«ÃÂÃÂÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂ</span>'
+    : '<span style="background:#e8f5e9;color:#2e7d32;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600">ÃÂ«ÃÂÃÂ¤ÃÂ¬ÃÂÃÂ´ÃÂ«ÃÂ ÃÂÃÂ­ÃÂÃÂ¸</span>';
 }
 
-// Ã­ÂÂ­ Ã«Â²ÂÃ­ÂÂ¼ Ã¬ÂÂ¤Ã­ÂÂÃ¬ÂÂ¼
+// ÃÂ­ÃÂÃÂ­ ÃÂ«ÃÂ²ÃÂÃÂ­ÃÂÃÂ¼ ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ¼
 function _tStyle(on) {
   return on
     ? "padding:8px 22px;border:none;background:#1a6cbf;color:#fff;cursor:pointer;font-size:14px;font-weight:600;border-radius:6px 6px 0 0;margin-right:4px"
     : "padding:8px 22px;border:none;background:#f0f4fa;color:#555;cursor:pointer;font-size:14px;border-radius:6px 6px 0 0;margin-right:4px";
 }
 
-// Ã¢ÂÂÃ¢ÂÂ renderImpact Ã¬ÂÂ¤Ã«Â²ÂÃ«ÂÂ¼Ã¬ÂÂ´Ã«ÂÂ Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ renderImpact ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂ²ÃÂÃÂ«ÃÂÃÂ¼ÃÂ¬ÃÂÃÂ´ÃÂ«ÃÂÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
 window.renderImpact = async function() {
   setContent(
     '<div style="display:flex;border-bottom:2px solid #e0e7ef;margin-bottom:16px">'
-    + '<button id="tab-pg"  onclick="switchImpactTab(\'page\')"    style="' + _tStyle(true)  + '">Ã°ÂÂÂ Ã¬ÂÂÃ­ÂÂ¥Ã­ÂÂÃ¬ÂÂ´Ã¬Â§Â Ã¬Â¡Â°Ã­ÂÂ</button>'
-    + '<button id="tab-prd" onclick="switchImpactTab(\'product\')" style="' + _tStyle(false) + '">Ã°ÂÂÂ Ã¬ÂÂÃ­ÂÂÃ¬ÂÂÃ­ÂÂ¥ Ã¬Â¡Â°Ã­ÂÂ</button>'
+    + '<button id="tab-pg"  onclick="switchImpactTab(\'page\')"    style="' + _tStyle(true)  + '">ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ¬ÃÂ¡ÃÂ°ÃÂ­ÃÂÃÂ</button>'
+    + '<button id="tab-prd" onclick="switchImpactTab(\'product\')" style="' + _tStyle(false) + '">ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ ÃÂ¬ÃÂ¡ÃÂ°ÃÂ­ÃÂÃÂ</button>'
     + '</div>'
-    + '<div id="pi-body"><div class="loading">Ã¢ÂÂ³ Ã«Â¡ÂÃ«ÂÂ© Ã¬Â¤Â...</div></div>'
+    + '<div id="pi-body"><div class="loading">ÃÂ¢ÃÂÃÂ³ ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ© ÃÂ¬ÃÂ¤ÃÂ...</div></div>'
   );
-  setActions('<button class="btn btn-primary" onclick="openPgModal()">+ Ã­ÂÂÃ¬ÂÂ´Ã¬Â§Â Ã«ÂÂ±Ã«Â¡Â</button>');
+  setActions('<button class="btn btn-primary" onclick="openPgModal()">+ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ</button>');
   switchImpactTab("page");
 };
 
-// Ã¢ÂÂÃ¢ÂÂ Ã­ÂÂ­ Ã¬Â ÂÃ­ÂÂ Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂ­ ÃÂ¬ÃÂ ÃÂÃÂ­ÃÂÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
 window.switchImpactTab = function(tab) {
   const pg  = document.getElementById("tab-pg");
   const prd = document.getElementById("tab-prd");
@@ -79,54 +79,78 @@ window.switchImpactTab = function(tab) {
   else                _loadPrdTab();
 };
 
-// Ã¢ÂÂÃ¢ÂÂ Ã­ÂÂ­1: Ã¬ÂÂÃ­ÂÂ¥Ã­ÂÂÃ¬ÂÂ´Ã¬Â§Â (gviz) Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂ­1: ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ (gviz) ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
 async function _loadPgTab() {
   const body = document.getElementById("pi-body");
   if (!body) return;
-  body.innerHTML = '<div class="loading">Ã¢ÂÂ³ Ã¬ÂÂÃ­ÂÂ¥Ã­ÂÂÃ¬ÂÂ´Ã¬Â§Â Ã«Â¡ÂÃ«ÂÂ© Ã¬Â¤Â...</div>';
+  body.innerHTML = '<div class="loading">ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ© ÃÂ¬ÃÂ¤ÃÂ...</div>';
   try {
-    const rows = await _gvizFetch("Ã¬ÂÂÃ­ÂÂ¥Ã­ÂÂÃ¬ÂÂ´Ã¬Â§Â");
+    const rows = await _gvizFetch("ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ");
     window._pgData = rows;
-    const sites = [...new Set(rows.map(r=>r["Ã¬ÂÂ¬Ã¬ÂÂ´Ã­ÂÂ¸"]).filter(Boolean))];
+    const sites = [...new Set(rows.map(r=>r["ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸"]).filter(Boolean))];
     const sOpts = sites.map(s=>'<option value="'+s+'">'+s+'</option>').join("");
     body.innerHTML =
       '<div class="card" style="margin-bottom:0">'
       + '<div class="filter-bar">'
-      + '<input id="pg-q" placeholder="Ã°ÂÂÂ Ã­ÂÂÃ¬ÂÂ´Ã¬Â§ÂÃ«ÂªÂ, Ã«ÂÂ´Ã«ÂÂ¹Ã¬ÂÂ, Ã­ÂÂÃ«Â©Â´ID ÃªÂ²ÂÃ¬ÂÂ" oninput="renderPgTable()" value="">'
-      + '<select id="pg-site-f" onchange="renderPgTable()"><option value="">Ã¬Â ÂÃ¬Â²Â´ Ã¬ÂÂ¬Ã¬ÂÂ´Ã­ÂÂ¸</option>'+sOpts+'</select>'
-      + '<span class="filter-count" id="pg-count">0ÃªÂ±Â´</span>'
+      + '<input id="pg-q" placeholder="ÃÂ°ÃÂÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ, ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ, ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ID ÃÂªÃÂ²ÃÂÃÂ¬ÃÂÃÂ" oninput="renderPgTable()" value="">'
+      + '<select id="pg-site-f" onchange="renderPgTable()"><option value="">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸</option>'+sOpts+'</select>'
+      + '<span class="filter-count" id="pg-count">0ÃÂªÃÂ±ÃÂ´</span>'
       + '</div><div class="tbl-wrap" id="pg-tbl-wrap"></div></div>';
-    renderPgTable();
+    // renderPgTable() 직접 호출 대신 pg-tbl-wrap에 직접 렌더링
+    const wrap = document.getElementById('pg-tbl-wrap');
+    if (!wrap) return;
+    const q    = (document.getElementById('pg-q')     || {}).value || '';
+    const site = (document.getElementById('pg-site-f')|| {}).value || '';
+    const cnt  = document.getElementById('pg-count');
+    const filtered = rows.filter(r =>
+      (!q    || [r['페이지ID'],r['페이지명'],r['담당자'],r['화면ID']].some(v=>(v||'').includes(q))) &&
+      (!site || r['사이트'] === site)
+    );
+    if (cnt) cnt.textContent = filtered.length + '건';
+    if (!filtered.length) {
+      wrap.innerHTML = '<table><thead><tr><th>ID</th><th>사이트</th><th>페이지명</th><th>담당자</th><th>변경일</th></tr></thead><tbody><tr class="empty-row"><td colspan="5">등록된 페이지가 없습니다</td></tr></tbody></table>';
+      return;
+    }
+    const tbody = filtered.map(r =>
+      '<tr>'
+      + '<td><code style="font-size:12px">' + (r['페이지ID']||'') + '</code></td>'
+      + '<td style="font-size:12px">' + (r['사이트']||'') + '</td>'
+      + '<td>' + (r['페이지명']||'') + '</td>'
+      + '<td>' + (r['담당자']||'') + '</td>'
+      + '<td style="font-size:12px">' + (r['최근변경일']||'') + '</td>'
+      + '</tr>'
+    ).join('');
+    wrap.innerHTML = '<table><thead><tr><th>ID</th><th>사이트</th><th>페이지명</th><th>담당자</th><th>변경일</th></tr></thead><tbody>' + tbody + '</tbody></table>';
   } catch(e) {
-    body.innerHTML = '<div style="padding:24px;color:red">Ã«Â¡ÂÃ«ÂÂ Ã¬ÂÂ¤Ã­ÂÂ¨: ' + e.message + '</div>';
+    body.innerHTML = '<div style="padding:24px;color:red">ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¨: ' + e.message + '</div>';
   }
 }
 
-// Ã¢ÂÂÃ¢ÂÂ Ã­ÂÂ­2: Ã¬ÂÂÃ­ÂÂÃ¬ÂÂÃ­ÂÂ¥ Ã¬Â¡Â°Ã­ÂÂ Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂ­2: ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ ÃÂ¬ÃÂ¡ÃÂ°ÃÂ­ÃÂÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
 async function _loadPrdTab() {
   const body = document.getElementById("pi-body");
   if (!body) return;
-  body.innerHTML = '<div class="loading">Ã¢ÂÂ³ Ã¬ÂÂÃ­ÂÂÃ­ÂÂÃ«Â©Â´ Ã«Â§Â¤Ã­ÂÂ Ã«Â¡ÂÃ«ÂÂ© Ã¬Â¤Â...</div>';
+  body.innerHTML = '<div class="loading">ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ ÃÂ«ÃÂ§ÃÂ¤ÃÂ­ÃÂÃÂ ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ© ÃÂ¬ÃÂ¤ÃÂ...</div>';
   try {
-    const rows = await _gvizFetch("Ã¬ÂÂÃ­ÂÂÃ­ÂÂÃ«Â©Â´Ã«Â§Â¤Ã­ÂÂ");
+    const rows = await _gvizFetch("ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ÃÂ«ÃÂ§ÃÂ¤ÃÂ­ÃÂÃÂ");
     window._mapData = rows;
-    const prds = [...new Set(rows.map(r=>r["Ã¬ÂÂÃ­ÂÂÃ«ÂªÂ"]))].filter(Boolean).sort((a,b)=>a.localeCompare(b,"ko"));
+    const prds = [...new Set(rows.map(r=>r["ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ«ÃÂªÃÂ"]))].filter(Boolean).sort((a,b)=>a.localeCompare(b,"ko"));
     const opts = prds.map(p=>'<option value="'+p+'">'+p+'</option>').join("");
     body.innerHTML =
       '<div class="card" style="margin-bottom:12px">'
       + '<div class="filter-bar">'
-      + '<label style="font-size:13px;font-weight:600;white-space:nowrap">Ã¬ÂÂÃ­ÂÂ Ã¬ÂÂ Ã­ÂÂ</label>'
+      + '<label style="font-size:13px;font-weight:600;white-space:nowrap">ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ</label>'
       + '<select id="prd-sel" onchange="onPrdSel()" style="min-width:260px;font-size:14px;padding:5px 8px">'
-      + '<option value="">-- Ã¬ÂÂÃ­ÂÂÃ¬ÂÂ Ã¬ÂÂ Ã­ÂÂÃ­ÂÂÃ¬ÂÂ¸Ã¬ÂÂ --</option>'+opts+'</select>'
-      + '<input id="prd-inp" placeholder="Ã°ÂÂÂ Ã¬Â§ÂÃ¬Â Â Ã¬ÂÂÃ«Â Â¥" oninput="onPrdInp()" style="min-width:180px;font-size:14px;padding:5px 8px;border:1px solid #ccc;border-radius:5px">'
+      + '<option value="">-- ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ¸ÃÂ¬ÃÂÃÂ --</option>'+opts+'</select>'
+      + '<input id="prd-inp" placeholder="ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂ§ÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂÃÂÃÂ«ÃÂ ÃÂ¥" oninput="onPrdInp()" style="min-width:180px;font-size:14px;padding:5px 8px;border:1px solid #ccc;border-radius:5px">'
       + '</div></div>'
-      + '<div id="prd-result"><div style="padding:40px;text-align:center;color:#aaa">Ã¬ÂÂÃ­ÂÂÃ¬ÂÂ Ã¬ÂÂ Ã­ÂÂÃ­ÂÂÃ«Â©Â´ Ã¬ÂÂÃ­ÂÂ¥Ã«Â°ÂÃ«ÂÂ Ã­ÂÂÃ«Â©Â´ Ã«ÂªÂ©Ã«Â¡ÂÃ¬ÂÂ´ Ã­ÂÂÃ¬ÂÂÃ«ÂÂ©Ã«ÂÂÃ«ÂÂ¤</div></div>';
+      + '<div id="prd-result"><div style="padding:40px;text-align:center;color:#aaa">ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ«ÃÂ°ÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂ¡ÃÂÃÂ¬ÃÂÃÂ´ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ©ÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤</div></div>';
   } catch(e) {
-    body.innerHTML = '<div style="padding:24px;color:red">Ã«Â¡ÂÃ«ÂÂ Ã¬ÂÂ¤Ã­ÂÂ¨: ' + e.message + '</div>';
+    body.innerHTML = '<div style="padding:24px;color:red">ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¨: ' + e.message + '</div>';
   }
 }
 
-// Ã¢ÂÂÃ¢ÂÂ Ã¬ÂÂÃ­ÂÂ Ã¬ÂÂ Ã­ÂÂ Ã¬ÂÂ´Ã«Â²Â¤Ã­ÂÂ¸ Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ ÃÂ¬ÃÂÃÂ´ÃÂ«ÃÂ²ÃÂ¤ÃÂ­ÃÂÃÂ¸ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
 window.onPrdSel = function() {
   const v = (document.getElementById("prd-sel")||{}).value||"";
   const i = document.getElementById("prd-inp"); if(i) i.value=v;
@@ -140,41 +164,41 @@ window.onPrdInp = function() {
 };
 function _showPrd(product) {
   const el = document.getElementById("prd-result"); if(!el) return;
-  if (!product) { el.innerHTML='<div style="padding:40px;text-align:center;color:#aaa">Ã¬ÂÂÃ­ÂÂÃ¬ÂÂ Ã¬ÂÂ Ã­ÂÂÃ­ÂÂÃ«Â©Â´ Ã¬ÂÂÃ­ÂÂ¥Ã«Â°ÂÃ«ÂÂ Ã­ÂÂÃ«Â©Â´ Ã«ÂªÂ©Ã«Â¡ÂÃ¬ÂÂ´ Ã­ÂÂÃ¬ÂÂÃ«ÂÂ©Ã«ÂÂÃ«ÂÂ¤</div>'; return; }
-  const rows = (window._mapData||[]).filter(r=>r["Ã¬ÂÂÃ­ÂÂÃ«ÂªÂ"]===product);
-  if (!rows.length) { el.innerHTML='<div style="padding:32px;text-align:center;color:#888">Ã­ÂÂ´Ã«ÂÂ¹ Ã¬ÂÂÃ­ÂÂÃ¬ÂÂ Ã¬ÂÂÃ­ÂÂ¥ Ã­ÂÂÃ«Â©Â´Ã¬ÂÂ´ Ã¬ÂÂÃ¬ÂÂµÃ«ÂÂÃ«ÂÂ¤</div>'; return; }
+  if (!product) { el.innerHTML='<div style="padding:40px;text-align:center;color:#aaa">ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ«ÃÂ°ÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂ¡ÃÂÃÂ¬ÃÂÃÂ´ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ©ÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤</div>'; return; }
+  const rows = (window._mapData||[]).filter(r=>r["ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ«ÃÂªÃÂ"]===product);
+  if (!rows.length) { el.innerHTML='<div style="padding:32px;text-align:center;color:#888">ÃÂ­ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ÃÂ¬ÃÂÃÂ´ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂµÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤</div>'; return; }
   const tbody = rows.map(r=>
     "<tr>"
-    + "<td><code style=\"font-size:12px\">"+r["Ã­ÂÂÃ¬ÂÂ´Ã¬Â§ÂID"]+"</code></td>"
-    + "<td>"+_chBadge(r["Ã¬Â±ÂÃ«ÂÂ"])+"</td>"
-    + "<td style=\"font-size:12px\">"+r["Ã¬ÂÂ¬Ã¬ÂÂ´Ã­ÂÂ¸"]+"</td>"
-    + "<td style=\"font-weight:500\">"+r["Ã­ÂÂÃ¬ÂÂ´Ã¬Â§ÂÃ«ÂªÂ"]+"</td>"
-    + "<td style=\"font-size:12px;color:#555\">"+r["Ã«ÂÂ¸Ã¬Â¶ÂÃ¬ÂÂÃ¬Â¹Â"]+"</td>"
+    + "<td><code style=\"font-size:12px\">"+r["ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID"]+"</code></td>"
+    + "<td>"+_chBadge(r["ÃÂ¬ÃÂ±ÃÂÃÂ«ÃÂÃÂ"])+"</td>"
+    + "<td style=\"font-size:12px\">"+r["ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸"]+"</td>"
+    + "<td style=\"font-weight:500\">"+r["ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ"]+"</td>"
+    + "<td style=\"font-size:12px;color:#555\">"+r["ÃÂ«ÃÂÃÂ¸ÃÂ¬ÃÂ¶ÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂ¹ÃÂ"]+"</td>"
     + "</tr>"
   ).join("");
   el.innerHTML =
     '<div style="padding:6px 0;font-size:13px">'
-    + '<strong style="color:#1a6cbf">'+product+'</strong> Ã¬ÂÂÃ­ÂÂÃ¬ÂÂ´ Ã«ÂÂ¸Ã¬Â¶ÂÃ«ÂÂÃ«ÂÂ Ã­ÂÂÃ«Â©Â´ '
-    + '<span style="background:#1a6cbf;color:#fff;border-radius:10px;padding:1px 8px;font-size:12px">'+rows.length+'ÃªÂ°Â</span>'
+    + '<strong style="color:#1a6cbf">'+product+'</strong> ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ ÃÂ«ÃÂÃÂ¸ÃÂ¬ÃÂ¶ÃÂÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ '
+    + '<span style="background:#1a6cbf;color:#fff;border-radius:10px;padding:1px 8px;font-size:12px">'+rows.length+'ÃÂªÃÂ°ÃÂ</span>'
     + '</div>'
     + '<div class="tbl-wrap"><table>'
-    + '<thead><tr><th>Ã­ÂÂÃ¬ÂÂ´Ã¬Â§ÂID</th><th>Ã¬Â±ÂÃ«ÂÂ</th><th>Ã¬ÂÂ¬Ã¬ÂÂ´Ã­ÂÂ¸</th><th>Ã­ÂÂÃ¬ÂÂ´Ã¬Â§ÂÃ«ÂªÂ</th><th>Ã«ÂÂ¸Ã¬Â¶ÂÃ¬ÂÂÃ¬Â¹Â</th></tr></thead>'
+    + '<thead><tr><th>ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID</th><th>ÃÂ¬ÃÂ±ÃÂÃÂ«ÃÂÃÂ</th><th>ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸</th><th>ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ</th><th>ÃÂ«ÃÂÃÂ¸ÃÂ¬ÃÂ¶ÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂ¹ÃÂ</th></tr></thead>'
     + '<tbody>'+tbody+'</tbody></table></div>';
 }
 
-// ââ ìºì ì°íì© nav ì´ë²¤í¸ ì§ì  ë°ì¸ë© âââââââââââââââââââââ
+// Ã¢ÂÂÃ¢ÂÂ Ã¬ÂºÂÃ¬ÂÂ Ã¬ÂÂ°Ã­ÂÂÃ¬ÂÂ© nav Ã¬ÂÂ´Ã«Â²Â¤Ã­ÂÂ¸ Ã¬Â§ÂÃ¬Â Â Ã«Â°ÂÃ¬ÂÂ¸Ã«ÂÂ© Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
 (function() {
   function _bindImpactNav() {
     const nav = document.getElementById("nav-impact");
     if (!nav) { setTimeout(_bindImpactNav, 300); return; }
-    // onclick ìì± ì ê±° í addEventListenerë¡ êµì²´
+    // onclick Ã¬ÂÂÃ¬ÂÂ± Ã¬Â ÂÃªÂ±Â° Ã­ÂÂ addEventListenerÃ«Â¡Â ÃªÂµÂÃ¬Â²Â´
     nav.removeAttribute("onclick");
     nav.addEventListener("click", function(e) {
       e.stopImmediatePropagation();
-      // ë¤ë¥¸ nav íì±í ì²ë¦¬ (ê¸°ì¡´ showPage ì¼ë¶ ì¬í)
+      // Ã«ÂÂ¤Ã«Â¥Â¸ nav Ã­ÂÂÃ¬ÂÂ±Ã­ÂÂ Ã¬Â²ÂÃ«Â¦Â¬ (ÃªÂ¸Â°Ã¬Â¡Â´ showPage Ã¬ÂÂ¼Ã«Â¶Â Ã¬ÂÂ¬Ã­ÂÂ)
       document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
       nav.classList.add("active");
-      document.getElementById("topbar-title").textContent = "ìí¥ëê´ë¦¬";
+      document.getElementById("topbar-title").textContent = "Ã¬ÂÂÃ­ÂÂ¥Ã«ÂÂÃªÂ´ÂÃ«Â¦Â¬";
       renderImpact();
     }, true);
   }
