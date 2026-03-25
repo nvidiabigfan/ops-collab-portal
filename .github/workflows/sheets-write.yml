@@ -1,4 +1,5 @@
 name: Sheets Write
+
 on:
   workflow_dispatch:
     inputs:
@@ -7,11 +8,28 @@ on:
         required: true
         type: string
       row_json:
-        description: '추가할 행 데이터 (JSON)'
-        required: true
+        description: '행 데이터 (JSON)'
+        required: false
         type: string
+        default: '{}'
+      action:
+        description: 'append | update | delete'
+        required: false
+        type: string
+        default: 'append'
+      row_id_key:
+        description: 'update/delete 시 ID 컬럼명 (예: 일정ID)'
+        required: false
+        type: string
+        default: ''
+      row_id_val:
+        description: 'update/delete 시 ID 값 (예: SCH-0001)'
+        required: false
+        type: string
+        default: ''
+
 jobs:
-  append-row:
+  sheets-write:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -24,4 +42,7 @@ jobs:
           SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
           SHEET_NAME: ${{ inputs.sheet_name }}
           ROW_JSON: ${{ inputs.row_json }}
+          ACTION: ${{ inputs.action }}
+          ROW_ID_KEY: ${{ inputs.row_id_key }}
+          ROW_ID_VAL: ${{ inputs.row_id_val }}
         run: python scripts/append_row.py
