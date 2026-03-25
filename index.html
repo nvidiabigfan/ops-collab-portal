@@ -313,7 +313,7 @@ function showPage(page) {
   document.getElementById('nav-'+page).classList.add('active');
   const titles = {home:'홈',schedule:'일정관리',impact:'영향도관리',defect:'결함관리',migration:'이관항목',links:'운영링크'};
   document.getElementById('topbar-title').textContent = titles[page];
-  ({home:renderHome,schedule:renderSchedule,impact:renderImpact,defect:renderDefect,migration:renderMigration,links:renderLinks})[page]();
+  ({home:renderHome,schedule:renderSchedule,impact:()=>renderImpact(),defect:renderDefect,migration:renderMigration,links:renderLinks})[page]();
 }
 
 // ══ 홈 ══════════════════════════════════════════════
