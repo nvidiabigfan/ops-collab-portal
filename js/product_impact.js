@@ -1,13 +1,9 @@
-/* product_impact.js v3 — 최종 확정
- * 1. 파일 로드 즉시 원본 renderImpact + showPage 패치
- * 2. renderPgTable 패치 (setContent 우회, pg-tbl-wrap 직접 삽입)
- * 3. 탭 UI: 영향페이지 조회 / 상품영향 조회
- * 4. gviz 방식 통일 (SheetsAPI 의존 없음)
+/* product_impact.js v4 — 최종 확정
+ * showPage impact 호출 시 renderImpact noop 교체로 원본 충돌 완전 차단
  */
 
 const _PI_SID = "12ZpwaDPNCV1V48xUtuWv2cooGtAjBZLIbClu3R88HoU";
 
-// ── gviz CSV fetch ───────────────────────────────────────────
 async function _gvizFetch(sheetName) {
   const url = "https://docs.google.com/spreadsheets/d/" + _PI_SID
     + "/gviz/tq?tqx=out:csv&sheet=" + encodeURIComponent(sheetName);
@@ -29,7 +25,6 @@ async function _gvizFetch(sheetName) {
   });
 }
 
-// ── 헬퍼 ────────────────────────────────────────────────────
 function _chBadge(ch) {
   return ch === "대표홈페이지"
     ? '<span style="background:#e3f0ff;color:#1a6cbf;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600">대표홈</span>'
@@ -41,54 +36,51 @@ function _tStyle(on) {
     : "padding:8px 22px;border:none;background:#f0f4fa;color:#555;cursor:pointer;font-size:14px;border-radius:6px 6px 0 0;margin-right:4px";
 }
 
-// ── 즉시 실행 패치 (캐시된 index.html 대응) ──────────────────
+// ── 즉시 실행 패치 ──────────────────────────────────────────
 (function() {
-  // 1. 원본 renderImpact 무력화
-  if (typeof window.renderImpact === "function"
-      && window.renderImpact.toString().indexOf("switchImpactTab") === -1) {
-    window.renderImpact = async function() {};
-  }
-  // 2. showPage 패치 — impact 호출 시 우리 renderImpact 보장
-  if (typeof window.showPage === "function"
-      && window.showPage.toString().indexOf("_origSP") === -1) {
-    const _origSP = window.showPage;
-    window.showPage = function(page) {
+  // 1. renderPgTable 패치 — pg-tbl-wrap 있을 때 setContent 우회
+  const _origRPT = window.renderPgTable;
+  window.renderPgTable = function() {
+    const wrap = document.getElementById("pg-tbl-wrap");
+    if (!wrap) { _origRPT && _origRPT(); return; }
+    const q    = (document.getElementById("pg-q")      ||{}).value||"";
+    const site = (document.getElementById("pg-site-f") ||{}).value||"";
+    const cnt  = document.getElementById("pg-count");
+    const rows = window._pgData || [];
+    const hit  = rows.filter(r =>
+      (!q    || ["페이지ID","페이지명","담당자","화면ID"].some(k=>(r[k]||"").includes(q))) &&
+      (!site || r["사이트"] === site)
+    );
+    if (cnt) cnt.textContent = hit.length + "건";
+    if (!hit.length) {
+      wrap.innerHTML = '<table><thead><tr><th>ID</th><th>사이트</th><th>페이지명</th><th>담당자</th><th>변경일</th></tr></thead><tbody><tr class="empty-row"><td colspan="5">등록된 페이지가 없습니다</td></tr></tbody></table>';
+      return;
+    }
+    const tbody = hit.map(r=>
+      "<tr>"
+      + '<td><code style="font-size:12px">' + (r["페이지ID"]||"") + "</code></td>"
+      + '<td style="font-size:12px">' + (r["사이트"]||"") + "</td>"
+      + "<td>" + (r["페이지명"]||"") + "</td>"
+      + "<td>" + (r["담당자"]||"") + "</td>"
+      + '<td style="font-size:12px">' + (r["최근변경일"]||"") + "</td>"
+      + "</tr>"
+    ).join("");
+    wrap.innerHTML = '<table><thead><tr><th>ID</th><th>사이트</th><th>페이지명</th><th>담당자</th><th>변경일</th></tr></thead><tbody>' + tbody + "</tbody></table>";
+  };
+
+  // 2. showPage 패치 — impact 호출 시 원본 renderImpact를 noop으로 교체 후 복원
+  const _origSP = window.showPage;
+  window.showPage = function(page) {
+    if (page === "impact") {
+      const _savedRI = window.renderImpact;
+      window.renderImpact = async function() {};  // noop으로 교체
+      _origSP(page);                              // 원본 showPage (noop RI 호출)
+      window.renderImpact = _savedRI;             // 우리 버전 복원
+      window.renderImpact();                      // 탭 UI 렌더링
+    } else {
       _origSP(page);
-      if (page === "impact") window.renderImpact();
-    };
-  }
-  // 3. renderPgTable 패치 — pg-tbl-wrap 있을 때 setContent 우회
-  if (typeof window.renderPgTable === "function"
-      && window.renderPgTable.toString().indexOf("_origRPT") === -1) {
-    const _origRPT = window.renderPgTable;
-    window.renderPgTable = function() {
-      const wrap = document.getElementById("pg-tbl-wrap");
-      if (!wrap) { _origRPT(); return; }
-      const q    = (document.getElementById("pg-q")      ||{}).value||"";
-      const site = (document.getElementById("pg-site-f") ||{}).value||"";
-      const cnt  = document.getElementById("pg-count");
-      const rows = window._pgData || [];
-      const hit  = rows.filter(r =>
-        (!q    || ["페이지ID","페이지명","담당자","화면ID"].some(k=>(r[k]||"").includes(q))) &&
-        (!site || r["사이트"] === site)
-      );
-      if (cnt) cnt.textContent = hit.length + "건";
-      if (!hit.length) {
-        wrap.innerHTML = '<table><thead><tr><th>ID</th><th>사이트</th><th>페이지명</th><th>담당자</th><th>변경일</th></tr></thead><tbody><tr class="empty-row"><td colspan="5">등록된 페이지가 없습니다</td></tr></tbody></table>';
-        return;
-      }
-      const tbody = hit.map(r=>
-        "<tr>"
-        + '<td><code style="font-size:12px">' + (r["페이지ID"]||"") + "</code></td>"
-        + '<td style="font-size:12px">' + (r["사이트"]||"") + "</td>"
-        + "<td>" + (r["페이지명"]||"") + "</td>"
-        + "<td>" + (r["담당자"]||"") + "</td>"
-        + '<td style="font-size:12px">' + (r["최근변경일"]||"") + "</td>"
-        + "</tr>"
-      ).join("");
-      wrap.innerHTML = '<table><thead><tr><th>ID</th><th>사이트</th><th>페이지명</th><th>담당자</th><th>변경일</th></tr></thead><tbody>' + tbody + "</tbody></table>";
-    };
-  }
+    }
+  };
 })();
 
 // ── renderImpact 오버라이드 ──────────────────────────────────
@@ -104,7 +96,6 @@ window.renderImpact = async function() {
   switchImpactTab("page");
 };
 
-// ── 탭 전환 ────────────────────────────────────────────────
 window.switchImpactTab = function(tab) {
   const pg  = document.getElementById("tab-pg");
   const prd = document.getElementById("tab-prd");
@@ -114,7 +105,6 @@ window.switchImpactTab = function(tab) {
   else                _loadPrdTab();
 };
 
-// ── 탭1: 영향페이지 ─────────────────────────────────────────
 async function _loadPgTab() {
   const body = document.getElementById("pi-body");
   if (!body) return;
@@ -137,7 +127,6 @@ async function _loadPgTab() {
   }
 }
 
-// ── 탭2: 상품영향 조회 ──────────────────────────────────────
 async function _loadPrdTab() {
   const body = document.getElementById("pi-body");
   if (!body) return;
@@ -164,7 +153,6 @@ async function _loadPrdTab() {
   }
 }
 
-// ── 상품 선택 이벤트 ────────────────────────────────────────
 window.onPrdSel = function() {
   const v = (document.getElementById("prd-sel")||{}).value||"";
   const i = document.getElementById("prd-inp"); if(i) i.value=v;
