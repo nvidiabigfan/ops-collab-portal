@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>운영협업포털</title>
+<title>ì´ìíìí¬í¸</title>
 <style>
 :root {
   --primary: #2563eb; --primary-dark: #1d4ed8;
@@ -15,7 +15,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Apple SD Gothic Neo','Malgun Gothic',sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; font-size: 13px; }
 
-/* 사이드바 */
+/* ì¬ì´ëë° */
 #sidebar { width: var(--sidebar-w); background: #1e293b; color: #f8fafc; display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; }
 .logo { padding: 18px 16px; font-size: 14px; font-weight: 700; border-bottom: 1px solid #334155; line-height: 1.4; }
 .logo span { display: block; font-size: 11px; font-weight: 400; color: #94a3b8; margin-top: 2px; }
@@ -26,17 +26,17 @@ body { font-family: 'Apple SD Gothic Neo','Malgun Gothic',sans-serif; background
 .nav-icon { font-size: 15px; width: 18px; text-align: center; }
 .sidebar-footer { padding: 10px 16px; font-size: 11px; color: #475569; border-top: 1px solid #334155; }
 
-/* 메인 */
+/* ë©ì¸ */
 #main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; }
 #topbar { background: var(--card); border-bottom: 1px solid var(--border); padding: 0 20px; height: 50px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
 .page-title { font-size: 14px; font-weight: 700; }
 #content { padding: 20px; flex: 1; }
 
-/* 카드 */
+/* ì¹´ë */
 .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px; margin-bottom: 16px; }
 .card-title { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 14px; text-transform: uppercase; letter-spacing: .06em; }
 
-/* 버튼 */
+/* ë²í¼ */
 .btn { display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; transition: background .15s; font-family: inherit; }
 .btn-primary { background: var(--primary); color: #fff; }
 .btn-primary:hover { background: var(--primary-dark); }
@@ -48,7 +48,7 @@ body { font-family: 'Apple SD Gothic Neo','Malgun Gothic',sans-serif; background
 .btn-danger:hover { background: #fecaca; }
 .btn-sm { padding: 3px 8px; font-size: 11px; }
 
-/* 배지 */
+/* ë°°ì§ */
 .badge { display: inline-block; padding: 2px 7px; border-radius: 99px; font-size: 11px; font-weight: 600; white-space: nowrap; }
 .badge-blue { background: #dbeafe; color: #1d4ed8; }
 .badge-green { background: #dcfce7; color: #15803d; }
@@ -58,7 +58,7 @@ body { font-family: 'Apple SD Gothic Neo','Malgun Gothic',sans-serif; background
 .badge-gray { background: #f1f5f9; color: #475569; }
 .badge-purple { background: #ede9fe; color: #6d28d9; }
 
-/* 테이블 */
+/* íì´ë¸ */
 .tbl-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; }
 th { background: #f8fafc; text-align: left; padding: 8px 10px; font-size: 11px; color: var(--muted); border-bottom: 1px solid var(--border); font-weight: 700; white-space: nowrap; }
@@ -68,7 +68,7 @@ tr.clickable:hover td { background: #f0f7ff; cursor: pointer; }
 tr.clickable:active td { background: #dbeafe; }
 .empty-row td { text-align: center; color: var(--muted); padding: 32px; }
 
-/* 상태 드롭다운 (인라인) */
+/* ìí ëë¡­ë¤ì´ (ì¸ë¼ì¸) */
 .status-select {
   appearance: none; -webkit-appearance: none;
   border: none; background: transparent;
@@ -80,44 +80,44 @@ tr.clickable:active td { background: #dbeafe; }
   transition: box-shadow .15s;
 }
 .status-select:focus { box-shadow: 0 0 0 2px var(--primary); }
-/* 상태별 색 */
-.ss-예정   { background-color: #dbeafe; color: #1d4ed8; }
-.ss-진행중  { background-color: #fef9c3; color: #a16207; }
-.ss-완료   { background-color: #dcfce7; color: #15803d; }
-.ss-취소   { background-color: #f1f5f9; color: #475569; }
-.ss-미처리  { background-color: #fee2e2; color: #b91c1c; }
-.ss-처리중  { background-color: #fef9c3; color: #a16207; }
-.ss-해결   { background-color: #dcfce7; color: #15803d; }
-.ss-보류   { background-color: #f1f5f9; color: #475569; }
-.ss-준비중  { background-color: #fef9c3; color: #a16207; }
-.ss-검토중  { background-color: #dbeafe; color: #1d4ed8; }
+/* ìíë³ ì */
+.ss-ìì    { background-color: #dbeafe; color: #1d4ed8; }
+.ss-ì§íì¤  { background-color: #fef9c3; color: #a16207; }
+.ss-ìë£   { background-color: #dcfce7; color: #15803d; }
+.ss-ì·¨ì   { background-color: #f1f5f9; color: #475569; }
+.ss-ë¯¸ì²ë¦¬  { background-color: #fee2e2; color: #b91c1c; }
+.ss-ì²ë¦¬ì¤  { background-color: #fef9c3; color: #a16207; }
+.ss-í´ê²°   { background-color: #dcfce7; color: #15803d; }
+.ss-ë³´ë¥   { background-color: #f1f5f9; color: #475569; }
+.ss-ì¤ë¹ì¤  { background-color: #fef9c3; color: #a16207; }
+.ss-ê²í ì¤  { background-color: #dbeafe; color: #1d4ed8; }
 
-/* 삭제 버튼 셀 */
+/* ì­ì  ë²í¼ ì */
 .del-cell { width: 28px; text-align: center; }
 .del-btn { opacity: 0; background: none; border: none; font-size: 14px; cursor: pointer; color: var(--danger); padding: 2px 4px; border-radius: 4px; transition: opacity .15s, background .15s; }
 tr:hover .del-btn { opacity: 1; }
 .del-btn:hover { background: #fee2e2; }
 
-/* 그리드 */
+/* ê·¸ë¦¬ë */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
 .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
 
-/* 통계 카드 */
+/* íµê³ ì¹´ë */
 .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; }
 .stat-label { font-size: 11px; color: var(--muted); margin-bottom: 5px; }
 .stat-value { font-size: 26px; font-weight: 800; line-height: 1; }
 .stat-sub { font-size: 11px; color: var(--muted); margin-top: 5px; }
 .stat-link { font-size: 11px; color: var(--primary); cursor: pointer; margin-top: 6px; display: inline-block; }
 
-/* 필터바 */
+/* íí°ë° */
 .filter-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
 .filter-bar input, .filter-bar select { padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: inherit; background: #fff; color: var(--text); }
 .filter-bar input:focus, .filter-bar select:focus { outline: none; border-color: var(--primary); }
 .filter-bar input { min-width: 200px; }
 .filter-count { font-size: 12px; color: var(--muted); margin-left: auto; }
 
-/* 폼 */
+/* í¼ */
 .form-group { margin-bottom: 12px; }
 .form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
 .form-group label .req { color: var(--danger); }
@@ -127,7 +127,7 @@ tr:hover .del-btn { opacity: 1; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .warn-field { border-color: var(--warning) !important; background: #fffbeb !important; }
 
-/* 모달 */
+/* ëª¨ë¬ */
 .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 200; align-items: center; justify-content: center; }
 .modal-bg.open { display: flex; }
 .modal { background: #fff; border-radius: 10px; width: 580px; max-width: 95vw; max-height: 92vh; overflow-y: auto; }
@@ -137,7 +137,7 @@ tr:hover .del-btn { opacity: 1; }
 .modal-footer { padding: 12px 18px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 8px; }
 .close-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: var(--muted); line-height: 1; }
 
-/* 상세 모달 */
+/* ìì¸ ëª¨ë¬ */
 .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
 .detail-item label { font-size: 10px; font-weight: 700; color: var(--muted); display: block; margin-bottom: 2px; text-transform: uppercase; }
 .detail-item .val { font-size: 13px; color: var(--text); word-break: break-all; }
@@ -145,7 +145,7 @@ tr:hover .del-btn { opacity: 1; }
 .detail-divider { grid-column: 1/-1; border: none; border-top: 1px solid var(--border); margin: 6px 0; }
 .mode-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: #f1f5f9; color: var(--muted); margin-left: 8px; vertical-align: middle; }
 
-/* 링크 카드 */
+/* ë§í¬ ì¹´ë */
 .link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 10px; }
 .link-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px; text-decoration: none; color: var(--text); transition: box-shadow .15s; }
 .link-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,.09); border-color: var(--primary); }
@@ -154,7 +154,7 @@ tr:hover .del-btn { opacity: 1; }
 .link-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
 .link-url { font-size: 10px; color: #94a3b8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px; }
 
-/* 토스트 */
+/* í ì¤í¸ */
 #toast { position: fixed; bottom: 20px; right: 20px; background: #1e293b; color: #fff; padding: 9px 16px; border-radius: 8px; font-size: 13px; z-index: 999; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; transform: translateY(6px); }
 #toast.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 .loading { text-align: center; padding: 40px; color: var(--muted); }
@@ -163,16 +163,16 @@ tr:hover .del-btn { opacity: 1; }
 </head>
 <body>
 
-<!-- ===== 비밀번호 인증 팝업 ===== -->
+<!-- ===== ë¹ë°ë²í¸ ì¸ì¦ íì ===== -->
 <div id="auth-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;">
   <div style="background:#fff;padding:36px 32px;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.2);min-width:320px;text-align:center;">
-    <div style="font-size:22px;font-weight:700;margin-bottom:8px;">🔒 운영협업포털</div>
-    <div style="font-size:13px;color:#666;margin-bottom:24px;">접속 비밀번호를 입력하세요</div>
-    <input id="auth-input" type="password" placeholder="비밀번호"
+    <div style="font-size:22px;font-weight:700;margin-bottom:8px;">ð ì´ìíìí¬í¸</div>
+    <div style="font-size:13px;color:#666;margin-bottom:24px;">ì ì ë¹ë°ë²í¸ë¥¼ ìë ¥íì¸ì</div>
+    <input id="auth-input" type="password" placeholder="ë¹ë°ë²í¸"
       style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;margin-bottom:12px;"
       onkeydown="if(event.key==='Enter') checkAuth()"/>
-    <div id="auth-error" style="color:#e53935;font-size:12px;margin-bottom:10px;display:none;">비밀번호가 올바르지 않습니다</div>
-    <button onclick="checkAuth()" style="width:100%;padding:11px;background:#1a73e8;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;">확인</button>
+    <div id="auth-error" style="color:#e53935;font-size:12px;margin-bottom:10px;display:none;">ë¹ë°ë²í¸ê° ì¬ë°ë¥´ì§ ììµëë¤</div>
+    <button onclick="checkAuth()" style="width:100%;padding:11px;background:#1a73e8;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;">íì¸</button>
   </div>
 </div>
 <script>
@@ -194,194 +194,194 @@ function checkAuth() {
 })();
 </script>
 
-<!-- 사이드바 -->
+<!-- ì¬ì´ëë° -->
 <div id="sidebar">
-  <div class="logo">운영협업포털<span>Ops Collab Portal</span></div>
+  <div class="logo">ì´ìíìí¬í¸<span>Ops Collab Portal</span></div>
   <nav>
-    <a id="nav-home"      onclick="showPage('home')">      <span class="nav-icon">🏠</span> 홈</a>
-    <a id="nav-schedule"  onclick="showPage('schedule')">  <span class="nav-icon">📅</span> 일정관리</a>
-    <a id="nav-impact"    onclick="showPage('impact')">    <span class="nav-icon">🖥️</span> 영향도관리</a>
-    <a id="nav-defect"    onclick="showPage('defect')">    <span class="nav-icon">🐛</span> 결함관리</a>
-    <a id="nav-migration" onclick="showPage('migration')"> <span class="nav-icon">🔄</span> 이관항목</a>
-    <a id="nav-links"     onclick="showPage('links')">     <span class="nav-icon">🔗</span> 운영링크</a>
+    <a id="nav-home"      onclick="showPage('home')">      <span class="nav-icon">ð </span> í</a>
+    <a id="nav-schedule"  onclick="showPage('schedule')">  <span class="nav-icon">ð</span> ì¼ì ê´ë¦¬</a>
+    <a id="nav-impact"    onclick="showPage('impact')">    <span class="nav-icon">ð¥ï¸</span> ìí¥ëê´ë¦¬</a>
+    <a id="nav-defect"    onclick="showPage('defect')">    <span class="nav-icon">ð</span> ê²°í¨ê´ë¦¬</a>
+    <a id="nav-migration" onclick="showPage('migration')"> <span class="nav-icon">ð</span> ì´ê´í­ëª©</a>
+    <a id="nav-links"     onclick="showPage('links')">     <span class="nav-icon">ð</span> ì´ìë§í¬</a>
   </nav>
   <div class="sidebar-footer" id="sidebar-footer"></div>
 </div>
 
-<!-- 메인 -->
+<!-- ë©ì¸ -->
 <div id="main">
   <div id="topbar">
-    <span class="page-title" id="topbar-title">홈</span>
+    <span class="page-title" id="topbar-title">í</span>
     <div id="topbar-actions" style="display:flex;gap:8px;align-items:center"></div>
   </div>
   <div id="content"></div>
 </div>
 
-<!-- ══════════════ 모달: 일정 등록/수정 ══════════════ -->
+<!-- ââââââââââââââ ëª¨ë¬: ì¼ì  ë±ë¡/ìì  ââââââââââââââ -->
 <div class="modal-bg" id="modal-schedule">
   <div class="modal">
     <div class="modal-header">
-      <h3 id="modal-schedule-title">📅 일정 등록</h3>
-      <button class="close-btn" onclick="closeModal('modal-schedule')">✕</button>
+      <h3 id="modal-schedule-title">ð ì¼ì  ë±ë¡</h3>
+      <button class="close-btn" onclick="closeModal('modal-schedule')">â</button>
     </div>
     <div class="modal-body">
       <div class="form-row">
-        <div class="form-group"><label>일정ID</label><input type="text" id="sch-id" class="auto-id" readonly></div>
-        <div class="form-group"><label>담당자 <span class="req">*</span></label><input type="text" id="sch-owner" placeholder="홍길동"></div>
+        <div class="form-group"><label>ì¼ì ID</label><input type="text" id="sch-id" class="auto-id" readonly></div>
+        <div class="form-group"><label>ë´ë¹ì <span class="req">*</span></label><input type="text" id="sch-owner" placeholder="íê¸¸ë"></div>
       </div>
-      <div class="form-group"><label>제목 <span class="req">*</span></label><input type="text" id="sch-title" placeholder="일정 제목"></div>
+      <div class="form-group"><label>ì ëª© <span class="req">*</span></label><input type="text" id="sch-title" placeholder="ì¼ì  ì ëª©"></div>
       <div class="form-row">
         <div class="form-group">
-          <label>업무유형 <span class="req">*</span></label>
-          <select id="sch-type"><option>배포</option><option>점검</option><option>이벤트</option><option>긴급대응</option><option>기타</option></select>
+          <label>ìë¬´ì í <span class="req">*</span></label>
+          <select id="sch-type"><option>ë°°í¬</option><option>ì ê²</option><option>ì´ë²¤í¸</option><option>ê¸´ê¸ëì</option><option>ê¸°í</option></select>
         </div>
         <div class="form-group">
-          <label>상태</label>
-          <select id="sch-status"><option>예정</option><option>진행중</option><option>완료</option><option>취소</option></select>
+          <label>ìí</label>
+          <select id="sch-status"><option>ìì </option><option>ì§íì¤</option><option>ìë£</option><option>ì·¨ì</option></select>
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>시작일 <span class="req">*</span></label><input type="date" id="sch-start"></div>
-        <div class="form-group"><label>마감일 <span class="req">*</span></label><input type="date" id="sch-end"></div>
+        <div class="form-group"><label>ììì¼ <span class="req">*</span></label><input type="date" id="sch-start"></div>
+        <div class="form-group"><label>ë§ê°ì¼ <span class="req">*</span></label><input type="date" id="sch-end"></div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>관련페이지ID</label><input type="text" id="sch-page" placeholder="PG-0001 (쉼표 구분)"></div>
-        <div class="form-group"><label>관련결함ID</label><input type="text" id="sch-defect" placeholder="DEF-0001 (쉼표 구분)"></div>
+        <div class="form-group"><label>ê´ë ¨íì´ì§ID</label><input type="text" id="sch-page" placeholder="PG-0001 (ì¼í êµ¬ë¶)"></div>
+        <div class="form-group"><label>ê´ë ¨ê²°í¨ID</label><input type="text" id="sch-defect" placeholder="DEF-0001 (ì¼í êµ¬ë¶)"></div>
       </div>
-      <div class="form-group"><label>메모</label><textarea id="sch-memo" rows="2" placeholder="추가 메모"></textarea></div>
+      <div class="form-group"><label>ë©ëª¨</label><textarea id="sch-memo" rows="2" placeholder="ì¶ê° ë©ëª¨"></textarea></div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-outline" onclick="closeModal('modal-schedule')">취소</button>
-      <button class="btn btn-primary" id="sch-submit-btn" onclick="submitSchedule()">등록</button>
+      <button class="btn btn-outline" onclick="closeModal('modal-schedule')">ì·¨ì</button>
+      <button class="btn btn-primary" id="sch-submit-btn" onclick="submitSchedule()">ë±ë¡</button>
     </div>
   </div>
 </div>
 
-<!-- ══════════════ 모달: 결함 등록/수정 ══════════════ -->
+<!-- ââââââââââââââ ëª¨ë¬: ê²°í¨ ë±ë¡/ìì  ââââââââââââââ -->
 <div class="modal-bg" id="modal-defect">
   <div class="modal">
     <div class="modal-header">
-      <h3 id="modal-defect-title">🐛 결함 등록</h3>
-      <button class="close-btn" onclick="closeModal('modal-defect')">✕</button>
+      <h3 id="modal-defect-title">ð ê²°í¨ ë±ë¡</h3>
+      <button class="close-btn" onclick="closeModal('modal-defect')">â</button>
     </div>
     <div class="modal-body">
       <div class="form-row">
-        <div class="form-group"><label>결함ID</label><input type="text" id="def-id" class="auto-id" readonly></div>
-        <div class="form-group"><label>담당자 <span class="req">*</span></label><input type="text" id="def-owner" placeholder="홍길동"></div>
+        <div class="form-group"><label>ê²°í¨ID</label><input type="text" id="def-id" class="auto-id" readonly></div>
+        <div class="form-group"><label>ë´ë¹ì <span class="req">*</span></label><input type="text" id="def-owner" placeholder="íê¸¸ë"></div>
       </div>
-      <div class="form-group"><label>제목 <span class="req">*</span></label><input type="text" id="def-title" placeholder="결함 제목"></div>
+      <div class="form-group"><label>ì ëª© <span class="req">*</span></label><input type="text" id="def-title" placeholder="ê²°í¨ ì ëª©"></div>
       <div class="form-row">
         <div class="form-group">
-          <label>카테고리 <span class="req">*</span></label>
-          <select id="def-category"><option>UI/UX</option><option>기능오류</option><option>성능</option><option>보안</option><option>데이터</option><option>기타</option></select>
+          <label>ì¹´íê³ ë¦¬ <span class="req">*</span></label>
+          <select id="def-category"><option>UI/UX</option><option>ê¸°ë¥ì¤ë¥</option><option>ì±ë¥</option><option>ë³´ì</option><option>ë°ì´í°</option><option>ê¸°í</option></select>
         </div>
         <div class="form-group">
-          <label>심각도 <span class="req">*</span></label>
-          <select id="def-severity"><option>긴급</option><option>높음</option><option>중간</option><option>낮음</option></select>
+          <label>ì¬ê°ë <span class="req">*</span></label>
+          <select id="def-severity"><option>ê¸´ê¸</option><option>ëì</option><option>ì¤ê°</option><option>ë®ì</option></select>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>상태</label>
-          <select id="def-status" onchange="checkDefectStatus()"><option>미처리</option><option>처리중</option><option>해결</option><option>보류</option></select>
+          <label>ìí</label>
+          <select id="def-status" onchange="checkDefectStatus()"><option>ë¯¸ì²ë¦¬</option><option>ì²ë¦¬ì¤</option><option>í´ê²°</option><option>ë³´ë¥</option></select>
         </div>
-        <div class="form-group"><label>관련페이지ID</label><input type="text" id="def-page" placeholder="PG-0001"></div>
+        <div class="form-group"><label>ê´ë ¨íì´ì§ID</label><input type="text" id="def-page" placeholder="PG-0001"></div>
       </div>
-      <div class="form-group"><label>증상 <span class="req">*</span></label><textarea id="def-symptom" rows="2" placeholder="발생 증상 설명"></textarea></div>
-      <div class="form-group"><label>원인</label><input type="text" id="def-cause" placeholder="원인 분석"></div>
-      <div class="form-group"><label>해결방법</label><textarea id="def-solution" rows="2" placeholder="해결 방법"></textarea></div>
+      <div class="form-group"><label>ì¦ì <span class="req">*</span></label><textarea id="def-symptom" rows="2" placeholder="ë°ì ì¦ì ì¤ëª"></textarea></div>
+      <div class="form-group"><label>ìì¸</label><input type="text" id="def-cause" placeholder="ìì¸ ë¶ì"></div>
+      <div class="form-group"><label>í´ê²°ë°©ë²</label><textarea id="def-solution" rows="2" placeholder="í´ê²° ë°©ë²"></textarea></div>
       <div class="form-group" id="def-prevent-group">
-        <label>재발방지 <span id="def-prevent-req" style="display:none" class="req">* 해결 상태에서 필수</span></label>
-        <input type="text" id="def-prevent" placeholder="재발 방지 대책">
+        <label>ì¬ë°ë°©ì§ <span id="def-prevent-req" style="display:none" class="req">* í´ê²° ìíìì íì</span></label>
+        <input type="text" id="def-prevent" placeholder="ì¬ë° ë°©ì§ ëì±">
       </div>
-      <div class="form-group"><label>등록일</label><input type="date" id="def-date"></div>
+      <div class="form-group"><label>ë±ë¡ì¼</label><input type="date" id="def-date"></div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-outline" onclick="closeModal('modal-defect')">취소</button>
-      <button class="btn btn-primary" id="def-submit-btn" onclick="submitDefect()">등록</button>
+      <button class="btn btn-outline" onclick="closeModal('modal-defect')">ì·¨ì</button>
+      <button class="btn btn-primary" id="def-submit-btn" onclick="submitDefect()">ë±ë¡</button>
     </div>
   </div>
 </div>
 
-<!-- ══════════════ 모달: 영향페이지 등록/수정 ══════════════ -->
+<!-- ââââââââââââââ ëª¨ë¬: ìí¥íì´ì§ ë±ë¡/ìì  ââââââââââââââ -->
 <div class="modal-bg" id="modal-impact">
   <div class="modal">
     <div class="modal-header">
-      <h3 id="modal-impact-title">🖥️ 영향페이지 등록</h3>
-      <button class="close-btn" onclick="closeModal('modal-impact')">✕</button>
+      <h3 id="modal-impact-title">ð¥ï¸ ìí¥íì´ì§ ë±ë¡</h3>
+      <button class="close-btn" onclick="closeModal('modal-impact')">â</button>
     </div>
     <div class="modal-body">
       <div class="form-row">
-        <div class="form-group"><label>페이지ID</label><input type="text" id="pg-id" class="auto-id" readonly></div>
-        <div class="form-group"><label>담당자 <span class="req">*</span></label><input type="text" id="pg-owner" placeholder="홍길동"></div>
+        <div class="form-group"><label>íì´ì§ID</label><input type="text" id="pg-id" class="auto-id" readonly></div>
+        <div class="form-group"><label>ë´ë¹ì <span class="req">*</span></label><input type="text" id="pg-owner" placeholder="íê¸¸ë"></div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>사이트명 <span class="req">*</span></label><input type="text" id="pg-site" placeholder="청약사이트"></div>
-        <div class="form-group"><label>페이지명 <span class="req">*</span></label><input type="text" id="pg-name" placeholder="보험료 조회 화면"></div>
+        <div class="form-group"><label>ì¬ì´í¸ëª <span class="req">*</span></label><input type="text" id="pg-site" placeholder="ì²­ì½ì¬ì´í¸"></div>
+        <div class="form-group"><label>íì´ì§ëª <span class="req">*</span></label><input type="text" id="pg-name" placeholder="ë³´íë£ ì¡°í íë©´"></div>
       </div>
       <div class="form-row">
         <div class="form-group"><label>URL</label><input type="text" id="pg-url" placeholder="https://..."></div>
-        <div class="form-group"><label>화면ID</label><input type="text" id="pg-screen" placeholder="SCR-0001"></div>
+        <div class="form-group"><label>íë©´ID</label><input type="text" id="pg-screen" placeholder="SCR-0001"></div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>연관페이지ID</label><input type="text" id="pg-related" placeholder="PG-0001 (쉼표 구분)"></div>
-        <div class="form-group"><label>스크린샷URL</label><input type="text" id="pg-screenshot" placeholder="Google Drive 공유링크"></div>
+        <div class="form-group"><label>ì°ê´íì´ì§ID</label><input type="text" id="pg-related" placeholder="PG-0001 (ì¼í êµ¬ë¶)"></div>
+        <div class="form-group"><label>ì¤í¬ë¦°ì·URL</label><input type="text" id="pg-screenshot" placeholder="Google Drive ê³µì ë§í¬"></div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>최근변경일</label><input type="date" id="pg-changed"></div>
-        <div class="form-group"><label>주의사항</label><input type="text" id="pg-note" placeholder="특이사항"></div>
+        <div class="form-group"><label>ìµê·¼ë³ê²½ì¼</label><input type="date" id="pg-changed"></div>
+        <div class="form-group"><label>ì£¼ìì¬í­</label><input type="text" id="pg-note" placeholder="í¹ì´ì¬í­"></div>
       </div>
-      <div class="form-group"><label>설명</label><textarea id="pg-desc" rows="2" placeholder="화면 설명"></textarea></div>
+      <div class="form-group"><label>ì¤ëª</label><textarea id="pg-desc" rows="2" placeholder="íë©´ ì¤ëª"></textarea></div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-outline" onclick="closeModal('modal-impact')">취소</button>
-      <button class="btn btn-primary" id="pg-submit-btn" onclick="submitImpact()">등록</button>
+      <button class="btn btn-outline" onclick="closeModal('modal-impact')">ì·¨ì</button>
+      <button class="btn btn-primary" id="pg-submit-btn" onclick="submitImpact()">ë±ë¡</button>
     </div>
   </div>
 </div>
 
-<!-- ══════════════ 모달: 이관항목 등록/수정 ══════════════ -->
+<!-- ââââââââââââââ ëª¨ë¬: ì´ê´í­ëª© ë±ë¡/ìì  ââââââââââââââ -->
 <div class="modal-bg" id="modal-migration">
   <div class="modal">
     <div class="modal-header">
-      <h3 id="modal-migration-title">🔄 이관항목 등록</h3>
-      <button class="close-btn" onclick="closeModal('modal-migration')">✕</button>
+      <h3 id="modal-migration-title">ð ì´ê´í­ëª© ë±ë¡</h3>
+      <button class="close-btn" onclick="closeModal('modal-migration')">â</button>
     </div>
     <div class="modal-body">
       <div class="form-row">
-        <div class="form-group"><label>이관ID</label><input type="text" id="mig-id" class="auto-id" readonly></div>
-        <div class="form-group"><label>담당자 <span class="req">*</span></label><input type="text" id="mig-owner" placeholder="홍길동"></div>
+        <div class="form-group"><label>ì´ê´ID</label><input type="text" id="mig-id" class="auto-id" readonly></div>
+        <div class="form-group"><label>ë´ë¹ì <span class="req">*</span></label><input type="text" id="mig-owner" placeholder="íê¸¸ë"></div>
       </div>
-      <div class="form-group"><label>항목명 <span class="req">*</span></label><input type="text" id="mig-name" placeholder="이관 항목명"></div>
+      <div class="form-group"><label>í­ëª©ëª <span class="req">*</span></label><input type="text" id="mig-name" placeholder="ì´ê´ í­ëª©ëª"></div>
       <div class="form-row">
-        <div class="form-group"><label>이관일</label><input type="date" id="mig-date"></div>
+        <div class="form-group"><label>ì´ê´ì¼</label><input type="date" id="mig-date"></div>
         <div class="form-group">
-          <label>준비상태</label>
-          <select id="mig-status"><option>준비중</option><option>검토중</option><option>완료</option><option>보류</option></select>
+          <label>ì¤ë¹ìí</label>
+          <select id="mig-status"><option>ì¤ë¹ì¤</option><option>ê²í ì¤</option><option>ìë£</option><option>ë³´ë¥</option></select>
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>관련일정ID</label><input type="text" id="mig-sch" placeholder="SCH-0001"></div>
-        <div class="form-group"><label>관련페이지ID</label><input type="text" id="mig-page" placeholder="PG-0001"></div>
+        <div class="form-group"><label>ê´ë ¨ì¼ì ID</label><input type="text" id="mig-sch" placeholder="SCH-0001"></div>
+        <div class="form-group"><label>ê´ë ¨íì´ì§ID</label><input type="text" id="mig-page" placeholder="PG-0001"></div>
       </div>
-      <div class="form-group"><label>위험요소</label><input type="text" id="mig-risk" placeholder="주요 위험 요소"></div>
-      <div class="form-group"><label>메모</label><textarea id="mig-memo" rows="2" placeholder="추가 메모"></textarea></div>
+      <div class="form-group"><label>ìíìì</label><input type="text" id="mig-risk" placeholder="ì£¼ì ìí ìì"></div>
+      <div class="form-group"><label>ë©ëª¨</label><textarea id="mig-memo" rows="2" placeholder="ì¶ê° ë©ëª¨"></textarea></div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-outline" onclick="closeModal('modal-migration')">취소</button>
-      <button class="btn btn-primary" id="mig-submit-btn" onclick="submitMigration()">등록</button>
+      <button class="btn btn-outline" onclick="closeModal('modal-migration')">ì·¨ì</button>
+      <button class="btn btn-primary" id="mig-submit-btn" onclick="submitMigration()">ë±ë¡</button>
     </div>
   </div>
 </div>
 
-<!-- ══════════════ 모달: 상세보기 (공용) ══════════════ -->
+<!-- ââââââââââââââ ëª¨ë¬: ìì¸ë³´ê¸° (ê³µì©) ââââââââââââââ -->
 <div class="modal-bg" id="modal-detail">
   <div class="modal" style="width:620px">
     <div class="modal-header">
-      <h3 id="detail-title">상세 정보</h3>
+      <h3 id="detail-title">ìì¸ ì ë³´</h3>
       <div style="display:flex;align-items:center;gap:8px">
-        <button class="btn btn-sm btn-outline" id="detail-edit-btn" onclick="openEditFromDetail()">✏️ 수정</button>
-        <button class="close-btn" onclick="closeModal('modal-detail')">✕</button>
+        <button class="btn btn-sm btn-outline" id="detail-edit-btn" onclick="openEditFromDetail()">âï¸ ìì </button>
+        <button class="close-btn" onclick="closeModal('modal-detail')">â</button>
       </div>
     </div>
     <div class="modal-body" id="detail-body"></div>
@@ -391,7 +391,7 @@ function checkAuth() {
 <div id="toast"></div>
 <script src="js/sheets_api.js"></script>
 <script>
-// ══ 설정 ════════════════════════════════════════════
+// ââ ì¤ì  ââââââââââââââââââââââââââââââââââââââââââââ
 window.PORTAL_CONFIG = {
   SPREADSHEET_ID: '12ZpwaDPNCV1V48xUtuWv2cooGtAjBZLIbClu3R88HoU',
   GITHUB_OWNER: 'nvidiabigfan',
@@ -399,11 +399,11 @@ window.PORTAL_CONFIG = {
   GITHUB_TOKEN: localStorage.getItem('portal_gh_token') || '',
 };
 
-// ══ 상태 ════════════════════════════════════════════
+// ââ ìí ââââââââââââââââââââââââââââââââââââââââââââ
 const S = { schedules:[], pages:[], defects:[], links:[], migrations:[] };
-let _detailContext = { type:null, data:null }; // 상세모달 컨텍스트
+let _detailContext = { type:null, data:null }; // ìì¸ëª¨ë¬ ì»¨íì¤í¸
 
-// ══ 유틸 ════════════════════════════════════════════
+// ââ ì í¸ ââââââââââââââââââââââââââââââââââââââââââââ
 let _toastTimer;
 function toast(msg, ms=2800) {
   const el = document.getElementById('toast');
@@ -417,10 +417,10 @@ function pad4(n) { return String(n).padStart(4,'0'); }
 function today() { return new Date().toISOString().slice(0,10); }
 
 function severityBadge(s) {
-  const m = {'긴급':'badge-red','높음':'badge-orange','중간':'badge-yellow','낮음':'badge-blue',
-             '미처리':'badge-red','처리중':'badge-yellow','해결':'badge-green','보류':'badge-gray',
-             '예정':'badge-blue','진행중':'badge-yellow','완료':'badge-green','취소':'badge-gray',
-             '준비중':'badge-yellow','검토중':'badge-blue'};
+  const m = {'ê¸´ê¸':'badge-red','ëì':'badge-orange','ì¤ê°':'badge-yellow','ë®ì':'badge-blue',
+             'ë¯¸ì²ë¦¬':'badge-red','ì²ë¦¬ì¤':'badge-yellow','í´ê²°':'badge-green','ë³´ë¥':'badge-gray',
+             'ìì ':'badge-blue','ì§íì¤':'badge-yellow','ìë£':'badge-green','ì·¨ì':'badge-gray',
+             'ì¤ë¹ì¤':'badge-yellow','ê²í ì¤':'badge-blue'};
   return `<span class="badge ${m[s]||'badge-gray'}">${s||''}</span>`;
 }
 
@@ -434,67 +434,67 @@ function statusSelectHTML(value, options, sheetName, idKey, idVal, onChangeFn) {
 }
 
 function exportCSV(data, filename) {
-  if (!data.length) { toast('내보낼 데이터가 없습니다'); return; }
+  if (!data.length) { toast('ë´ë³´ë¼ ë°ì´í°ê° ììµëë¤'); return; }
   const keys = Object.keys(data[0]);
   const rows = [keys.join(','), ...data.map(r => keys.map(k=>`"${(r[k]||'').replace(/"/g,'""')}"`).join(','))];
   const blob = new Blob(['\uFEFF'+rows.join('\n')], {type:'text/csv;charset=utf-8'});
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename; a.click();
 }
 
-// ══ 상태값 인라인 변경 공통 핸들러 ═════════════════
+// ââ ìíê° ì¸ë¼ì¸ ë³ê²½ ê³µíµ í¸ë¤ë¬ âââââââââââââââââ
 async function handleStatusChange(el, sheetName, idKey, idVal) {
   const newVal = el.value;
-  // 색상 즉시 반영
+  // ìì ì¦ì ë°ì
   el.className = `status-select ss-${newVal}`;
 
-  // 데이터 찾아서 전체 row 업데이트
-  const store = { '일정': S.schedules, '영향페이지': S.pages, '결함유형': S.defects, '이관항목': S.migrations };
-  const statusField = { '일정':'상태', '영향페이지':null, '결함유형':'상태', '이관항목':'준비상태' };
+  // ë°ì´í° ì°¾ìì ì ì²´ row ìë°ì´í¸
+  const store = { 'ì¼ì ': S.schedules, 'ìí¥íì´ì§': S.pages, 'ê²°í¨ì í': S.defects, 'ì´ê´í­ëª©': S.migrations };
+  const statusField = { 'ì¼ì ':'ìí', 'ìí¥íì´ì§':null, 'ê²°í¨ì í':'ìí', 'ì´ê´í­ëª©':'ì¤ë¹ìí' };
   const arr = store[sheetName];
   const row = arr && arr.find(r => r[idKey] === idVal);
-  if (!row) { toast('❌ 데이터를 찾을 수 없습니다'); return; }
+  if (!row) { toast('â ë°ì´í°ë¥¼ ì°¾ì ì ììµëë¤'); return; }
 
   const field = statusField[sheetName];
-  if (!field) { toast('❌ 이 시트는 상태 변경 미지원'); return; }
+  if (!field) { toast('â ì´ ìí¸ë ìí ë³ê²½ ë¯¸ì§ì'); return; }
 
   const updated = { ...row, [field]: newVal };
-  toast('⏳ 상태 저장 중...');
+  toast('â³ ìí ì ì¥ ì¤...');
   const r = await SheetsAPI.updateRow(sheetName, updated);
   if (r.ok) {
-    row[field] = newVal; // 로컬 반영
-    toast(`✅ 상태 변경: ${newVal}`);
+    row[field] = newVal; // ë¡ì»¬ ë°ì
+    toast(`â ìí ë³ê²½: ${newVal}`);
   } else {
-    toast(`❌ ${r.message}`);
-    el.value = row[field]; // 롤백
+    toast(`â ${r.message}`);
+    el.value = row[field]; // ë¡¤ë°±
     el.className = `status-select ss-${row[field]}`;
   }
 }
 
-// ══ 삭제 공통 핸들러 ════════════════════════════════
+// ââ ì­ì  ê³µíµ í¸ë¤ë¬ ââââââââââââââââââââââââââââââââ
 async function handleDelete(sheetName, idVal, label, reloadFn) {
-  if (!confirm(`"${label}" 을(를) 삭제하시겠습니까?\n이 작업은 되돌릴 수 없습니다.`)) return;
-  toast('⏳ 삭제 중...');
+  if (!confirm(`"${label}" ì(ë¥¼) ì­ì íìê² ìµëê¹?\nì´ ììì ëëë¦´ ì ììµëë¤.`)) return;
+  toast('â³ ì­ì  ì¤...');
   const r = await SheetsAPI.deleteRow(sheetName, idVal);
   if (r.ok) {
-    toast(`✅ 삭제 완료`);
+    toast(`â ì­ì  ìë£`);
     setTimeout(reloadFn, 900);
   } else {
-    toast(`❌ ${r.message}`);
+    toast(`â ${r.message}`);
   }
 }
 
-// ══ 내비게이션 ══════════════════════════════════════
+// ââ ë´ë¹ê²ì´ì ââââââââââââââââââââââââââââââââââââââ
 function showPage(page) {
   document.querySelectorAll('#sidebar nav a').forEach(a => a.classList.remove('active'));
   document.getElementById('nav-'+page).classList.add('active');
-  const titles = {home:'홈',schedule:'일정관리',impact:'영향도관리',defect:'결함관리',migration:'이관항목',links:'운영링크'};
+  const titles = {home:'í',schedule:'ì¼ì ê´ë¦¬',impact:'ìí¥ëê´ë¦¬',defect:'ê²°í¨ê´ë¦¬',migration:'ì´ê´í­ëª©',links:'ì´ìë§í¬'};
   document.getElementById('topbar-title').textContent = titles[page];
   ({home:renderHome,schedule:renderSchedule,impact:renderImpact,defect:renderDefect,migration:renderMigration,links:renderLinks})[page]();
 }
 
-// ══ 홈 ══════════════════════════════════════════════
+// ââ í ââââââââââââââââââââââââââââââââââââââââââââââ
 async function renderHome() {
-  setActions(''); setContent('<div class="loading">⏳ 데이터 로딩 중...</div>');
+  setActions(''); setContent('<div class="loading">â³ ë°ì´í° ë¡ë© ì¤...</div>');
   await Promise.all([
     SheetsAPI.getSchedules().then(d=>S.schedules=d).catch(()=>{}),
     SheetsAPI.getDefects().then(d=>S.defects=d).catch(()=>{}),
@@ -502,45 +502,45 @@ async function renderHome() {
     SheetsAPI.getMigrations().then(d=>S.migrations=d).catch(()=>{}),
   ]);
   const todayStr = today();
-  const todaySch = S.schedules.filter(s => s['시작일']<=todayStr && (s['마감일']||todayStr)>=todayStr);
-  const criticalDef = S.defects.filter(d => d['심각도']==='긴급'||d['심각도']==='높음');
-  const pendingMig = S.migrations.filter(m => m['준비상태']!=='완료');
-  const doneSch = S.schedules.filter(s => s['상태']==='완료').length;
+  const todaySch = S.schedules.filter(s => s['ììì¼']<=todayStr && (s['ë§ê°ì¼']||todayStr)>=todayStr);
+  const criticalDef = S.defects.filter(d => d['ì¬ê°ë']==='ê¸´ê¸'||d['ì¬ê°ë']==='ëì');
+  const pendingMig = S.migrations.filter(m => m['ì¤ë¹ìí']!=='ìë£');
+  const doneSch = S.schedules.filter(s => s['ìí']==='ìë£').length;
   setContent(`
     <div class="grid-4" style="margin-bottom:16px">
-      <div class="stat-card"><div class="stat-label">📅 오늘 일정</div><div class="stat-value">${todaySch.length}</div><div class="stat-sub">완료 ${doneSch}건</div><span class="stat-link" onclick="showPage('schedule')">전체보기 →</span></div>
-      <div class="stat-card"><div class="stat-label">🖥️ 영향 페이지</div><div class="stat-value">${S.pages.length}</div><div class="stat-sub">등록된 화면</div><span class="stat-link" onclick="showPage('impact')">전체보기 →</span></div>
-      <div class="stat-card"><div class="stat-label">🐛 긴급/높음 결함</div><div class="stat-value" style="color:var(--danger)">${criticalDef.length}</div><div class="stat-sub">전체 ${S.defects.length}건</div><span class="stat-link" onclick="showPage('defect')">전체보기 →</span></div>
-      <div class="stat-card"><div class="stat-label">🔄 이관 미완료</div><div class="stat-value" style="color:var(--warning)">${pendingMig.length}</div><div class="stat-sub">전체 ${S.migrations.length}건</div><span class="stat-link" onclick="showPage('migration')">전체보기 →</span></div>
+      <div class="stat-card"><div class="stat-label">ð ì¤ë ì¼ì </div><div class="stat-value">${todaySch.length}</div><div class="stat-sub">ìë£ ${doneSch}ê±´</div><span class="stat-link" onclick="showPage('schedule')">ì ì²´ë³´ê¸° â</span></div>
+      <div class="stat-card"><div class="stat-label">ð¥ï¸ ìí¥ íì´ì§</div><div class="stat-value">${S.pages.length}</div><div class="stat-sub">ë±ë¡ë íë©´</div><span class="stat-link" onclick="showPage('impact')">ì ì²´ë³´ê¸° â</span></div>
+      <div class="stat-card"><div class="stat-label">ð ê¸´ê¸/ëì ê²°í¨</div><div class="stat-value" style="color:var(--danger)">${criticalDef.length}</div><div class="stat-sub">ì ì²´ ${S.defects.length}ê±´</div><span class="stat-link" onclick="showPage('defect')">ì ì²´ë³´ê¸° â</span></div>
+      <div class="stat-card"><div class="stat-label">ð ì´ê´ ë¯¸ìë£</div><div class="stat-value" style="color:var(--warning)">${pendingMig.length}</div><div class="stat-sub">ì ì²´ ${S.migrations.length}ê±´</div><span class="stat-link" onclick="showPage('migration')">ì ì²´ë³´ê¸° â</span></div>
     </div>
     <div class="grid-2">
-      <div class="card"><div class="card-title">오늘 일정</div><div class="tbl-wrap"><table>
-        <thead><tr><th>제목</th><th>담당자</th><th>마감일</th><th>상태</th></tr></thead>
+      <div class="card"><div class="card-title">ì¤ë ì¼ì </div><div class="tbl-wrap"><table>
+        <thead><tr><th>ì ëª©</th><th>ë´ë¹ì</th><th>ë§ê°ì¼</th><th>ìí</th></tr></thead>
         <tbody>${todaySch.slice(0,6).map(s=>`<tr>
-          <td style="font-weight:500">${s['제목']||''}</td>
-          <td>${s['담당자']||''}</td>
-          <td>${s['마감일']||''}</td>
-          <td>${severityBadge(s['상태']||'')}</td>
-        </tr>`).join('')||'<tr class="empty-row"><td colspan="4">오늘 일정 없음</td></tr>'}
+          <td style="font-weight:500">${s['ì ëª©']||''}</td>
+          <td>${s['ë´ë¹ì']||''}</td>
+          <td>${s['ë§ê°ì¼']||''}</td>
+          <td>${severityBadge(s['ìí']||'')}</td>
+        </tr>`).join('')||'<tr class="empty-row"><td colspan="4">ì¤ë ì¼ì  ìì</td></tr>'}
         </tbody></table></div></div>
-      <div class="card"><div class="card-title">미처리 긴급/높음 결함</div><div class="tbl-wrap"><table>
-        <thead><tr><th>제목</th><th>심각도</th><th>담당자</th></tr></thead>
-        <tbody>${criticalDef.filter(d=>d['상태']!=='해결').slice(0,6).map(d=>`<tr>
-          <td style="font-weight:500">${d['제목']||''}</td>
-          <td>${severityBadge(d['심각도']||'')}</td>
-          <td>${d['담당자']||''}</td>
-        </tr>`).join('')||'<tr class="empty-row"><td colspan="3">없음 ✅</td></tr>'}
+      <div class="card"><div class="card-title">ë¯¸ì²ë¦¬ ê¸´ê¸/ëì ê²°í¨</div><div class="tbl-wrap"><table>
+        <thead><tr><th>ì ëª©</th><th>ì¬ê°ë</th><th>ë´ë¹ì</th></tr></thead>
+        <tbody>${criticalDef.filter(d=>d['ìí']!=='í´ê²°').slice(0,6).map(d=>`<tr>
+          <td style="font-weight:500">${d['ì ëª©']||''}</td>
+          <td>${severityBadge(d['ì¬ê°ë']||'')}</td>
+          <td>${d['ë´ë¹ì']||''}</td>
+        </tr>`).join('')||'<tr class="empty-row"><td colspan="3">ìì â</td></tr>'}
         </tbody></table></div></div>
     </div>`);
 }
 
-// ══ 일정관리 ══════════════════════════════════════════
+// ââ ì¼ì ê´ë¦¬ ââââââââââââââââââââââââââââââââââââââââââ
 let schFiltered = [];
 async function renderSchedule() {
   setActions(`
-    <button class="btn btn-outline" onclick="exportCSV(schFiltered,'일정_${today()}.csv')">CSV</button>
-    <button class="btn btn-primary" onclick="openSchModal()">+ 일정 등록</button>`);
-  setContent('<div class="loading">⏳ 로딩 중...</div>');
+    <button class="btn btn-outline" onclick="exportCSV(schFiltered,'ì¼ì _${today()}.csv')">CSV</button>
+    <button class="btn btn-primary" onclick="openSchModal()">+ ì¼ì  ë±ë¡</button>`);
+  setContent('<div class="loading">â³ ë¡ë© ì¤...</div>');
   S.schedules = await SheetsAPI.getSchedules().catch(()=>[]);
   schFiltered = [...S.schedules];
   renderSchTable();
@@ -550,77 +550,77 @@ function renderSchTable() {
   const st = (document.getElementById('sch-st')||{}).value||'';
   const tp = (document.getElementById('sch-tp')||{}).value||'';
   schFiltered = S.schedules.filter(s =>
-    (!q  || (s['제목']||'').includes(q)||(s['담당자']||'').includes(q)) &&
-    (!st || s['상태']===st) &&
-    (!tp || s['업무유형']===tp));
+    (!q  || (s['ì ëª©']||'').includes(q)||(s['ë´ë¹ì']||'').includes(q)) &&
+    (!st || s['ìí']===st) &&
+    (!tp || s['ìë¬´ì í']===tp));
   setContent(`
     <div class="card" style="margin-bottom:0">
       <div class="filter-bar">
-        <input id="sch-q" placeholder="🔍 제목, 담당자 검색" oninput="renderSchTable()" value="${(document.getElementById('sch-q')||{}).value||''}">
+        <input id="sch-q" placeholder="ð ì ëª©, ë´ë¹ì ê²ì" oninput="renderSchTable()" value="${(document.getElementById('sch-q')||{}).value||''}">
         <select id="sch-st" onchange="renderSchTable()">
-          <option value="">전체 상태</option><option>예정</option><option>진행중</option><option>완료</option><option>취소</option>
+          <option value="">ì ì²´ ìí</option><option>ìì </option><option>ì§íì¤</option><option>ìë£</option><option>ì·¨ì</option>
         </select>
         <select id="sch-tp" onchange="renderSchTable()">
-          <option value="">전체 유형</option><option>배포</option><option>점검</option><option>이벤트</option><option>긴급대응</option><option>기타</option>
+          <option value="">ì ì²´ ì í</option><option>ë°°í¬</option><option>ì ê²</option><option>ì´ë²¤í¸</option><option>ê¸´ê¸ëì</option><option>ê¸°í</option>
         </select>
-        <span class="filter-count">${schFiltered.length}건</span>
+        <span class="filter-count">${schFiltered.length}ê±´</span>
       </div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>일정ID</th><th>제목</th><th>담당자</th><th>유형</th><th>시작일</th><th>마감일</th><th>상태</th><th>관련결함</th><th class="del-cell"></th></tr></thead>
+        <thead><tr><th>ì¼ì ID</th><th>ì ëª©</th><th>ë´ë¹ì</th><th>ì í</th><th>ììì¼</th><th>ë§ê°ì¼</th><th>ìí</th><th>ê´ë ¨ê²°í¨</th><th class="del-cell"></th></tr></thead>
         <tbody>${schFiltered.map(s=>`
-          <tr class="clickable" ondblclick="openSchEdit(${JSON.stringify(s['일정ID']||'')})" onclick="showDetail('schedule',${JSON.stringify(s['일정ID']||'')})">
-            <td style="color:var(--muted);font-size:11px">${s['일정ID']||''}</td>
-            <td style="font-weight:500">${s['제목']||''}</td>
-            <td>${s['담당자']||''}</td>
-            <td><span class="badge badge-gray">${s['업무유형']||''}</span></td>
-            <td>${s['시작일']||''}</td>
-            <td>${s['마감일']||''}</td>
-            <td>${statusSelectHTML(s['상태']||'예정',['예정','진행중','완료','취소'],'일정','일정ID',s['일정ID']||'','handleStatusChange')}</td>
-            <td style="color:var(--muted);font-size:11px">${s['관련결함ID']||''}</td>
-            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('일정','${s['일정ID']||''}','${(s['제목']||'').replace(/'/g,"\\'")}',renderSchedule)" title="삭제">✕</button></td>
-          </tr>`).join('')||'<tr class="empty-row"><td colspan="9">등록된 일정이 없습니다</td></tr>'}
+          <tr class="clickable" ondblclick="openSchEdit(${JSON.stringify(s['ì¼ì ID']||'')})" onclick="showDetail('schedule',${JSON.stringify(s['ì¼ì ID']||'')})">
+            <td style="color:var(--muted);font-size:11px">${s['ì¼ì ID']||''}</td>
+            <td style="font-weight:500">${s['ì ëª©']||''}</td>
+            <td>${s['ë´ë¹ì']||''}</td>
+            <td><span class="badge badge-gray">${s['ìë¬´ì í']||''}</span></td>
+            <td>${s['ììì¼']||''}</td>
+            <td>${s['ë§ê°ì¼']||''}</td>
+            <td>${statusSelectHTML(s['ìí']||'ìì ',['ìì ','ì§íì¤','ìë£','ì·¨ì'],'ì¼ì ','ì¼ì ID',s['ì¼ì ID']||'','handleStatusChange')}</td>
+            <td style="color:var(--muted);font-size:11px">${s['ê´ë ¨ê²°í¨ID']||''}</td>
+            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('ì¼ì ','${s['ì¼ì ID']||''}','${(s['ì ëª©']||'').replace(/'/g,"\\'")}',renderSchedule)" title="ì­ì ">â</button></td>
+          </tr>`).join('')||'<tr class="empty-row"><td colspan="9">ë±ë¡ë ì¼ì ì´ ììµëë¤</td></tr>'}
         </tbody>
       </table></div>
-      <div style="font-size:11px;color:var(--muted);margin-top:10px">💡 클릭: 상세보기 &nbsp;·&nbsp; 더블클릭: 수정</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:10px">ð¡ í´ë¦­: ìì¸ë³´ê¸° &nbsp;Â·&nbsp; ëë¸í´ë¦­: ìì </div>
     </div>`);
 }
 function openSchModal() {
   const nextId = 'SCH-'+pad4(S.schedules.length+1);
-  document.getElementById('modal-schedule-title').textContent = '📅 일정 등록';
-  document.getElementById('sch-submit-btn').textContent = '등록';
+  document.getElementById('modal-schedule-title').textContent = 'ð ì¼ì  ë±ë¡';
+  document.getElementById('sch-submit-btn').textContent = 'ë±ë¡';
   document.getElementById('sch-submit-btn').onclick = submitSchedule;
   'sch-id sch-owner sch-title sch-page sch-defect sch-memo'.split(' ').forEach(id=>document.getElementById(id).value='');
   document.getElementById('sch-id').value = nextId;
   document.getElementById('sch-start').value = today();
   document.getElementById('sch-end').value = '';
-  document.getElementById('sch-type').value = '배포';
-  document.getElementById('sch-status').value = '예정';
+  document.getElementById('sch-type').value = 'ë°°í¬';
+  document.getElementById('sch-status').value = 'ìì ';
   openModal('modal-schedule');
 }
 function openSchEdit(id) {
-  const s = S.schedules.find(r=>r['일정ID']===id); if(!s) return;
-  document.getElementById('modal-schedule-title').textContent = '📅 일정 수정';
-  document.getElementById('sch-submit-btn').textContent = '저장';
+  const s = S.schedules.find(r=>r['ì¼ì ID']===id); if(!s) return;
+  document.getElementById('modal-schedule-title').textContent = 'ð ì¼ì  ìì ';
+  document.getElementById('sch-submit-btn').textContent = 'ì ì¥';
   document.getElementById('sch-submit-btn').onclick = ()=>submitScheduleEdit(id);
-  document.getElementById('sch-id').value    = s['일정ID']||'';
-  document.getElementById('sch-owner').value = s['담당자']||'';
-  document.getElementById('sch-title').value = s['제목']||'';
-  document.getElementById('sch-type').value  = s['업무유형']||'배포';
-  document.getElementById('sch-status').value= s['상태']||'예정';
-  document.getElementById('sch-start').value = s['시작일']||'';
-  document.getElementById('sch-end').value   = s['마감일']||'';
-  document.getElementById('sch-page').value  = s['관련페이지ID']||'';
-  document.getElementById('sch-defect').value= s['관련결함ID']||'';
-  document.getElementById('sch-memo').value  = s['메모']||'';
+  document.getElementById('sch-id').value    = s['ì¼ì ID']||'';
+  document.getElementById('sch-owner').value = s['ë´ë¹ì']||'';
+  document.getElementById('sch-title').value = s['ì ëª©']||'';
+  document.getElementById('sch-type').value  = s['ìë¬´ì í']||'ë°°í¬';
+  document.getElementById('sch-status').value= s['ìí']||'ìì ';
+  document.getElementById('sch-start').value = s['ììì¼']||'';
+  document.getElementById('sch-end').value   = s['ë§ê°ì¼']||'';
+  document.getElementById('sch-page').value  = s['ê´ë ¨íì´ì§ID']||'';
+  document.getElementById('sch-defect').value= s['ê´ë ¨ê²°í¨ID']||'';
+  document.getElementById('sch-memo').value  = s['ë©ëª¨']||'';
   closeModal('modal-detail');
   openModal('modal-schedule');
 }
 
-// ══ 영향도관리 ════════════════════════════════════════
+// ââ ìí¥ëê´ë¦¬ ââââââââââââââââââââââââââââââââââââââââ
 let pgFiltered = [];
 async function renderImpact() {
-  setActions(`<button class="btn btn-primary" onclick="openPgModal()">+ 페이지 등록</button>`);
-  setContent('<div class="loading">⏳ 로딩 중...</div>');
+  setActions(`<button class="btn btn-primary" onclick="openPgModal()">+ íì´ì§ ë±ë¡</button>`);
+  setContent('<div class="loading">â³ ë¡ë© ì¤...</div>');
   await Promise.all([
     SheetsAPI.getPages().then(d=>S.pages=d).catch(()=>{}),
     SheetsAPI.getDefects().then(d=>S.defects=d).catch(()=>{}),
@@ -633,52 +633,52 @@ function renderPgTable() {
   const q    = (document.getElementById('pg-q')||{}).value||'';
   const site = (document.getElementById('pg-site-f')||{}).value||'';
   pgFiltered = S.pages.filter(p =>
-    (!q    || (p['페이지명']||'').includes(q)||(p['담당자']||'').includes(q)||(p['화면ID']||'').includes(q)) &&
-    (!site || p['사이트']===site));
-  const defPageIds = new Set(S.defects.filter(d=>d['상태']!=='해결').map(d=>d['관련페이지ID']).filter(Boolean).flatMap(v=>v.split(',')).map(v=>v.trim()));
-  const schedPageIds = new Set(S.schedules.filter(s=>s['상태']==='진행중').map(s=>s['관련페이지ID']).filter(Boolean).flatMap(v=>v.split(',')).map(v=>v.trim()));
-  const sites = [...new Set(S.pages.map(p=>p['사이트']).filter(Boolean))];
+    (!q    || (p['íì´ì§ëª']||'').includes(q)||(p['ë´ë¹ì']||'').includes(q)||(p['íë©´ID']||'').includes(q)) &&
+    (!site || p['ì¬ì´í¸']===site));
+  const defPageIds = new Set(S.defects.filter(d=>d['ìí']!=='í´ê²°').map(d=>d['ê´ë ¨íì´ì§ID']).filter(Boolean).flatMap(v=>v.split(',')).map(v=>v.trim()));
+  const schedPageIds = new Set(S.schedules.filter(s=>s['ìí']==='ì§íì¤').map(s=>s['ê´ë ¨íì´ì§ID']).filter(Boolean).flatMap(v=>v.split(',')).map(v=>v.trim()));
+  const sites = [...new Set(S.pages.map(p=>p['ì¬ì´í¸']).filter(Boolean))];
   setContent(`
     <div class="card" style="margin-bottom:0">
       <div class="filter-bar">
-        <input id="pg-q" placeholder="🔍 페이지명, 담당자, 화면ID 검색" oninput="renderPgTable()" value="${(document.getElementById('pg-q')||{}).value||''}">
+        <input id="pg-q" placeholder="ð íì´ì§ëª, ë´ë¹ì, íë©´ID ê²ì" oninput="renderPgTable()" value="${(document.getElementById('pg-q')||{}).value||''}">
         <select id="pg-site-f" onchange="renderPgTable()">
-          <option value="">전체 사이트</option>${sites.map(s=>`<option>${s}</option>`).join('')}
+          <option value="">ì ì²´ ì¬ì´í¸</option>${sites.map(s=>`<option>${s}</option>`).join('')}
         </select>
-        <span class="filter-count">${pgFiltered.length}건</span>
+        <span class="filter-count">${pgFiltered.length}ê±´</span>
       </div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>ID</th><th>썸네일</th><th>사이트</th><th>페이지명</th><th>화면ID</th><th>담당자</th><th>최근변경일</th><th>주의사항</th><th>URL</th><th class="del-cell"></th></tr></thead>
+        <thead><tr><th>ID</th><th>ì¸ë¤ì¼</th><th>ì¬ì´í¸</th><th>íì´ì§ëª</th><th>íë©´ID</th><th>ë´ë¹ì</th><th>ìµê·¼ë³ê²½ì¼</th><th>ì£¼ìì¬í­</th><th>URL</th><th class="del-cell"></th></tr></thead>
         <tbody>${pgFiltered.map(p=>{
-          const pid = p['페이지ID']||'';
+          const pid = p['íì´ì§ID']||'';
           const alerts = [];
-          if(defPageIds.has(pid)) alerts.push('<span class="alert-icon" title="미해결 결함">🔴</span>');
-          if(schedPageIds.has(pid)) alerts.push('<span class="alert-icon" title="진행중 작업">⚠️</span>');
-          const thumb = p['스크린샷URL']
-            ? `<a href="${p['스크린샷URL']}" target="_blank" onclick="event.stopPropagation()"><img src="${p['스크린샷URL']}" style="width:40px;height:28px;object-fit:cover;border-radius:3px;border:1px solid var(--border)" onerror="this.style.display='none'"></a>`
+          if(defPageIds.has(pid)) alerts.push('<span class="alert-icon" title="ë¯¸í´ê²° ê²°í¨">ð´</span>');
+          if(schedPageIds.has(pid)) alerts.push('<span class="alert-icon" title="ì§íì¤ ìì">â ï¸</span>');
+          const thumb = p['ì¤í¬ë¦°ì·URL']
+            ? `<a href="${p['ì¤í¬ë¦°ì·URL']}" target="_blank" onclick="event.stopPropagation()"><img src="${p['ì¤í¬ë¦°ì·URL']}" style="width:40px;height:28px;object-fit:cover;border-radius:3px;border:1px solid var(--border)" onerror="this.style.display='none'"></a>`
             : '<span style="color:var(--muted);font-size:11px">-</span>';
           return `<tr class="clickable" ondblclick="openPgEdit(${JSON.stringify(pid)})" onclick="showDetail('impact',${JSON.stringify(pid)})">
             <td style="color:var(--muted);font-size:11px">${pid}</td>
             <td>${thumb}</td>
-            <td><span class="badge badge-blue">${p['사이트']||''}</span></td>
-            <td style="font-weight:500">${p['페이지명']||''}</td>
-            <td style="font-size:11px;color:var(--muted)">${p['화면ID']||''}</td>
-            <td>${p['담당자']||''}</td>
-            <td>${p['최근변경일']||''}</td>
+            <td><span class="badge badge-blue">${p['ì¬ì´í¸']||''}</span></td>
+            <td style="font-weight:500">${p['íì´ì§ëª']||''}</td>
+            <td style="font-size:11px;color:var(--muted)">${p['íë©´ID']||''}</td>
+            <td>${p['ë´ë¹ì']||''}</td>
+            <td>${p['ìµê·¼ë³ê²½ì¼']||''}</td>
             <td>${alerts.join(' ')||'-'}</td>
-            <td>${p['URL']?`<a href="${p['URL']}" target="_blank" onclick="event.stopPropagation()" style="color:var(--primary);font-size:11px">링크</a>`:''}</td>
-            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('영향페이지','${pid}','${(p['페이지명']||'').replace(/'/g,"\\'")}',renderImpact)" title="삭제">✕</button></td>
+            <td>${p['URL']?`<a href="${p['URL']}" target="_blank" onclick="event.stopPropagation()" style="color:var(--primary);font-size:11px">ë§í¬</a>`:''}</td>
+            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('ìí¥íì´ì§','${pid}','${(p['íì´ì§ëª']||'').replace(/'/g,"\\'")}',renderImpact)" title="ì­ì ">â</button></td>
           </tr>`;
-        }).join('')||'<tr class="empty-row"><td colspan="10">등록된 페이지가 없습니다</td></tr>'}
+        }).join('')||'<tr class="empty-row"><td colspan="10">ë±ë¡ë íì´ì§ê° ììµëë¤</td></tr>'}
         </tbody>
       </table></div>
-      <div style="font-size:11px;color:var(--muted);margin-top:10px">💡 클릭: 상세보기 &nbsp;·&nbsp; 더블클릭: 수정</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:10px">ð¡ í´ë¦­: ìì¸ë³´ê¸° &nbsp;Â·&nbsp; ëë¸í´ë¦­: ìì </div>
     </div>`);
 }
 function openPgModal() {
   const nextId = 'PG-'+pad4(S.pages.length+1);
-  document.getElementById('modal-impact-title').textContent = '🖥️ 영향페이지 등록';
-  document.getElementById('pg-submit-btn').textContent = '등록';
+  document.getElementById('modal-impact-title').textContent = 'ð¥ï¸ ìí¥íì´ì§ ë±ë¡';
+  document.getElementById('pg-submit-btn').textContent = 'ë±ë¡';
   document.getElementById('pg-submit-btn').onclick = submitImpact;
   'pg-id pg-owner pg-site pg-name pg-url pg-screen pg-related pg-screenshot pg-note pg-desc'.split(' ').forEach(id=>document.getElementById(id).value='');
   document.getElementById('pg-id').value = nextId;
@@ -687,32 +687,32 @@ function openPgModal() {
   openModal('modal-impact');
 }
 function openPgEdit(id) {
-  const p = S.pages.find(r=>r['페이지ID']===id); if(!p) return;
-  document.getElementById('modal-impact-title').textContent = '🖥️ 영향페이지 수정';
-  document.getElementById('pg-submit-btn').textContent = '저장';
+  const p = S.pages.find(r=>r['íì´ì§ID']===id); if(!p) return;
+  document.getElementById('modal-impact-title').textContent = 'ð¥ï¸ ìí¥íì´ì§ ìì ';
+  document.getElementById('pg-submit-btn').textContent = 'ì ì¥';
   document.getElementById('pg-submit-btn').onclick = ()=>submitImpactEdit(id);
-  document.getElementById('pg-id').value         = p['페이지ID']||'';
-  document.getElementById('pg-owner').value      = p['담당자']||'';
-  document.getElementById('pg-site').value       = p['사이트']||'';
-  document.getElementById('pg-name').value       = p['페이지명']||'';
+  document.getElementById('pg-id').value         = p['íì´ì§ID']||'';
+  document.getElementById('pg-owner').value      = p['ë´ë¹ì']||'';
+  document.getElementById('pg-site').value       = p['ì¬ì´í¸']||'';
+  document.getElementById('pg-name').value       = p['íì´ì§ëª']||'';
   document.getElementById('pg-url').value        = p['URL']||'';
-  document.getElementById('pg-screen').value     = p['화면ID']||'';
-  document.getElementById('pg-related').value    = p['연관페이지ID']||'';
-  document.getElementById('pg-screenshot').value = p['스크린샷URL']||'';
-  document.getElementById('pg-changed').value    = p['최근변경일']||'';
-  document.getElementById('pg-note').value       = p['주의사항']||'';
-  document.getElementById('pg-desc').value       = p['설명']||'';
+  document.getElementById('pg-screen').value     = p['íë©´ID']||'';
+  document.getElementById('pg-related').value    = p['ì°ê´íì´ì§ID']||'';
+  document.getElementById('pg-screenshot').value = p['ì¤í¬ë¦°ì·URL']||'';
+  document.getElementById('pg-changed').value    = p['ìµê·¼ë³ê²½ì¼']||'';
+  document.getElementById('pg-note').value       = p['ì£¼ìì¬í­']||'';
+  document.getElementById('pg-desc').value       = p['ì¤ëª']||'';
   closeModal('modal-detail');
   openModal('modal-impact');
 }
 
-// ══ 결함관리 ══════════════════════════════════════════
+// ââ ê²°í¨ê´ë¦¬ ââââââââââââââââââââââââââââââââââââââââââ
 let defFiltered = [];
 async function renderDefect() {
   setActions(`
-    <button class="btn btn-outline" onclick="exportCSV(defFiltered,'결함_${today()}.csv')">CSV</button>
-    <button class="btn btn-primary" onclick="openDefModal()">+ 결함 등록</button>`);
-  setContent('<div class="loading">⏳ 로딩 중...</div>');
+    <button class="btn btn-outline" onclick="exportCSV(defFiltered,'ê²°í¨_${today()}.csv')">CSV</button>
+    <button class="btn btn-primary" onclick="openDefModal()">+ ê²°í¨ ë±ë¡</button>`);
+  setContent('<div class="loading">â³ ë¡ë© ì¤...</div>');
   S.defects = await SheetsAPI.getDefects().catch(()=>[]);
   defFiltered = [...S.defects];
   renderDefTable();
@@ -722,81 +722,81 @@ function renderDefTable() {
   const sv = (document.getElementById('def-sv')||{}).value||'';
   const st = (document.getElementById('def-st-f')||{}).value||'';
   defFiltered = S.defects.filter(d =>
-    (!q  || (d['제목']||'').includes(q)||(d['담당자']||'').includes(q)) &&
-    (!sv || d['심각도']===sv) &&
-    (!st || d['상태']===st));
-  const cnt = sev => S.defects.filter(d=>d['심각도']===sev&&d['상태']!=='해결').length;
+    (!q  || (d['ì ëª©']||'').includes(q)||(d['ë´ë¹ì']||'').includes(q)) &&
+    (!sv || d['ì¬ê°ë']===sv) &&
+    (!st || d['ìí']===st));
+  const cnt = sev => S.defects.filter(d=>d['ì¬ê°ë']===sev&&d['ìí']!=='í´ê²°').length;
   setContent(`
     <div class="grid-4" style="margin-bottom:14px">
-      <div class="stat-card"><div class="stat-label">🔴 긴급</div><div class="stat-value" style="color:var(--danger)">${cnt('긴급')}</div></div>
-      <div class="stat-card"><div class="stat-label">🟠 높음</div><div class="stat-value" style="color:#c2410c">${cnt('높음')}</div></div>
-      <div class="stat-card"><div class="stat-label">🟡 중간</div><div class="stat-value" style="color:var(--warning)">${cnt('중간')}</div></div>
-      <div class="stat-card"><div class="stat-label">✅ 해결</div><div class="stat-value" style="color:var(--success)">${S.defects.filter(d=>d['상태']==='해결').length}</div></div>
+      <div class="stat-card"><div class="stat-label">ð´ ê¸´ê¸</div><div class="stat-value" style="color:var(--danger)">${cnt('ê¸´ê¸')}</div></div>
+      <div class="stat-card"><div class="stat-label">ð  ëì</div><div class="stat-value" style="color:#c2410c">${cnt('ëì')}</div></div>
+      <div class="stat-card"><div class="stat-label">ð¡ ì¤ê°</div><div class="stat-value" style="color:var(--warning)">${cnt('ì¤ê°')}</div></div>
+      <div class="stat-card"><div class="stat-label">â í´ê²°</div><div class="stat-value" style="color:var(--success)">${S.defects.filter(d=>d['ìí']==='í´ê²°').length}</div></div>
     </div>
     <div class="card" style="margin-bottom:0">
       <div class="filter-bar">
-        <input id="def-q" placeholder="🔍 제목, 담당자 검색" oninput="renderDefTable()" value="${(document.getElementById('def-q')||{}).value||''}">
+        <input id="def-q" placeholder="ð ì ëª©, ë´ë¹ì ê²ì" oninput="renderDefTable()" value="${(document.getElementById('def-q')||{}).value||''}">
         <select id="def-sv" onchange="renderDefTable()">
-          <option value="">전체 심각도</option><option>긴급</option><option>높음</option><option>중간</option><option>낮음</option>
+          <option value="">ì ì²´ ì¬ê°ë</option><option>ê¸´ê¸</option><option>ëì</option><option>ì¤ê°</option><option>ë®ì</option>
         </select>
         <select id="def-st-f" onchange="renderDefTable()">
-          <option value="">전체 상태</option><option>미처리</option><option>처리중</option><option>해결</option><option>보류</option>
+          <option value="">ì ì²´ ìí</option><option>ë¯¸ì²ë¦¬</option><option>ì²ë¦¬ì¤</option><option>í´ê²°</option><option>ë³´ë¥</option>
         </select>
-        <span class="filter-count">${defFiltered.length}건</span>
+        <span class="filter-count">${defFiltered.length}ê±´</span>
       </div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>결함ID</th><th>제목</th><th>카테고리</th><th>심각도</th><th>상태</th><th>담당자</th><th>등록일</th><th>관련페이지</th><th class="del-cell"></th></tr></thead>
+        <thead><tr><th>ê²°í¨ID</th><th>ì ëª©</th><th>ì¹´íê³ ë¦¬</th><th>ì¬ê°ë</th><th>ìí</th><th>ë´ë¹ì</th><th>ë±ë¡ì¼</th><th>ê´ë ¨íì´ì§</th><th class="del-cell"></th></tr></thead>
         <tbody>${defFiltered.map(d=>`
-          <tr class="clickable" ondblclick="openDefEdit(${JSON.stringify(d['결함ID']||'')})" onclick="showDetail('defect',${JSON.stringify(d['결함ID']||'')})">
-            <td style="color:var(--muted);font-size:11px">${d['결함ID']||''}</td>
-            <td style="font-weight:500">${d['제목']||''}</td>
-            <td><span class="badge badge-gray">${d['카테고리']||''}</span></td>
-            <td>${severityBadge(d['심각도']||'')}</td>
-            <td>${statusSelectHTML(d['상태']||'미처리',['미처리','처리중','해결','보류'],'결함유형','결함ID',d['결함ID']||'','handleStatusChange')}</td>
-            <td>${d['담당자']||''}</td>
-            <td>${d['등록일']||''}</td>
-            <td style="font-size:11px;color:var(--muted)">${d['관련페이지ID']||''}</td>
-            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('결함유형','${d['결함ID']||''}','${(d['제목']||'').replace(/'/g,"\\'")}',renderDefect)" title="삭제">✕</button></td>
-          </tr>`).join('')||'<tr class="empty-row"><td colspan="9">등록된 결함이 없습니다</td></tr>'}
+          <tr class="clickable" ondblclick="openDefEdit(${JSON.stringify(d['ê²°í¨ID']||'')})" onclick="showDetail('defect',${JSON.stringify(d['ê²°í¨ID']||'')})">
+            <td style="color:var(--muted);font-size:11px">${d['ê²°í¨ID']||''}</td>
+            <td style="font-weight:500">${d['ì ëª©']||''}</td>
+            <td><span class="badge badge-gray">${d['ì¹´íê³ ë¦¬']||''}</span></td>
+            <td>${severityBadge(d['ì¬ê°ë']||'')}</td>
+            <td>${statusSelectHTML(d['ìí']||'ë¯¸ì²ë¦¬',['ë¯¸ì²ë¦¬','ì²ë¦¬ì¤','í´ê²°','ë³´ë¥'],'ê²°í¨ì í','ê²°í¨ID',d['ê²°í¨ID']||'','handleStatusChange')}</td>
+            <td>${d['ë´ë¹ì']||''}</td>
+            <td>${d['ë±ë¡ì¼']||''}</td>
+            <td style="font-size:11px;color:var(--muted)">${d['ê´ë ¨íì´ì§ID']||''}</td>
+            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('ê²°í¨ì í','${d['ê²°í¨ID']||''}','${(d['ì ëª©']||'').replace(/'/g,"\\'")}',renderDefect)" title="ì­ì ">â</button></td>
+          </tr>`).join('')||'<tr class="empty-row"><td colspan="9">ë±ë¡ë ê²°í¨ì´ ììµëë¤</td></tr>'}
         </tbody>
       </table></div>
-      <div style="font-size:11px;color:var(--muted);margin-top:10px">💡 클릭: 상세보기 &nbsp;·&nbsp; 더블클릭: 수정</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:10px">ð¡ í´ë¦­: ìì¸ë³´ê¸° &nbsp;Â·&nbsp; ëë¸í´ë¦­: ìì </div>
     </div>`);
 }
 function openDefModal() {
   const nextId = 'DEF-'+pad4(S.defects.length+1);
-  document.getElementById('modal-defect-title').textContent = '🐛 결함 등록';
-  document.getElementById('def-submit-btn').textContent = '등록';
+  document.getElementById('modal-defect-title').textContent = 'ð ê²°í¨ ë±ë¡';
+  document.getElementById('def-submit-btn').textContent = 'ë±ë¡';
   document.getElementById('def-submit-btn').onclick = submitDefect;
   'def-id def-owner def-title def-page def-cause def-solution def-prevent'.split(' ').forEach(id=>document.getElementById(id).value='');
   document.getElementById('def-id').value = nextId;
   document.getElementById('def-date').value = today();
   document.getElementById('def-symptom').value = '';
   document.getElementById('def-category').value = 'UI/UX';
-  document.getElementById('def-severity').value = '긴급';
-  document.getElementById('def-status').value = '미처리';
+  document.getElementById('def-severity').value = 'ê¸´ê¸';
+  document.getElementById('def-status').value = 'ë¯¸ì²ë¦¬';
   document.getElementById('def-prevent-req').style.display='none';
   document.getElementById('def-prevent').classList.remove('warn-field');
   closeModal('modal-detail');
   openModal('modal-defect');
 }
 function openDefEdit(id) {
-  const d = S.defects.find(r=>r['결함ID']===id); if(!d) return;
-  document.getElementById('modal-defect-title').textContent = '🐛 결함 수정';
-  document.getElementById('def-submit-btn').textContent = '저장';
+  const d = S.defects.find(r=>r['ê²°í¨ID']===id); if(!d) return;
+  document.getElementById('modal-defect-title').textContent = 'ð ê²°í¨ ìì ';
+  document.getElementById('def-submit-btn').textContent = 'ì ì¥';
   document.getElementById('def-submit-btn').onclick = ()=>submitDefectEdit(id);
-  document.getElementById('def-id').value       = d['결함ID']||'';
-  document.getElementById('def-owner').value    = d['담당자']||'';
-  document.getElementById('def-title').value    = d['제목']||'';
-  document.getElementById('def-category').value = d['카테고리']||'UI/UX';
-  document.getElementById('def-severity').value = d['심각도']||'긴급';
-  document.getElementById('def-status').value   = d['상태']||'미처리';
-  document.getElementById('def-page').value     = d['관련페이지ID']||'';
-  document.getElementById('def-symptom').value  = d['증상']||'';
-  document.getElementById('def-cause').value    = d['원인']||'';
-  document.getElementById('def-solution').value = d['해결방법']||'';
-  document.getElementById('def-prevent').value  = d['재발방지']||'';
-  document.getElementById('def-date').value     = d['등록일']||'';
+  document.getElementById('def-id').value       = d['ê²°í¨ID']||'';
+  document.getElementById('def-owner').value    = d['ë´ë¹ì']||'';
+  document.getElementById('def-title').value    = d['ì ëª©']||'';
+  document.getElementById('def-category').value = d['ì¹´íê³ ë¦¬']||'UI/UX';
+  document.getElementById('def-severity').value = d['ì¬ê°ë']||'ê¸´ê¸';
+  document.getElementById('def-status').value   = d['ìí']||'ë¯¸ì²ë¦¬';
+  document.getElementById('def-page').value     = d['ê´ë ¨íì´ì§ID']||'';
+  document.getElementById('def-symptom').value  = d['ì¦ì']||'';
+  document.getElementById('def-cause').value    = d['ìì¸']||'';
+  document.getElementById('def-solution').value = d['í´ê²°ë°©ë²']||'';
+  document.getElementById('def-prevent').value  = d['ì¬ë°ë°©ì§']||'';
+  document.getElementById('def-date').value     = d['ë±ë¡ì¼']||'';
   checkDefectStatus();
   closeModal('modal-detail');
   openModal('modal-defect');
@@ -805,87 +805,87 @@ function checkDefectStatus() {
   const st = document.getElementById('def-status').value;
   const req = document.getElementById('def-prevent-req');
   const field = document.getElementById('def-prevent');
-  if(st==='해결') { req.style.display='inline'; field.classList.add('warn-field'); }
+  if(st==='í´ê²°') { req.style.display='inline'; field.classList.add('warn-field'); }
   else { req.style.display='none'; field.classList.remove('warn-field'); }
 }
 
-// ══ 이관항목 ══════════════════════════════════════════
+// ââ ì´ê´í­ëª© ââââââââââââââââââââââââââââââââââââââââââ
 async function renderMigration() {
-  setActions(`<button class="btn btn-primary" onclick="openMigModal()">+ 이관항목 등록</button>`);
-  setContent('<div class="loading">⏳ 로딩 중...</div>');
+  setActions(`<button class="btn btn-primary" onclick="openMigModal()">+ ì´ê´í­ëª© ë±ë¡</button>`);
+  setContent('<div class="loading">â³ ë¡ë© ì¤...</div>');
   S.migrations = await SheetsAPI.getMigrations().catch(()=>[]);
   renderMigTable();
 }
 function renderMigTable() {
   setContent(`
     <div class="card" style="margin-bottom:0">
-      <div style="margin-bottom:12px;font-size:12px;color:var(--muted)">전체 ${S.migrations.length}건</div>
+      <div style="margin-bottom:12px;font-size:12px;color:var(--muted)">ì ì²´ ${S.migrations.length}ê±´</div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>이관ID</th><th>항목명</th><th>담당자</th><th>이관일</th><th>준비상태</th><th>위험요소</th><th>관련일정</th><th>메모</th><th class="del-cell"></th></tr></thead>
+        <thead><tr><th>ì´ê´ID</th><th>í­ëª©ëª</th><th>ë´ë¹ì</th><th>ì´ê´ì¼</th><th>ì¤ë¹ìí</th><th>ìíìì</th><th>ê´ë ¨ì¼ì </th><th>ë©ëª¨</th><th class="del-cell"></th></tr></thead>
         <tbody>${S.migrations.map(m=>`
-          <tr class="clickable" ondblclick="openMigEdit(${JSON.stringify(m['이관ID']||'')})" onclick="showDetail('migration',${JSON.stringify(m['이관ID']||'')})">
-            <td style="color:var(--muted);font-size:11px">${m['이관ID']||''}</td>
-            <td style="font-weight:500">${m['항목명']||''}</td>
-            <td>${m['담당자']||''}</td>
-            <td>${m['이관일']||''}</td>
-            <td>${statusSelectHTML(m['준비상태']||'준비중',['준비중','검토중','완료','보류'],'이관항목','이관ID',m['이관ID']||'','handleStatusChange')}</td>
-            <td style="color:var(--danger);font-size:12px">${m['위험요소']||''}</td>
-            <td style="font-size:11px;color:var(--muted)">${m['관련일정ID']||''}</td>
-            <td style="font-size:11px;color:var(--muted)">${m['메모']||''}</td>
-            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('이관항목','${m['이관ID']||''}','${(m['항목명']||'').replace(/'/g,"\\'")}',renderMigration)" title="삭제">✕</button></td>
-          </tr>`).join('')||'<tr class="empty-row"><td colspan="9">등록된 이관항목이 없습니다</td></tr>'}
+          <tr class="clickable" ondblclick="openMigEdit(${JSON.stringify(m['ì´ê´ID']||'')})" onclick="showDetail('migration',${JSON.stringify(m['ì´ê´ID']||'')})">
+            <td style="color:var(--muted);font-size:11px">${m['ì´ê´ID']||''}</td>
+            <td style="font-weight:500">${m['í­ëª©ëª']||''}</td>
+            <td>${m['ë´ë¹ì']||''}</td>
+            <td>${m['ì´ê´ì¼']||''}</td>
+            <td>${statusSelectHTML(m['ì¤ë¹ìí']||'ì¤ë¹ì¤',['ì¤ë¹ì¤','ê²í ì¤','ìë£','ë³´ë¥'],'ì´ê´í­ëª©','ì´ê´ID',m['ì´ê´ID']||'','handleStatusChange')}</td>
+            <td style="color:var(--danger);font-size:12px">${m['ìíìì']||''}</td>
+            <td style="font-size:11px;color:var(--muted)">${m['ê´ë ¨ì¼ì ID']||''}</td>
+            <td style="font-size:11px;color:var(--muted)">${m['ë©ëª¨']||''}</td>
+            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('ì´ê´í­ëª©','${m['ì´ê´ID']||''}','${(m['í­ëª©ëª']||'').replace(/'/g,"\\'")}',renderMigration)" title="ì­ì ">â</button></td>
+          </tr>`).join('')||'<tr class="empty-row"><td colspan="9">ë±ë¡ë ì´ê´í­ëª©ì´ ììµëë¤</td></tr>'}
         </tbody>
       </table></div>
-      <div style="font-size:11px;color:var(--muted);margin-top:10px">💡 클릭: 상세보기 &nbsp;·&nbsp; 더블클릭: 수정</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:10px">ð¡ í´ë¦­: ìì¸ë³´ê¸° &nbsp;Â·&nbsp; ëë¸í´ë¦­: ìì </div>
     </div>`);
 }
 function openMigModal() {
   const nextId = 'MIG-'+pad4(S.migrations.length+1);
-  document.getElementById('modal-migration-title').textContent = '🔄 이관항목 등록';
-  document.getElementById('mig-submit-btn').textContent = '등록';
+  document.getElementById('modal-migration-title').textContent = 'ð ì´ê´í­ëª© ë±ë¡';
+  document.getElementById('mig-submit-btn').textContent = 'ë±ë¡';
   document.getElementById('mig-submit-btn').onclick = submitMigration;
   'mig-id mig-owner mig-name mig-sch mig-page mig-risk mig-memo'.split(' ').forEach(id=>document.getElementById(id).value='');
   document.getElementById('mig-id').value = nextId;
   document.getElementById('mig-date').value = today();
-  document.getElementById('mig-status').value = '준비중';
+  document.getElementById('mig-status').value = 'ì¤ë¹ì¤';
   closeModal('modal-detail');
   openModal('modal-migration');
 }
 function openMigEdit(id) {
-  const m = S.migrations.find(r=>r['이관ID']===id); if(!m) return;
-  document.getElementById('modal-migration-title').textContent = '🔄 이관항목 수정';
-  document.getElementById('mig-submit-btn').textContent = '저장';
+  const m = S.migrations.find(r=>r['ì´ê´ID']===id); if(!m) return;
+  document.getElementById('modal-migration-title').textContent = 'ð ì´ê´í­ëª© ìì ';
+  document.getElementById('mig-submit-btn').textContent = 'ì ì¥';
   document.getElementById('mig-submit-btn').onclick = ()=>submitMigrationEdit(id);
-  document.getElementById('mig-id').value     = m['이관ID']||'';
-  document.getElementById('mig-owner').value  = m['담당자']||'';
-  document.getElementById('mig-name').value   = m['항목명']||'';
-  document.getElementById('mig-date').value   = m['이관일']||'';
-  document.getElementById('mig-status').value = m['준비상태']||'준비중';
-  document.getElementById('mig-sch').value    = m['관련일정ID']||'';
-  document.getElementById('mig-page').value   = m['관련페이지ID']||'';
-  document.getElementById('mig-risk').value   = m['위험요소']||'';
-  document.getElementById('mig-memo').value   = m['메모']||'';
+  document.getElementById('mig-id').value     = m['ì´ê´ID']||'';
+  document.getElementById('mig-owner').value  = m['ë´ë¹ì']||'';
+  document.getElementById('mig-name').value   = m['í­ëª©ëª']||'';
+  document.getElementById('mig-date').value   = m['ì´ê´ì¼']||'';
+  document.getElementById('mig-status').value = m['ì¤ë¹ìí']||'ì¤ë¹ì¤';
+  document.getElementById('mig-sch').value    = m['ê´ë ¨ì¼ì ID']||'';
+  document.getElementById('mig-page').value   = m['ê´ë ¨íì´ì§ID']||'';
+  document.getElementById('mig-risk').value   = m['ìíìì']||'';
+  document.getElementById('mig-memo').value   = m['ë©ëª¨']||'';
   closeModal('modal-detail');
   openModal('modal-migration');
 }
 
-// ══ 운영링크 ══════════════════════════════════════════
+// ââ ì´ìë§í¬ ââââââââââââââââââââââââââââââââââââââââââ
 async function renderLinks() {
   setActions('');
-  setContent('<div class="loading">⏳ 로딩 중...</div>');
+  setContent('<div class="loading">â³ ë¡ë© ì¤...</div>');
   S.links = await SheetsAPI.getLinks().catch(()=>[]);
-  const cats = [...new Set(S.links.map(l=>l['분류']).filter(Boolean))];
-  if(!cats.length) { setContent('<div class="card" style="text-align:center;color:var(--muted);padding:40px">등록된 링크가 없습니다</div>'); return; }
+  const cats = [...new Set(S.links.map(l=>l['ë¶ë¥']).filter(Boolean))];
+  if(!cats.length) { setContent('<div class="card" style="text-align:center;color:var(--muted);padding:40px">ë±ë¡ë ë§í¬ê° ììµëë¤</div>'); return; }
   setContent(cats.map(cat=>`
     <div class="card">
       <div class="card-title">${cat}</div>
       <div class="link-grid">
-        ${S.links.filter(l=>l['분류']===cat).sort((a,b)=>+(a['노출순서']||99)-(+(b['노출순서']||99))).map(l=>`
+        ${S.links.filter(l=>l['ë¶ë¥']===cat).sort((a,b)=>+(a['ë¸ì¶ìì']||99)-(+(b['ë¸ì¶ìì']||99))).map(l=>`
           <a class="link-card" href="${l['URL']||'#'}" target="_blank">
-            <span class="link-icon">🔗</span>
+            <span class="link-icon">ð</span>
             <div style="min-width:0">
-              <div class="link-name">${l['이름']||''}</div>
-              ${l['설명']?`<div class="link-desc">${l['설명']}</div>`:''}
+              <div class="link-name">${l['ì´ë¦']||''}</div>
+              ${l['ì¤ëª']?`<div class="link-desc">${l['ì¤ëª']}</div>`:''}
               <div class="link-url">${l['URL']||''}</div>
             </div>
           </a>`).join('')}
@@ -893,15 +893,15 @@ async function renderLinks() {
     </div>`).join(''));
 }
 
-// ══ 상세 모달 ════════════════════════════════════════
+// ââ ìì¸ ëª¨ë¬ ââââââââââââââââââââââââââââââââââââââââ
 function showDetail(type, id) {
   const stores = { schedule: S.schedules, impact: S.pages, defect: S.defects, migration: S.migrations };
-  const idKeys  = { schedule:'일정ID', impact:'페이지ID', defect:'결함ID', migration:'이관ID' };
+  const idKeys  = { schedule:'ì¼ì ID', impact:'íì´ì§ID', defect:'ê²°í¨ID', migration:'ì´ê´ID' };
   const data = stores[type] && stores[type].find(r => r[idKeys[type]]===id);
   if (!data) return;
   _detailContext = { type, id };
 
-  const titles = { schedule:'📅 일정 상세', impact:'🖥️ 영향페이지 상세', defect:'🐛 결함 상세', migration:'🔄 이관항목 상세' };
+  const titles = { schedule:'ð ì¼ì  ìì¸', impact:'ð¥ï¸ ìí¥íì´ì§ ìì¸', defect:'ð ê²°í¨ ìì¸', migration:'ð ì´ê´í­ëª© ìì¸' };
   document.getElementById('detail-title').textContent = titles[type];
 
   const field = (label, val, full=false) =>
@@ -913,45 +913,45 @@ function showDetail(type, id) {
   let body = '';
   if (type === 'schedule') {
     body = `<div class="detail-grid">
-      ${field('일정ID', data['일정ID'])} ${field('담당자', data['담당자'])}
-      ${field('제목', data['제목'], true)}
-      ${field('업무유형', severityBadge(data['업무유형']))} ${field('상태', severityBadge(data['상태']))}
-      ${field('시작일', data['시작일'])} ${field('마감일', data['마감일'])}
-      ${field('관련페이지ID', data['관련페이지ID'])} ${field('관련결함ID', data['관련결함ID'])}
-      ${field('메모', data['메모'], true)}
+      ${field('ì¼ì ID', data['ì¼ì ID'])} ${field('ë´ë¹ì', data['ë´ë¹ì'])}
+      ${field('ì ëª©', data['ì ëª©'], true)}
+      ${field('ìë¬´ì í', severityBadge(data['ìë¬´ì í']))} ${field('ìí', severityBadge(data['ìí']))}
+      ${field('ììì¼', data['ììì¼'])} ${field('ë§ê°ì¼', data['ë§ê°ì¼'])}
+      ${field('ê´ë ¨íì´ì§ID', data['ê´ë ¨íì´ì§ID'])} ${field('ê´ë ¨ê²°í¨ID', data['ê´ë ¨ê²°í¨ID'])}
+      ${field('ë©ëª¨', data['ë©ëª¨'], true)}
     </div>`;
   } else if (type === 'impact') {
-    const thumb = data['스크린샷URL'] ? `<a href="${data['스크린샷URL']}" target="_blank"><img src="${data['스크린샷URL']}" style="max-width:100%;border-radius:6px;border:1px solid var(--border);margin-top:4px"></a>` : '';
+    const thumb = data['ì¤í¬ë¦°ì·URL'] ? `<a href="${data['ì¤í¬ë¦°ì·URL']}" target="_blank"><img src="${data['ì¤í¬ë¦°ì·URL']}" style="max-width:100%;border-radius:6px;border:1px solid var(--border);margin-top:4px"></a>` : '';
     body = `<div class="detail-grid">
-      ${field('페이지ID', data['페이지ID'])} ${field('담당자', data['담당자'])}
-      ${field('사이트', `<span class="badge badge-blue">${data['사이트']||''}</span>`)} ${field('페이지명', data['페이지명'])}
-      ${field('화면ID', data['화면ID'])} ${field('최근변경일', data['최근변경일'])}
+      ${field('íì´ì§ID', data['íì´ì§ID'])} ${field('ë´ë¹ì', data['ë´ë¹ì'])}
+      ${field('ì¬ì´í¸', `<span class="badge badge-blue">${data['ì¬ì´í¸']||''}</span>`)} ${field('íì´ì§ëª', data['íì´ì§ëª'])}
+      ${field('íë©´ID', data['íë©´ID'])} ${field('ìµê·¼ë³ê²½ì¼', data['ìµê·¼ë³ê²½ì¼'])}
       ${field('URL', data['URL']?`<a href="${data['URL']}" target="_blank" style="color:var(--primary)">${data['URL']}</a>`:'')}
-      ${field('연관페이지ID', data['연관페이지ID'])} 
-      ${field('주의사항', data['주의사항'], true)}
-      ${field('설명', data['설명'], true)}
-      ${thumb?`<div class="detail-item full"><label>스크린샷</label>${thumb}</div>`:''}
+      ${field('ì°ê´íì´ì§ID', data['ì°ê´íì´ì§ID'])} 
+      ${field('ì£¼ìì¬í­', data['ì£¼ìì¬í­'], true)}
+      ${field('ì¤ëª', data['ì¤ëª'], true)}
+      ${thumb?`<div class="detail-item full"><label>ì¤í¬ë¦°ì·</label>${thumb}</div>`:''}
     </div>`;
   } else if (type === 'defect') {
     body = `<div class="detail-grid">
-      ${field('결함ID', data['결함ID'])} ${field('담당자', data['담당자'])}
-      ${field('제목', data['제목'], true)}
-      ${field('카테고리', `<span class="badge badge-gray">${data['카테고리']||''}</span>`)} ${field('심각도', severityBadge(data['심각도']))}
-      ${field('상태', severityBadge(data['상태']))} ${field('등록일', data['등록일'])}
-      ${field('관련페이지ID', data['관련페이지ID'])} <hr class="detail-divider">
-      ${field('증상', data['증상'], true)}
-      ${field('원인', data['원인'], true)}
-      ${field('해결방법', data['해결방법'], true)}
-      ${field('재발방지', data['재발방지'], true)}
+      ${field('ê²°í¨ID', data['ê²°í¨ID'])} ${field('ë´ë¹ì', data['ë´ë¹ì'])}
+      ${field('ì ëª©', data['ì ëª©'], true)}
+      ${field('ì¹´íê³ ë¦¬', `<span class="badge badge-gray">${data['ì¹´íê³ ë¦¬']||''}</span>`)} ${field('ì¬ê°ë', severityBadge(data['ì¬ê°ë']))}
+      ${field('ìí', severityBadge(data['ìí']))} ${field('ë±ë¡ì¼', data['ë±ë¡ì¼'])}
+      ${field('ê´ë ¨íì´ì§ID', data['ê´ë ¨íì´ì§ID'])} <hr class="detail-divider">
+      ${field('ì¦ì', data['ì¦ì'], true)}
+      ${field('ìì¸', data['ìì¸'], true)}
+      ${field('í´ê²°ë°©ë²', data['í´ê²°ë°©ë²'], true)}
+      ${field('ì¬ë°ë°©ì§', data['ì¬ë°ë°©ì§'], true)}
     </div>`;
   } else if (type === 'migration') {
     body = `<div class="detail-grid">
-      ${field('이관ID', data['이관ID'])} ${field('담당자', data['담당자'])}
-      ${field('항목명', data['항목명'], true)}
-      ${field('이관일', data['이관일'])} ${field('준비상태', severityBadge(data['준비상태']))}
-      ${field('관련일정ID', data['관련일정ID'])} ${field('관련페이지ID', data['관련페이지ID'])}
-      ${field('위험요소', data['위험요소']?`<span style="color:var(--danger)">${data['위험요소']}</span>`:'')} 
-      ${field('메모', data['메모'], true)}
+      ${field('ì´ê´ID', data['ì´ê´ID'])} ${field('ë´ë¹ì', data['ë´ë¹ì'])}
+      ${field('í­ëª©ëª', data['í­ëª©ëª'], true)}
+      ${field('ì´ê´ì¼', data['ì´ê´ì¼'])} ${field('ì¤ë¹ìí', severityBadge(data['ì¤ë¹ìí']))}
+      ${field('ê´ë ¨ì¼ì ID', data['ê´ë ¨ì¼ì ID'])} ${field('ê´ë ¨íì´ì§ID', data['ê´ë ¨íì´ì§ID'])}
+      ${field('ìíìì', data['ìíìì']?`<span style="color:var(--danger)">${data['ìíìì']}</span>`:'')} 
+      ${field('ë©ëª¨', data['ë©ëª¨'], true)}
     </div>`;
   }
   document.getElementById('detail-body').innerHTML = body;
@@ -966,46 +966,46 @@ function openEditFromDetail() {
   else if (type==='migration') openMigEdit(id);
 }
 
-// ══ 폼 제출 — 등록 ════════════════════════════════════
+// ââ í¼ ì ì¶ â ë±ë¡ ââââââââââââââââââââââââââââââââââââ
 async function submitSchedule() {
   const title = document.getElementById('sch-title').value.trim();
   const owner = document.getElementById('sch-owner').value.trim();
-  if (!title||!owner) { toast('❌ 제목과 담당자는 필수입니다'); return; }
+  if (!title||!owner) { toast('â ì ëª©ê³¼ ë´ë¹ìë íììëë¤'); return; }
   const row = {
-    '일정ID':   document.getElementById('sch-id').value,
-    '제목':title,'담당자':owner,
-    '업무유형': document.getElementById('sch-type').value,
-    '상태':     document.getElementById('sch-status').value,
-    '시작일':   document.getElementById('sch-start').value,
-    '마감일':   document.getElementById('sch-end').value,
-    '관련페이지ID': document.getElementById('sch-page').value,
-    '관련결함ID':   document.getElementById('sch-defect').value,
-    '메모':     document.getElementById('sch-memo').value,
+    'ì¼ì ID':   document.getElementById('sch-id').value,
+    'ì ëª©':title,'ë´ë¹ì':owner,
+    'ìë¬´ì í': document.getElementById('sch-type').value,
+    'ìí':     document.getElementById('sch-status').value,
+    'ììì¼':   document.getElementById('sch-start').value,
+    'ë§ê°ì¼':   document.getElementById('sch-end').value,
+    'ê´ë ¨íì´ì§ID': document.getElementById('sch-page').value,
+    'ê´ë ¨ê²°í¨ID':   document.getElementById('sch-defect').value,
+    'ë©ëª¨':     document.getElementById('sch-memo').value,
   };
-  toast('⏳ 저장 중...');
+  toast('â³ ì ì¥ ì¤...');
   const r = await SheetsAPI.addSchedule(row);
   closeModal('modal-schedule');
-  toast(r.ok ? '✅ 일정 등록 완료' : `❌ ${r.message}`);
+  toast(r.ok ? 'â ì¼ì  ë±ë¡ ìë£' : `â ${r.message}`);
   if(r.ok) setTimeout(renderSchedule, 800);
 }
 async function submitScheduleEdit(id) {
   const title = document.getElementById('sch-title').value.trim();
   const owner = document.getElementById('sch-owner').value.trim();
-  if (!title||!owner) { toast('❌ 제목과 담당자는 필수입니다'); return; }
+  if (!title||!owner) { toast('â ì ëª©ê³¼ ë´ë¹ìë íììëë¤'); return; }
   const row = {
-    '일정ID': id, '제목':title,'담당자':owner,
-    '업무유형': document.getElementById('sch-type').value,
-    '상태':     document.getElementById('sch-status').value,
-    '시작일':   document.getElementById('sch-start').value,
-    '마감일':   document.getElementById('sch-end').value,
-    '관련페이지ID': document.getElementById('sch-page').value,
-    '관련결함ID':   document.getElementById('sch-defect').value,
-    '메모':     document.getElementById('sch-memo').value,
+    'ì¼ì ID': id, 'ì ëª©':title,'ë´ë¹ì':owner,
+    'ìë¬´ì í': document.getElementById('sch-type').value,
+    'ìí':     document.getElementById('sch-status').value,
+    'ììì¼':   document.getElementById('sch-start').value,
+    'ë§ê°ì¼':   document.getElementById('sch-end').value,
+    'ê´ë ¨íì´ì§ID': document.getElementById('sch-page').value,
+    'ê´ë ¨ê²°í¨ID':   document.getElementById('sch-defect').value,
+    'ë©ëª¨':     document.getElementById('sch-memo').value,
   };
-  toast('⏳ 수정 중...');
-  const r = await SheetsAPI.updateRow('일정', row);
+  toast('â³ ìì  ì¤...');
+  const r = await SheetsAPI.updateRow('ì¼ì ', row);
   closeModal('modal-schedule');
-  toast(r.ok ? '✅ 일정 수정 완료' : `❌ ${r.message}`);
+  toast(r.ok ? 'â ì¼ì  ìì  ìë£' : `â ${r.message}`);
   if(r.ok) setTimeout(renderSchedule, 800);
 }
 
@@ -1014,23 +1014,23 @@ async function submitDefect() {
   const owner = document.getElementById('def-owner').value.trim();
   const status = document.getElementById('def-status').value;
   const prevent = document.getElementById('def-prevent').value.trim();
-  if(!title||!owner) { toast('❌ 제목과 담당자는 필수입니다'); return; }
-  if(status==='해결'&&!prevent) { toast('⚠️ 해결 상태에서는 재발방지 항목이 필수입니다'); return; }
+  if(!title||!owner) { toast('â ì ëª©ê³¼ ë´ë¹ìë íììëë¤'); return; }
+  if(status==='í´ê²°'&&!prevent) { toast('â ï¸ í´ê²° ìíììë ì¬ë°ë°©ì§ í­ëª©ì´ íììëë¤'); return; }
   const row = {
-    '결함ID': document.getElementById('def-id').value,
-    '제목':title,'카테고리':document.getElementById('def-category').value,
-    '심각도': document.getElementById('def-severity').value, '상태':status,
-    '증상': document.getElementById('def-symptom').value,
-    '원인': document.getElementById('def-cause').value,
-    '해결방법': document.getElementById('def-solution').value,
-    '관련페이지ID': document.getElementById('def-page').value,
-    '재발방지':prevent,'담당자':owner,
-    '등록일': document.getElementById('def-date').value,
+    'ê²°í¨ID': document.getElementById('def-id').value,
+    'ì ëª©':title,'ì¹´íê³ ë¦¬':document.getElementById('def-category').value,
+    'ì¬ê°ë': document.getElementById('def-severity').value, 'ìí':status,
+    'ì¦ì': document.getElementById('def-symptom').value,
+    'ìì¸': document.getElementById('def-cause').value,
+    'í´ê²°ë°©ë²': document.getElementById('def-solution').value,
+    'ê´ë ¨íì´ì§ID': document.getElementById('def-page').value,
+    'ì¬ë°ë°©ì§':prevent,'ë´ë¹ì':owner,
+    'ë±ë¡ì¼': document.getElementById('def-date').value,
   };
-  toast('⏳ 저장 중...');
+  toast('â³ ì ì¥ ì¤...');
   const r = await SheetsAPI.addDefect(row);
   closeModal('modal-defect');
-  toast(r.ok ? '✅ 결함 등록 완료' : `❌ ${r.message}`);
+  toast(r.ok ? 'â ê²°í¨ ë±ë¡ ìë£' : `â ${r.message}`);
   if(r.ok) setTimeout(renderDefect, 800);
 }
 async function submitDefectEdit(id) {
@@ -1038,22 +1038,22 @@ async function submitDefectEdit(id) {
   const owner = document.getElementById('def-owner').value.trim();
   const status = document.getElementById('def-status').value;
   const prevent = document.getElementById('def-prevent').value.trim();
-  if(!title||!owner) { toast('❌ 제목과 담당자는 필수입니다'); return; }
-  if(status==='해결'&&!prevent) { toast('⚠️ 해결 상태에서는 재발방지 항목이 필수입니다'); return; }
+  if(!title||!owner) { toast('â ì ëª©ê³¼ ë´ë¹ìë íììëë¤'); return; }
+  if(status==='í´ê²°'&&!prevent) { toast('â ï¸ í´ê²° ìíììë ì¬ë°ë°©ì§ í­ëª©ì´ íììëë¤'); return; }
   const row = {
-    '결함ID':id,'제목':title,'카테고리':document.getElementById('def-category').value,
-    '심각도':document.getElementById('def-severity').value,'상태':status,
-    '증상':document.getElementById('def-symptom').value,
-    '원인':document.getElementById('def-cause').value,
-    '해결방법':document.getElementById('def-solution').value,
-    '관련페이지ID':document.getElementById('def-page').value,
-    '재발방지':prevent,'담당자':owner,
-    '등록일':document.getElementById('def-date').value,
+    'ê²°í¨ID':id,'ì ëª©':title,'ì¹´íê³ ë¦¬':document.getElementById('def-category').value,
+    'ì¬ê°ë':document.getElementById('def-severity').value,'ìí':status,
+    'ì¦ì':document.getElementById('def-symptom').value,
+    'ìì¸':document.getElementById('def-cause').value,
+    'í´ê²°ë°©ë²':document.getElementById('def-solution').value,
+    'ê´ë ¨íì´ì§ID':document.getElementById('def-page').value,
+    'ì¬ë°ë°©ì§':prevent,'ë´ë¹ì':owner,
+    'ë±ë¡ì¼':document.getElementById('def-date').value,
   };
-  toast('⏳ 수정 중...');
-  const r = await SheetsAPI.updateRow('결함유형', row);
+  toast('â³ ìì  ì¤...');
+  const r = await SheetsAPI.updateRow('ê²°í¨ì í', row);
   closeModal('modal-defect');
-  toast(r.ok ? '✅ 결함 수정 완료' : `❌ ${r.message}`);
+  toast(r.ok ? 'â ê²°í¨ ìì  ìë£' : `â ${r.message}`);
   if(r.ok) setTimeout(renderDefect, 800);
 }
 
@@ -1061,99 +1061,99 @@ async function submitImpact() {
   const name  = document.getElementById('pg-name').value.trim();
   const owner = document.getElementById('pg-owner').value.trim();
   const site  = document.getElementById('pg-site').value.trim();
-  if(!name||!owner||!site) { toast('❌ 사이트명, 페이지명, 담당자는 필수입니다'); return; }
+  if(!name||!owner||!site) { toast('â ì¬ì´í¸ëª, íì´ì§ëª, ë´ë¹ìë íììëë¤'); return; }
   const row = {
-    '페이지ID': document.getElementById('pg-id').value,
-    '사이트':site,'페이지명':name,'담당자':owner,
+    'íì´ì§ID': document.getElementById('pg-id').value,
+    'ì¬ì´í¸':site,'íì´ì§ëª':name,'ë´ë¹ì':owner,
     'URL': document.getElementById('pg-url').value,
-    '화면ID': document.getElementById('pg-screen').value,
-    '연관페이지ID': document.getElementById('pg-related').value,
-    '스크린샷URL': document.getElementById('pg-screenshot').value,
-    '최근변경일': document.getElementById('pg-changed').value,
-    '주의사항': document.getElementById('pg-note').value,
-    '설명': document.getElementById('pg-desc').value,
+    'íë©´ID': document.getElementById('pg-screen').value,
+    'ì°ê´íì´ì§ID': document.getElementById('pg-related').value,
+    'ì¤í¬ë¦°ì·URL': document.getElementById('pg-screenshot').value,
+    'ìµê·¼ë³ê²½ì¼': document.getElementById('pg-changed').value,
+    'ì£¼ìì¬í­': document.getElementById('pg-note').value,
+    'ì¤ëª': document.getElementById('pg-desc').value,
   };
-  toast('⏳ 저장 중...');
-  const r = await SheetsAPI.appendRow('영향페이지', row);
+  toast('â³ ì ì¥ ì¤...');
+  const r = await SheetsAPI.appendRow('ìí¥íì´ì§', row);
   closeModal('modal-impact');
-  toast(r.ok ? '✅ 페이지 등록 완료' : `❌ ${r.message}`);
+  toast(r.ok ? 'â íì´ì§ ë±ë¡ ìë£' : `â ${r.message}`);
   if(r.ok) setTimeout(renderImpact, 800);
 }
 async function submitImpactEdit(id) {
   const name  = document.getElementById('pg-name').value.trim();
   const owner = document.getElementById('pg-owner').value.trim();
   const site  = document.getElementById('pg-site').value.trim();
-  if(!name||!owner||!site) { toast('❌ 사이트명, 페이지명, 담당자는 필수입니다'); return; }
+  if(!name||!owner||!site) { toast('â ì¬ì´í¸ëª, íì´ì§ëª, ë´ë¹ìë íììëë¤'); return; }
   const row = {
-    '페이지ID':id,'사이트':site,'페이지명':name,'담당자':owner,
+    'íì´ì§ID':id,'ì¬ì´í¸':site,'íì´ì§ëª':name,'ë´ë¹ì':owner,
     'URL':document.getElementById('pg-url').value,
-    '화면ID':document.getElementById('pg-screen').value,
-    '연관페이지ID':document.getElementById('pg-related').value,
-    '스크린샷URL':document.getElementById('pg-screenshot').value,
-    '최근변경일':document.getElementById('pg-changed').value,
-    '주의사항':document.getElementById('pg-note').value,
-    '설명':document.getElementById('pg-desc').value,
+    'íë©´ID':document.getElementById('pg-screen').value,
+    'ì°ê´íì´ì§ID':document.getElementById('pg-related').value,
+    'ì¤í¬ë¦°ì·URL':document.getElementById('pg-screenshot').value,
+    'ìµê·¼ë³ê²½ì¼':document.getElementById('pg-changed').value,
+    'ì£¼ìì¬í­':document.getElementById('pg-note').value,
+    'ì¤ëª':document.getElementById('pg-desc').value,
   };
-  toast('⏳ 수정 중...');
-  const r = await SheetsAPI.updateRow('영향페이지', row);
+  toast('â³ ìì  ì¤...');
+  const r = await SheetsAPI.updateRow('ìí¥íì´ì§', row);
   closeModal('modal-impact');
-  toast(r.ok ? '✅ 페이지 수정 완료' : `❌ ${r.message}`);
+  toast(r.ok ? 'â íì´ì§ ìì  ìë£' : `â ${r.message}`);
   if(r.ok) setTimeout(renderImpact, 800);
 }
 
 async function submitMigration() {
   const name  = document.getElementById('mig-name').value.trim();
   const owner = document.getElementById('mig-owner').value.trim();
-  if(!name||!owner) { toast('❌ 항목명과 담당자는 필수입니다'); return; }
+  if(!name||!owner) { toast('â í­ëª©ëªê³¼ ë´ë¹ìë íììëë¤'); return; }
   const row = {
-    '이관ID':   document.getElementById('mig-id').value,
-    '항목명':name,'담당자':owner,
-    '이관일':   document.getElementById('mig-date').value,
-    '준비상태': document.getElementById('mig-status').value,
-    '관련일정ID': document.getElementById('mig-sch').value,
-    '관련페이지ID': document.getElementById('mig-page').value,
-    '위험요소': document.getElementById('mig-risk').value,
-    '메모':     document.getElementById('mig-memo').value,
+    'ì´ê´ID':   document.getElementById('mig-id').value,
+    'í­ëª©ëª':name,'ë´ë¹ì':owner,
+    'ì´ê´ì¼':   document.getElementById('mig-date').value,
+    'ì¤ë¹ìí': document.getElementById('mig-status').value,
+    'ê´ë ¨ì¼ì ID': document.getElementById('mig-sch').value,
+    'ê´ë ¨íì´ì§ID': document.getElementById('mig-page').value,
+    'ìíìì': document.getElementById('mig-risk').value,
+    'ë©ëª¨':     document.getElementById('mig-memo').value,
   };
-  toast('⏳ 저장 중...');
-  const r = await SheetsAPI.appendRow('이관항목', row);
+  toast('â³ ì ì¥ ì¤...');
+  const r = await SheetsAPI.appendRow('ì´ê´í­ëª©', row);
   closeModal('modal-migration');
-  toast(r.ok ? '✅ 이관항목 등록 완료' : `❌ ${r.message}`);
+  toast(r.ok ? 'â ì´ê´í­ëª© ë±ë¡ ìë£' : `â ${r.message}`);
   if(r.ok) setTimeout(renderMigration, 800);
 }
 async function submitMigrationEdit(id) {
   const name  = document.getElementById('mig-name').value.trim();
   const owner = document.getElementById('mig-owner').value.trim();
-  if(!name||!owner) { toast('❌ 항목명과 담당자는 필수입니다'); return; }
+  if(!name||!owner) { toast('â í­ëª©ëªê³¼ ë´ë¹ìë íììëë¤'); return; }
   const row = {
-    '이관ID':id,'항목명':name,'담당자':owner,
-    '이관일': document.getElementById('mig-date').value,
-    '준비상태': document.getElementById('mig-status').value,
-    '관련일정ID': document.getElementById('mig-sch').value,
-    '관련페이지ID': document.getElementById('mig-page').value,
-    '위험요소': document.getElementById('mig-risk').value,
-    '메모': document.getElementById('mig-memo').value,
+    'ì´ê´ID':id,'í­ëª©ëª':name,'ë´ë¹ì':owner,
+    'ì´ê´ì¼': document.getElementById('mig-date').value,
+    'ì¤ë¹ìí': document.getElementById('mig-status').value,
+    'ê´ë ¨ì¼ì ID': document.getElementById('mig-sch').value,
+    'ê´ë ¨íì´ì§ID': document.getElementById('mig-page').value,
+    'ìíìì': document.getElementById('mig-risk').value,
+    'ë©ëª¨': document.getElementById('mig-memo').value,
   };
-  toast('⏳ 수정 중...');
-  const r = await SheetsAPI.updateRow('이관항목', row);
+  toast('â³ ìì  ì¤...');
+  const r = await SheetsAPI.updateRow('ì´ê´í­ëª©', row);
   closeModal('modal-migration');
-  toast(r.ok ? '✅ 이관항목 수정 완료' : `❌ ${r.message}`);
+  toast(r.ok ? 'â ì´ê´í­ëª© ìì  ìë£' : `â ${r.message}`);
   if(r.ok) setTimeout(renderMigration, 800);
 }
 
-// ══ 헬퍼 ════════════════════════════════════════════
+// ââ í¬í¼ ââââââââââââââââââââââââââââââââââââââââââââ
 function setContent(html) { document.getElementById('content').innerHTML = html; }
 function setActions(html) { document.getElementById('topbar-actions').innerHTML = html; }
 
-// ══ GitHub Token 설정 ════════════════════════════════
+// ââ GitHub Token ì¤ì  ââââââââââââââââââââââââââââââââ
 function checkToken() {
   if (!window.PORTAL_CONFIG.GITHUB_TOKEN) {
-    const t = prompt('쓰기 기능을 위해 GitHub PAT를 입력하세요.\n(읽기만 사용한다면 취소)');
-    if(t) { localStorage.setItem('portal_gh_token',t); window.PORTAL_CONFIG.GITHUB_TOKEN=t; toast('✅ 토큰 저장됨'); }
+    const t = prompt('ì°ê¸° ê¸°ë¥ì ìí´ GitHub PATë¥¼ ìë ¥íì¸ì.\n(ì½ê¸°ë§ ì¬ì©íë¤ë©´ ì·¨ì)');
+    if(t) { localStorage.setItem('portal_gh_token',t); window.PORTAL_CONFIG.GITHUB_TOKEN=t; toast('â í í° ì ì¥ë¨'); }
   }
 }
 
-// ══ 초기화 ═══════════════════════════════════════════
+// ââ ì´ê¸°í âââââââââââââââââââââââââââââââââââââââââââ
 document.addEventListener('DOMContentLoaded', () => {
   const d = new Date();
   document.getElementById('sidebar-footer').textContent = d.toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'short'});
@@ -1161,5 +1161,6 @@ document.addEventListener('DOMContentLoaded', () => {
   showPage('home');
 });
 </script>
+<script src="js/product_impact.js"></script>
 </body>
 </html>
