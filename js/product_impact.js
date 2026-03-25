@@ -1,8 +1,8 @@
-/* product_impact.js v2 — gviz 기반, SheetsAPI 의존 없음 */
+/* product_impact.js v2 â gviz ê¸°ë°, SheetsAPI ìì¡´ ìì */
 
 const _PI_SID = "12ZpwaDPNCV1V48xUtuWv2cooGtAjBZLIbClu3R88HoU";
 
-// gviz CSV fetch → 객체 배열 (타임아웃 없음)
+// gviz CSV fetch â ê°ì²´ ë°°ì´ (íììì ìì)
 async function _gvizFetch(sheetName) {
   const url = "https://docs.google.com/spreadsheets/d/" + _PI_SID
     + "/gviz/tq?tqx=out:csv&sheet=" + encodeURIComponent(sheetName);
@@ -24,34 +24,34 @@ async function _gvizFetch(sheetName) {
   });
 }
 
-// 채널 뱃지
+// ì±ë ë±ì§
 function _chBadge(ch) {
-  return ch === "대표홈페이지"
-    ? '<span style="background:#e3f0ff;color:#1a6cbf;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600">대표홈</span>'
-    : '<span style="background:#e8f5e9;color:#2e7d32;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600">다이렉트</span>';
+  return ch === "ëíííì´ì§"
+    ? '<span style="background:#e3f0ff;color:#1a6cbf;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600">ëíí</span>'
+    : '<span style="background:#e8f5e9;color:#2e7d32;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600">ë¤ì´ë í¸</span>';
 }
 
-// 탭 버튼 스타일
+// í­ ë²í¼ ì¤íì¼
 function _tStyle(on) {
   return on
     ? "padding:8px 22px;border:none;background:#1a6cbf;color:#fff;cursor:pointer;font-size:14px;font-weight:600;border-radius:6px 6px 0 0;margin-right:4px"
     : "padding:8px 22px;border:none;background:#f0f4fa;color:#555;cursor:pointer;font-size:14px;border-radius:6px 6px 0 0;margin-right:4px";
 }
 
-// ── renderImpact 오버라이드 ─────────────────────────────────
+// ââ renderImpact ì¤ë²ë¼ì´ë âââââââââââââââââââââââââââââââââ
 window.renderImpact = async function() {
   setContent(
     '<div style="display:flex;border-bottom:2px solid #e0e7ef;margin-bottom:16px">'
-    + '<button id="tab-pg"  onclick="switchImpactTab(\'page\')"    style="' + _tStyle(true)  + '">📋 영향페이지 조회</button>'
-    + '<button id="tab-prd" onclick="switchImpactTab(\'product\')" style="' + _tStyle(false) + '">🔍 상품영향 조회</button>'
+    + '<button id="tab-pg"  onclick="switchImpactTab(\'page\')"    style="' + _tStyle(true)  + '">ð ìí¥íì´ì§ ì¡°í</button>'
+    + '<button id="tab-prd" onclick="switchImpactTab(\'product\')" style="' + _tStyle(false) + '">ð ìíìí¥ ì¡°í</button>'
     + '</div>'
-    + '<div id="pi-body"><div class="loading">⏳ 로딩 중...</div></div>'
+    + '<div id="pi-body"><div class="loading">â³ ë¡ë© ì¤...</div></div>'
   );
-  setActions('<button class="btn btn-primary" onclick="openPgModal()">+ 페이지 등록</button>');
+  setActions('<button class="btn btn-primary" onclick="openPgModal()">+ íì´ì§ ë±ë¡</button>');
   switchImpactTab("page");
 };
 
-// ── 탭 전환 ────────────────────────────────────────────────
+// ââ í­ ì í ââââââââââââââââââââââââââââââââââââââââââââââââ
 window.switchImpactTab = function(tab) {
   const pg  = document.getElementById("tab-pg");
   const prd = document.getElementById("tab-prd");
@@ -61,54 +61,54 @@ window.switchImpactTab = function(tab) {
   else                _loadPrdTab();
 };
 
-// ── 탭1: 영향페이지 (gviz) ──────────────────────────────────
+// ââ í­1: ìí¥íì´ì§ (gviz) ââââââââââââââââââââââââââââââââââ
 async function _loadPgTab() {
   const body = document.getElementById("pi-body");
   if (!body) return;
-  body.innerHTML = '<div class="loading">⏳ 영향페이지 로딩 중...</div>';
+  body.innerHTML = '<div class="loading">â³ ìí¥íì´ì§ ë¡ë© ì¤...</div>';
   try {
-    const rows = await _gvizFetch("영향페이지");
+    const rows = await _gvizFetch("ìí¥íì´ì§");
     window._pgData = rows;
-    const sites = [...new Set(rows.map(r=>r["사이트"]).filter(Boolean))];
+    const sites = [...new Set(rows.map(r=>r["ì¬ì´í¸"]).filter(Boolean))];
     const sOpts = sites.map(s=>'<option value="'+s+'">'+s+'</option>').join("");
     body.innerHTML =
       '<div class="card" style="margin-bottom:0">'
       + '<div class="filter-bar">'
-      + '<input id="pg-q" placeholder="🔍 페이지명, 담당자, 화면ID 검색" oninput="renderPgTable()" value="">'
-      + '<select id="pg-site-f" onchange="renderPgTable()"><option value="">전체 사이트</option>'+sOpts+'</select>'
-      + '<span class="filter-count" id="pg-count">0건</span>'
+      + '<input id="pg-q" placeholder="ð íì´ì§ëª, ë´ë¹ì, íë©´ID ê²ì" oninput="renderPgTable()" value="">'
+      + '<select id="pg-site-f" onchange="renderPgTable()"><option value="">ì ì²´ ì¬ì´í¸</option>'+sOpts+'</select>'
+      + '<span class="filter-count" id="pg-count">0ê±´</span>'
       + '</div><div class="tbl-wrap" id="pg-tbl-wrap"></div></div>';
     renderPgTable();
   } catch(e) {
-    body.innerHTML = '<div style="padding:24px;color:red">로드 실패: ' + e.message + '</div>';
+    body.innerHTML = '<div style="padding:24px;color:red">ë¡ë ì¤í¨: ' + e.message + '</div>';
   }
 }
 
-// ── 탭2: 상품영향 조회 ─────────────────────────────────────
+// ââ í­2: ìíìí¥ ì¡°í âââââââââââââââââââââââââââââââââââââ
 async function _loadPrdTab() {
   const body = document.getElementById("pi-body");
   if (!body) return;
-  body.innerHTML = '<div class="loading">⏳ 상품화면 매핑 로딩 중...</div>';
+  body.innerHTML = '<div class="loading">â³ ìííë©´ ë§¤í ë¡ë© ì¤...</div>';
   try {
-    const rows = await _gvizFetch("상품화면매핑");
+    const rows = await _gvizFetch("ìííë©´ë§¤í");
     window._mapData = rows;
-    const prds = [...new Set(rows.map(r=>r["상품명"]))].filter(Boolean).sort((a,b)=>a.localeCompare(b,"ko"));
+    const prds = [...new Set(rows.map(r=>r["ìíëª"]))].filter(Boolean).sort((a,b)=>a.localeCompare(b,"ko"));
     const opts = prds.map(p=>'<option value="'+p+'">'+p+'</option>').join("");
     body.innerHTML =
       '<div class="card" style="margin-bottom:12px">'
       + '<div class="filter-bar">'
-      + '<label style="font-size:13px;font-weight:600;white-space:nowrap">상품 선택</label>'
+      + '<label style="font-size:13px;font-weight:600;white-space:nowrap">ìí ì í</label>'
       + '<select id="prd-sel" onchange="onPrdSel()" style="min-width:260px;font-size:14px;padding:5px 8px">'
-      + '<option value="">-- 상품을 선택하세요 --</option>'+opts+'</select>'
-      + '<input id="prd-inp" placeholder="🔍 직접 입력" oninput="onPrdInp()" style="min-width:180px;font-size:14px;padding:5px 8px;border:1px solid #ccc;border-radius:5px">'
+      + '<option value="">-- ìíì ì ííì¸ì --</option>'+opts+'</select>'
+      + '<input id="prd-inp" placeholder="ð ì§ì  ìë ¥" oninput="onPrdInp()" style="min-width:180px;font-size:14px;padding:5px 8px;border:1px solid #ccc;border-radius:5px">'
       + '</div></div>'
-      + '<div id="prd-result"><div style="padding:40px;text-align:center;color:#aaa">상품을 선택하면 영향받는 화면 목록이 표시됩니다</div></div>';
+      + '<div id="prd-result"><div style="padding:40px;text-align:center;color:#aaa">ìíì ì ííë©´ ìí¥ë°ë íë©´ ëª©ë¡ì´ íìë©ëë¤</div></div>';
   } catch(e) {
-    body.innerHTML = '<div style="padding:24px;color:red">로드 실패: ' + e.message + '</div>';
+    body.innerHTML = '<div style="padding:24px;color:red">ë¡ë ì¤í¨: ' + e.message + '</div>';
   }
 }
 
-// ── 상품 선택 이벤트 ───────────────────────────────────────
+// ââ ìí ì í ì´ë²¤í¸ âââââââââââââââââââââââââââââââââââââââ
 window.onPrdSel = function() {
   const v = (document.getElementById("prd-sel")||{}).value||"";
   const i = document.getElementById("prd-inp"); if(i) i.value=v;
@@ -122,24 +122,47 @@ window.onPrdInp = function() {
 };
 function _showPrd(product) {
   const el = document.getElementById("prd-result"); if(!el) return;
-  if (!product) { el.innerHTML='<div style="padding:40px;text-align:center;color:#aaa">상품을 선택하면 영향받는 화면 목록이 표시됩니다</div>'; return; }
-  const rows = (window._mapData||[]).filter(r=>r["상품명"]===product);
-  if (!rows.length) { el.innerHTML='<div style="padding:32px;text-align:center;color:#888">해당 상품의 영향 화면이 없습니다</div>'; return; }
+  if (!product) { el.innerHTML='<div style="padding:40px;text-align:center;color:#aaa">ìíì ì ííë©´ ìí¥ë°ë íë©´ ëª©ë¡ì´ íìë©ëë¤</div>'; return; }
+  const rows = (window._mapData||[]).filter(r=>r["ìíëª"]===product);
+  if (!rows.length) { el.innerHTML='<div style="padding:32px;text-align:center;color:#888">í´ë¹ ìíì ìí¥ íë©´ì´ ììµëë¤</div>'; return; }
   const tbody = rows.map(r=>
     "<tr>"
-    + "<td><code style=\"font-size:12px\">"+r["페이지ID"]+"</code></td>"
-    + "<td>"+_chBadge(r["채널"])+"</td>"
-    + "<td style=\"font-size:12px\">"+r["사이트"]+"</td>"
-    + "<td style=\"font-weight:500\">"+r["페이지명"]+"</td>"
-    + "<td style=\"font-size:12px;color:#555\">"+r["노출위치"]+"</td>"
+    + "<td><code style=\"font-size:12px\">"+r["íì´ì§ID"]+"</code></td>"
+    + "<td>"+_chBadge(r["ì±ë"])+"</td>"
+    + "<td style=\"font-size:12px\">"+r["ì¬ì´í¸"]+"</td>"
+    + "<td style=\"font-weight:500\">"+r["íì´ì§ëª"]+"</td>"
+    + "<td style=\"font-size:12px;color:#555\">"+r["ë¸ì¶ìì¹"]+"</td>"
     + "</tr>"
   ).join("");
   el.innerHTML =
     '<div style="padding:6px 0;font-size:13px">'
-    + '<strong style="color:#1a6cbf">'+product+'</strong> 상품이 노출되는 화면 '
-    + '<span style="background:#1a6cbf;color:#fff;border-radius:10px;padding:1px 8px;font-size:12px">'+rows.length+'개</span>'
+    + '<strong style="color:#1a6cbf">'+product+'</strong> ìíì´ ë¸ì¶ëë íë©´ '
+    + '<span style="background:#1a6cbf;color:#fff;border-radius:10px;padding:1px 8px;font-size:12px">'+rows.length+'ê°</span>'
     + '</div>'
     + '<div class="tbl-wrap"><table>'
-    + '<thead><tr><th>페이지ID</th><th>채널</th><th>사이트</th><th>페이지명</th><th>노출위치</th></tr></thead>'
+    + '<thead><tr><th>íì´ì§ID</th><th>ì±ë</th><th>ì¬ì´í¸</th><th>íì´ì§ëª</th><th>ë¸ì¶ìì¹</th></tr></thead>'
     + '<tbody>'+tbody+'</tbody></table></div>';
 }
+
+// ── 캐시 우회용 nav 이벤트 직접 바인딩 ─────────────────────
+(function() {
+  function _bindImpactNav() {
+    const nav = document.getElementById("nav-impact");
+    if (!nav) { setTimeout(_bindImpactNav, 300); return; }
+    // onclick 속성 제거 후 addEventListener로 교체
+    nav.removeAttribute("onclick");
+    nav.addEventListener("click", function(e) {
+      e.stopImmediatePropagation();
+      // 다른 nav 활성화 처리 (기존 showPage 일부 재현)
+      document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
+      nav.classList.add("active");
+      document.getElementById("topbar-title").textContent = "영향도관리";
+      renderImpact();
+    }, true);
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", _bindImpactNav);
+  } else {
+    _bindImpactNav();
+  }
+})();
