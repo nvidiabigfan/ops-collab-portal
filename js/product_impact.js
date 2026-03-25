@@ -1,26 +1,13 @@
-// ââ ìë³¸ renderImpact ì¦ì ë¬´ë ¥í (ìºìë index.html ëì) ââââââ
-(function() {
-  // index.htmlì ìë³¸ renderImpact ë³¸ì²´ë¥¼ noopì¼ë¡ êµì²´
-  // product_impact.js íë¨ì window.renderImpact = ... ê° ì´í ì¬ì ìí¨
-  if (typeof window.renderImpact === "function"
-      && window.renderImpact.toString().indexOf("replaced by product_impact") === -1
-      && window.renderImpact.toString().indexOf("switchImpactTab") === -1) {
-    window.renderImpact = async function() {};
-  }
-  // showPage í¨ì¹ â impact ì¼ì´ì¤ìì ì°ë¦¬ renderImpact í¸ì¶ ë³´ì¥
-  if (typeof window.showPage === "function") {
-    const _orig = window.showPage;
-    window.showPage = function(page) {
-      _orig(page);
-      if (page === "impact") renderImpact();
-    };
-  }
-})();
-/* product_impact.js v2 ÃÂ¢ÃÂÃÂ gviz ÃÂªÃÂ¸ÃÂ°ÃÂ«ÃÂ°ÃÂ, SheetsAPI ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ¡ÃÂ´ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ */
+/* product_impact.js v3 — 최종 확정
+ * 1. 파일 로드 즉시 원본 renderImpact + showPage 패치
+ * 2. renderPgTable 패치 (setContent 우회, pg-tbl-wrap 직접 삽입)
+ * 3. 탭 UI: 영향페이지 조회 / 상품영향 조회
+ * 4. gviz 방식 통일 (SheetsAPI 의존 없음)
+ */
 
 const _PI_SID = "12ZpwaDPNCV1V48xUtuWv2cooGtAjBZLIbClu3R88HoU";
 
-// gviz CSV fetch ÃÂ¢ÃÂÃÂ ÃÂªÃÂ°ÃÂÃÂ¬ÃÂ²ÃÂ´ ÃÂ«ÃÂ°ÃÂ°ÃÂ¬ÃÂÃÂ´ (ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ)
+// ── gviz CSV fetch ───────────────────────────────────────────
 async function _gvizFetch(sheetName) {
   const url = "https://docs.google.com/spreadsheets/d/" + _PI_SID
     + "/gviz/tq?tqx=out:csv&sheet=" + encodeURIComponent(sheetName);
@@ -42,34 +29,82 @@ async function _gvizFetch(sheetName) {
   });
 }
 
-// ÃÂ¬ÃÂ±ÃÂÃÂ«ÃÂÃÂ ÃÂ«ÃÂ±ÃÂÃÂ¬ÃÂ§ÃÂ
+// ── 헬퍼 ────────────────────────────────────────────────────
 function _chBadge(ch) {
-  return ch === "ÃÂ«ÃÂÃÂÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ"
-    ? '<span style="background:#e3f0ff;color:#1a6cbf;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600">ÃÂ«ÃÂÃÂÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂ</span>'
-    : '<span style="background:#e8f5e9;color:#2e7d32;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600">ÃÂ«ÃÂÃÂ¤ÃÂ¬ÃÂÃÂ´ÃÂ«ÃÂ ÃÂÃÂ­ÃÂÃÂ¸</span>';
+  return ch === "대표홈페이지"
+    ? '<span style="background:#e3f0ff;color:#1a6cbf;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600">대표홈</span>'
+    : '<span style="background:#e8f5e9;color:#2e7d32;padding:1px 7px;border-radius:4px;font-size:11px;font-weight:600">다이렉트</span>';
 }
-
-// ÃÂ­ÃÂÃÂ­ ÃÂ«ÃÂ²ÃÂÃÂ­ÃÂÃÂ¼ ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ¼
 function _tStyle(on) {
   return on
     ? "padding:8px 22px;border:none;background:#1a6cbf;color:#fff;cursor:pointer;font-size:14px;font-weight:600;border-radius:6px 6px 0 0;margin-right:4px"
     : "padding:8px 22px;border:none;background:#f0f4fa;color:#555;cursor:pointer;font-size:14px;border-radius:6px 6px 0 0;margin-right:4px";
 }
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ renderImpact ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂ²ÃÂÃÂ«ÃÂÃÂ¼ÃÂ¬ÃÂÃÂ´ÃÂ«ÃÂÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ── 즉시 실행 패치 (캐시된 index.html 대응) ──────────────────
+(function() {
+  // 1. 원본 renderImpact 무력화
+  if (typeof window.renderImpact === "function"
+      && window.renderImpact.toString().indexOf("switchImpactTab") === -1) {
+    window.renderImpact = async function() {};
+  }
+  // 2. showPage 패치 — impact 호출 시 우리 renderImpact 보장
+  if (typeof window.showPage === "function"
+      && window.showPage.toString().indexOf("_origSP") === -1) {
+    const _origSP = window.showPage;
+    window.showPage = function(page) {
+      _origSP(page);
+      if (page === "impact") window.renderImpact();
+    };
+  }
+  // 3. renderPgTable 패치 — pg-tbl-wrap 있을 때 setContent 우회
+  if (typeof window.renderPgTable === "function"
+      && window.renderPgTable.toString().indexOf("_origRPT") === -1) {
+    const _origRPT = window.renderPgTable;
+    window.renderPgTable = function() {
+      const wrap = document.getElementById("pg-tbl-wrap");
+      if (!wrap) { _origRPT(); return; }
+      const q    = (document.getElementById("pg-q")      ||{}).value||"";
+      const site = (document.getElementById("pg-site-f") ||{}).value||"";
+      const cnt  = document.getElementById("pg-count");
+      const rows = window._pgData || [];
+      const hit  = rows.filter(r =>
+        (!q    || ["페이지ID","페이지명","담당자","화면ID"].some(k=>(r[k]||"").includes(q))) &&
+        (!site || r["사이트"] === site)
+      );
+      if (cnt) cnt.textContent = hit.length + "건";
+      if (!hit.length) {
+        wrap.innerHTML = '<table><thead><tr><th>ID</th><th>사이트</th><th>페이지명</th><th>담당자</th><th>변경일</th></tr></thead><tbody><tr class="empty-row"><td colspan="5">등록된 페이지가 없습니다</td></tr></tbody></table>';
+        return;
+      }
+      const tbody = hit.map(r=>
+        "<tr>"
+        + '<td><code style="font-size:12px">' + (r["페이지ID"]||"") + "</code></td>"
+        + '<td style="font-size:12px">' + (r["사이트"]||"") + "</td>"
+        + "<td>" + (r["페이지명"]||"") + "</td>"
+        + "<td>" + (r["담당자"]||"") + "</td>"
+        + '<td style="font-size:12px">' + (r["최근변경일"]||"") + "</td>"
+        + "</tr>"
+      ).join("");
+      wrap.innerHTML = '<table><thead><tr><th>ID</th><th>사이트</th><th>페이지명</th><th>담당자</th><th>변경일</th></tr></thead><tbody>' + tbody + "</tbody></table>";
+    };
+  }
+})();
+
+// ── renderImpact 오버라이드 ──────────────────────────────────
 window.renderImpact = async function() {
   setContent(
     '<div style="display:flex;border-bottom:2px solid #e0e7ef;margin-bottom:16px">'
-    + '<button id="tab-pg"  onclick="switchImpactTab(\'page\')"    style="' + _tStyle(true)  + '">ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ¬ÃÂ¡ÃÂ°ÃÂ­ÃÂÃÂ</button>'
-    + '<button id="tab-prd" onclick="switchImpactTab(\'product\')" style="' + _tStyle(false) + '">ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ ÃÂ¬ÃÂ¡ÃÂ°ÃÂ­ÃÂÃÂ</button>'
+    + '<button id="tab-pg"  onclick="switchImpactTab(\'page\')"    style="' + _tStyle(true)  + '">📋 영향페이지 조회</button>'
+    + '<button id="tab-prd" onclick="switchImpactTab(\'product\')" style="' + _tStyle(false) + '">🔍 상품영향 조회</button>'
     + '</div>'
-    + '<div id="pi-body"><div class="loading">ÃÂ¢ÃÂÃÂ³ ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ© ÃÂ¬ÃÂ¤ÃÂ...</div></div>'
+    + '<div id="pi-body"><div class="loading">⏳ 로딩 중...</div></div>'
   );
-  setActions('<button class="btn btn-primary" onclick="openPgModal()">+ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ</button>');
+  setActions('<button class="btn btn-primary" onclick="openPgModal()">+ 페이지 등록</button>');
   switchImpactTab("page");
 };
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂ­ ÃÂ¬ÃÂ ÃÂÃÂ­ÃÂÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ── 탭 전환 ────────────────────────────────────────────────
 window.switchImpactTab = function(tab) {
   const pg  = document.getElementById("tab-pg");
   const prd = document.getElementById("tab-prd");
@@ -79,78 +114,57 @@ window.switchImpactTab = function(tab) {
   else                _loadPrdTab();
 };
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂ­1: ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ (gviz) ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ── 탭1: 영향페이지 ─────────────────────────────────────────
 async function _loadPgTab() {
   const body = document.getElementById("pi-body");
   if (!body) return;
-  body.innerHTML = '<div class="loading">ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ© ÃÂ¬ÃÂ¤ÃÂ...</div>';
+  body.innerHTML = '<div class="loading">⏳ 영향페이지 로딩 중...</div>';
   try {
-    const rows = await _gvizFetch("ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ");
+    const rows = await _gvizFetch("영향페이지");
     window._pgData = rows;
-    const sites = [...new Set(rows.map(r=>r["ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸"]).filter(Boolean))];
+    const sites = [...new Set(rows.map(r=>r["사이트"]).filter(Boolean))];
     const sOpts = sites.map(s=>'<option value="'+s+'">'+s+'</option>').join("");
     body.innerHTML =
       '<div class="card" style="margin-bottom:0">'
       + '<div class="filter-bar">'
-      + '<input id="pg-q" placeholder="ÃÂ°ÃÂÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ, ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ, ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ID ÃÂªÃÂ²ÃÂÃÂ¬ÃÂÃÂ" oninput="renderPgTable()" value="">'
-      + '<select id="pg-site-f" onchange="renderPgTable()"><option value="">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸</option>'+sOpts+'</select>'
-      + '<span class="filter-count" id="pg-count">0ÃÂªÃÂ±ÃÂ´</span>'
+      + '<input id="pg-q" placeholder="🔍 페이지명, 담당자, 화면ID 검색" oninput="renderPgTable()" value="">'
+      + '<select id="pg-site-f" onchange="renderPgTable()"><option value="">전체 사이트</option>'+sOpts+'</select>'
+      + '<span class="filter-count" id="pg-count">0건</span>'
       + '</div><div class="tbl-wrap" id="pg-tbl-wrap"></div></div>';
-    // renderPgTable() 직접 호출 대신 pg-tbl-wrap에 직접 렌더링
-    const wrap = document.getElementById('pg-tbl-wrap');
-    if (!wrap) return;
-    const q    = (document.getElementById('pg-q')     || {}).value || '';
-    const site = (document.getElementById('pg-site-f')|| {}).value || '';
-    const cnt  = document.getElementById('pg-count');
-    const filtered = rows.filter(r =>
-      (!q    || [r['페이지ID'],r['페이지명'],r['담당자'],r['화면ID']].some(v=>(v||'').includes(q))) &&
-      (!site || r['사이트'] === site)
-    );
-    if (cnt) cnt.textContent = filtered.length + '건';
-    if (!filtered.length) {
-      wrap.innerHTML = '<table><thead><tr><th>ID</th><th>사이트</th><th>페이지명</th><th>담당자</th><th>변경일</th></tr></thead><tbody><tr class="empty-row"><td colspan="5">등록된 페이지가 없습니다</td></tr></tbody></table>';
-      return;
-    }
-    const tbody = filtered.map(r =>
-      '<tr>'
-      + '<td><code style="font-size:12px">' + (r['페이지ID']||'') + '</code></td>'
-      + '<td style="font-size:12px">' + (r['사이트']||'') + '</td>'
-      + '<td>' + (r['페이지명']||'') + '</td>'
-      + '<td>' + (r['담당자']||'') + '</td>'
-      + '<td style="font-size:12px">' + (r['최근변경일']||'') + '</td>'
-      + '</tr>'
-    ).join('');
-    wrap.innerHTML = '<table><thead><tr><th>ID</th><th>사이트</th><th>페이지명</th><th>담당자</th><th>변경일</th></tr></thead><tbody>' + tbody + '</tbody></table>';
+    renderPgTable();
   } catch(e) {
-    body.innerHTML = '<div style="padding:24px;color:red">ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¨: ' + e.message + '</div>';
+    body.innerHTML = '<div style="padding:24px;color:red">로드 실패: ' + e.message + '</div>';
   }
 }
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂ­2: ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ ÃÂ¬ÃÂ¡ÃÂ°ÃÂ­ÃÂÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ── 탭2: 상품영향 조회 ──────────────────────────────────────
 async function _loadPrdTab() {
   const body = document.getElementById("pi-body");
   if (!body) return;
-  body.innerHTML = '<div class="loading">ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ ÃÂ«ÃÂ§ÃÂ¤ÃÂ­ÃÂÃÂ ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ© ÃÂ¬ÃÂ¤ÃÂ...</div>';
+  body.innerHTML = '<div class="loading">⏳ 상품화면 매핑 로딩 중...</div>';
   try {
-    const rows = await _gvizFetch("ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ÃÂ«ÃÂ§ÃÂ¤ÃÂ­ÃÂÃÂ");
+    const rows = await _gvizFetch("상품화면매핑");
     window._mapData = rows;
-    const prds = [...new Set(rows.map(r=>r["ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ«ÃÂªÃÂ"]))].filter(Boolean).sort((a,b)=>a.localeCompare(b,"ko"));
+    const prds = [...new Set(rows.map(r=>r["상품명"]))].filter(Boolean)
+                   .sort((a,b)=>a.localeCompare(b,"ko"));
     const opts = prds.map(p=>'<option value="'+p+'">'+p+'</option>').join("");
     body.innerHTML =
       '<div class="card" style="margin-bottom:12px">'
       + '<div class="filter-bar">'
-      + '<label style="font-size:13px;font-weight:600;white-space:nowrap">ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ</label>'
+      + '<label style="font-size:13px;font-weight:600;white-space:nowrap">상품 선택</label>'
       + '<select id="prd-sel" onchange="onPrdSel()" style="min-width:260px;font-size:14px;padding:5px 8px">'
-      + '<option value="">-- ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ¸ÃÂ¬ÃÂÃÂ --</option>'+opts+'</select>'
-      + '<input id="prd-inp" placeholder="ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂ§ÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂÃÂÃÂ«ÃÂ ÃÂ¥" oninput="onPrdInp()" style="min-width:180px;font-size:14px;padding:5px 8px;border:1px solid #ccc;border-radius:5px">'
+      + '<option value="">-- 상품을 선택하세요 --</option>'+opts+'</select>'
+      + '<input id="prd-inp" placeholder="🔍 직접 입력" oninput="onPrdInp()"'
+      + ' style="min-width:180px;font-size:14px;padding:5px 8px;border:1px solid #ccc;border-radius:5px">'
       + '</div></div>'
-      + '<div id="prd-result"><div style="padding:40px;text-align:center;color:#aaa">ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ«ÃÂ°ÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂ¡ÃÂÃÂ¬ÃÂÃÂ´ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ©ÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤</div></div>';
+      + '<div id="prd-result"><div style="padding:40px;text-align:center;color:#aaa">'
+      + '상품을 선택하면 영향받는 화면 목록이 표시됩니다</div></div>';
   } catch(e) {
-    body.innerHTML = '<div style="padding:24px;color:red">ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¨: ' + e.message + '</div>';
+    body.innerHTML = '<div style="padding:24px;color:red">로드 실패: ' + e.message + '</div>';
   }
 }
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ ÃÂ¬ÃÂÃÂ´ÃÂ«ÃÂ²ÃÂ¤ÃÂ­ÃÂÃÂ¸ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ── 상품 선택 이벤트 ────────────────────────────────────────
 window.onPrdSel = function() {
   const v = (document.getElementById("prd-sel")||{}).value||"";
   const i = document.getElementById("prd-inp"); if(i) i.value=v;
@@ -164,47 +178,30 @@ window.onPrdInp = function() {
 };
 function _showPrd(product) {
   const el = document.getElementById("prd-result"); if(!el) return;
-  if (!product) { el.innerHTML='<div style="padding:40px;text-align:center;color:#aaa">ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ«ÃÂ°ÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂ¡ÃÂÃÂ¬ÃÂÃÂ´ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ©ÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤</div>'; return; }
-  const rows = (window._mapData||[]).filter(r=>r["ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ«ÃÂªÃÂ"]===product);
-  if (!rows.length) { el.innerHTML='<div style="padding:32px;text-align:center;color:#888">ÃÂ­ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ÃÂ¬ÃÂÃÂ´ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂµÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤</div>'; return; }
+  if (!product) {
+    el.innerHTML='<div style="padding:40px;text-align:center;color:#aaa">상품을 선택하면 영향받는 화면 목록이 표시됩니다</div>';
+    return;
+  }
+  const rows = (window._mapData||[]).filter(r=>r["상품명"]===product);
+  if (!rows.length) {
+    el.innerHTML='<div style="padding:32px;text-align:center;color:#888">해당 상품의 영향 화면이 없습니다</div>';
+    return;
+  }
   const tbody = rows.map(r=>
     "<tr>"
-    + "<td><code style=\"font-size:12px\">"+r["ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID"]+"</code></td>"
-    + "<td>"+_chBadge(r["ÃÂ¬ÃÂ±ÃÂÃÂ«ÃÂÃÂ"])+"</td>"
-    + "<td style=\"font-size:12px\">"+r["ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸"]+"</td>"
-    + "<td style=\"font-weight:500\">"+r["ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ"]+"</td>"
-    + "<td style=\"font-size:12px;color:#555\">"+r["ÃÂ«ÃÂÃÂ¸ÃÂ¬ÃÂ¶ÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂ¹ÃÂ"]+"</td>"
+    + '<td><code style="font-size:12px">'+r["페이지ID"]+'</code></td>'
+    + "<td>"+_chBadge(r["채널"])+"</td>"
+    + '<td style="font-size:12px">'+r["사이트"]+"</td>"
+    + '<td style="font-weight:500">'+r["페이지명"]+"</td>"
+    + '<td style="font-size:12px;color:#555">'+r["노출위치"]+"</td>"
     + "</tr>"
   ).join("");
   el.innerHTML =
     '<div style="padding:6px 0;font-size:13px">'
-    + '<strong style="color:#1a6cbf">'+product+'</strong> ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ ÃÂ«ÃÂÃÂ¸ÃÂ¬ÃÂ¶ÃÂÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ '
-    + '<span style="background:#1a6cbf;color:#fff;border-radius:10px;padding:1px 8px;font-size:12px">'+rows.length+'ÃÂªÃÂ°ÃÂ</span>'
+    + '<strong style="color:#1a6cbf">'+product+'</strong> 상품이 노출되는 화면 '
+    + '<span style="background:#1a6cbf;color:#fff;border-radius:10px;padding:1px 8px;font-size:12px">'+rows.length+'개</span>'
     + '</div>'
     + '<div class="tbl-wrap"><table>'
-    + '<thead><tr><th>ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID</th><th>ÃÂ¬ÃÂ±ÃÂÃÂ«ÃÂÃÂ</th><th>ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸</th><th>ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ</th><th>ÃÂ«ÃÂÃÂ¸ÃÂ¬ÃÂ¶ÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂ¹ÃÂ</th></tr></thead>'
+    + '<thead><tr><th>페이지ID</th><th>채널</th><th>사이트</th><th>페이지명</th><th>노출위치</th></tr></thead>'
     + '<tbody>'+tbody+'</tbody></table></div>';
 }
-
-// Ã¢ÂÂÃ¢ÂÂ Ã¬ÂºÂÃ¬ÂÂ Ã¬ÂÂ°Ã­ÂÂÃ¬ÂÂ© nav Ã¬ÂÂ´Ã«Â²Â¤Ã­ÂÂ¸ Ã¬Â§ÂÃ¬Â Â Ã«Â°ÂÃ¬ÂÂ¸Ã«ÂÂ© Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-(function() {
-  function _bindImpactNav() {
-    const nav = document.getElementById("nav-impact");
-    if (!nav) { setTimeout(_bindImpactNav, 300); return; }
-    // onclick Ã¬ÂÂÃ¬ÂÂ± Ã¬Â ÂÃªÂ±Â° Ã­ÂÂ addEventListenerÃ«Â¡Â ÃªÂµÂÃ¬Â²Â´
-    nav.removeAttribute("onclick");
-    nav.addEventListener("click", function(e) {
-      e.stopImmediatePropagation();
-      // Ã«ÂÂ¤Ã«Â¥Â¸ nav Ã­ÂÂÃ¬ÂÂ±Ã­ÂÂ Ã¬Â²ÂÃ«Â¦Â¬ (ÃªÂ¸Â°Ã¬Â¡Â´ showPage Ã¬ÂÂ¼Ã«Â¶Â Ã¬ÂÂ¬Ã­ÂÂ)
-      document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
-      nav.classList.add("active");
-      document.getElementById("topbar-title").textContent = "Ã¬ÂÂÃ­ÂÂ¥Ã«ÂÂÃªÂ´ÂÃ«Â¦Â¬";
-      renderImpact();
-    }, true);
-  }
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", _bindImpactNav);
-  } else {
-    _bindImpactNav();
-  }
-})();
