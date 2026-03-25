@@ -5,174 +5,195 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>운영협업포털</title>
 <style>
-  :root {
-    --primary: #2563eb; --primary-dark: #1d4ed8;
-    --bg: #f1f5f9; --card: #ffffff; --border: #e2e8f0;
-    --text: #1e293b; --muted: #64748b;
-    --success: #16a34a; --warning: #d97706; --danger: #dc2626;
-    --sidebar-w: 204px;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Apple SD Gothic Neo','Malgun Gothic',sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; font-size: 13px; }
+:root {
+  --primary: #2563eb; --primary-dark: #1d4ed8;
+  --bg: #f1f5f9; --card: #ffffff; --border: #e2e8f0;
+  --text: #1e293b; --muted: #64748b;
+  --success: #16a34a; --warning: #d97706; --danger: #dc2626;
+  --sidebar-w: 204px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Apple SD Gothic Neo','Malgun Gothic',sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; font-size: 13px; }
 
-  /* 사이드바 */
-  #sidebar { width: var(--sidebar-w); background: #1e293b; color: #f8fafc; display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; }
-  .logo { padding: 18px 16px; font-size: 14px; font-weight: 700; border-bottom: 1px solid #334155; line-height: 1.4; }
-  .logo span { display: block; font-size: 11px; font-weight: 400; color: #94a3b8; margin-top: 2px; }
-  #sidebar nav { flex: 1; padding: 6px 0; }
-  #sidebar nav a { display: flex; align-items: center; gap: 9px; padding: 9px 16px; color: #cbd5e1; text-decoration: none; font-size: 13px; cursor: pointer; transition: background .15s; user-select: none; }
-  #sidebar nav a:hover { background: #334155; color: #f1f5f9; }
-  #sidebar nav a.active { background: var(--primary); color: #fff; }
-  .nav-icon { font-size: 15px; width: 18px; text-align: center; }
-  .sidebar-footer { padding: 10px 16px; font-size: 11px; color: #475569; border-top: 1px solid #334155; }
+/* 사이드바 */
+#sidebar { width: var(--sidebar-w); background: #1e293b; color: #f8fafc; display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; }
+.logo { padding: 18px 16px; font-size: 14px; font-weight: 700; border-bottom: 1px solid #334155; line-height: 1.4; }
+.logo span { display: block; font-size: 11px; font-weight: 400; color: #94a3b8; margin-top: 2px; }
+#sidebar nav { flex: 1; padding: 6px 0; }
+#sidebar nav a { display: flex; align-items: center; gap: 9px; padding: 9px 16px; color: #cbd5e1; text-decoration: none; font-size: 13px; cursor: pointer; transition: background .15s; user-select: none; }
+#sidebar nav a:hover { background: #334155; color: #f1f5f9; }
+#sidebar nav a.active { background: var(--primary); color: #fff; }
+.nav-icon { font-size: 15px; width: 18px; text-align: center; }
+.sidebar-footer { padding: 10px 16px; font-size: 11px; color: #475569; border-top: 1px solid #334155; }
 
-  /* 메인 */
-  #main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; }
-  #topbar { background: var(--card); border-bottom: 1px solid var(--border); padding: 0 20px; height: 50px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
-  .page-title { font-size: 14px; font-weight: 700; }
-  #content { padding: 20px; flex: 1; }
+/* 메인 */
+#main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; }
+#topbar { background: var(--card); border-bottom: 1px solid var(--border); padding: 0 20px; height: 50px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+.page-title { font-size: 14px; font-weight: 700; }
+#content { padding: 20px; flex: 1; }
 
-  /* 카드 */
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px; margin-bottom: 16px; }
-  .card-title { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 14px; text-transform: uppercase; letter-spacing: .06em; }
+/* 카드 */
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px; margin-bottom: 16px; }
+.card-title { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 14px; text-transform: uppercase; letter-spacing: .06em; }
 
-  /* 버튼 */
-  .btn { display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; transition: background .15s; font-family: inherit; }
-  .btn-primary { background: var(--primary); color: #fff; }
-  .btn-primary:hover { background: var(--primary-dark); }
-  .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
-  .btn-outline:hover { background: var(--bg); }
-  .btn-ghost { background: transparent; border: none; color: var(--muted); padding: 4px 8px; }
-  .btn-ghost:hover { color: var(--text); background: var(--bg); }
+/* 버튼 */
+.btn { display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; transition: background .15s; font-family: inherit; }
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-outline:hover { background: var(--bg); }
+.btn-ghost { background: transparent; border: none; color: var(--muted); padding: 4px 8px; }
+.btn-ghost:hover { color: var(--text); background: var(--bg); }
+.btn-danger { background: #fee2e2; color: var(--danger); border: none; }
+.btn-danger:hover { background: #fecaca; }
+.btn-sm { padding: 3px 8px; font-size: 11px; }
 
-  /* 배지 */
-  .badge { display: inline-block; padding: 2px 7px; border-radius: 99px; font-size: 11px; font-weight: 600; white-space: nowrap; }
-  .badge-blue   { background: #dbeafe; color: #1d4ed8; }
-  .badge-green  { background: #dcfce7; color: #15803d; }
-  .badge-red    { background: #fee2e2; color: #b91c1c; }
-  .badge-yellow { background: #fef9c3; color: #a16207; }
-  .badge-orange { background: #ffedd5; color: #c2410c; }
-  .badge-gray   { background: #f1f5f9; color: #475569; }
-  .badge-purple { background: #ede9fe; color: #6d28d9; }
+/* 배지 */
+.badge { display: inline-block; padding: 2px 7px; border-radius: 99px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+.badge-blue { background: #dbeafe; color: #1d4ed8; }
+.badge-green { background: #dcfce7; color: #15803d; }
+.badge-red { background: #fee2e2; color: #b91c1c; }
+.badge-yellow { background: #fef9c3; color: #a16207; }
+.badge-orange { background: #ffedd5; color: #c2410c; }
+.badge-gray { background: #f1f5f9; color: #475569; }
+.badge-purple { background: #ede9fe; color: #6d28d9; }
 
-  /* 테이블 */
-  .tbl-wrap { overflow-x: auto; }
-  table { width: 100%; border-collapse: collapse; }
-  th { background: #f8fafc; text-align: left; padding: 8px 10px; font-size: 11px; color: var(--muted); border-bottom: 1px solid var(--border); font-weight: 700; white-space: nowrap; }
-  td { padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-  tr:last-child td { border-bottom: none; }
-  tr:hover td { background: #f8fafc; }
-  .empty-row td { text-align: center; color: var(--muted); padding: 32px; }
+/* 테이블 */
+.tbl-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th { background: #f8fafc; text-align: left; padding: 8px 10px; font-size: 11px; color: var(--muted); border-bottom: 1px solid var(--border); font-weight: 700; white-space: nowrap; }
+td { padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tr.clickable:hover td { background: #f0f7ff; cursor: pointer; }
+tr.clickable:active td { background: #dbeafe; }
+.empty-row td { text-align: center; color: var(--muted); padding: 32px; }
 
-  /* 그리드 */
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
-  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+/* 상태 드롭다운 (인라인) */
+.status-select {
+  appearance: none; -webkit-appearance: none;
+  border: none; background: transparent;
+  font-size: 11px; font-weight: 600; font-family: inherit;
+  padding: 2px 18px 2px 7px; border-radius: 99px;
+  cursor: pointer; outline: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23666'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 5px center;
+  transition: box-shadow .15s;
+}
+.status-select:focus { box-shadow: 0 0 0 2px var(--primary); }
+/* 상태별 색 */
+.ss-예정   { background-color: #dbeafe; color: #1d4ed8; }
+.ss-진행중  { background-color: #fef9c3; color: #a16207; }
+.ss-완료   { background-color: #dcfce7; color: #15803d; }
+.ss-취소   { background-color: #f1f5f9; color: #475569; }
+.ss-미처리  { background-color: #fee2e2; color: #b91c1c; }
+.ss-처리중  { background-color: #fef9c3; color: #a16207; }
+.ss-해결   { background-color: #dcfce7; color: #15803d; }
+.ss-보류   { background-color: #f1f5f9; color: #475569; }
+.ss-준비중  { background-color: #fef9c3; color: #a16207; }
+.ss-검토중  { background-color: #dbeafe; color: #1d4ed8; }
 
-  /* 통계 카드 */
-  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; }
-  .stat-label { font-size: 11px; color: var(--muted); margin-bottom: 5px; }
-  .stat-value { font-size: 26px; font-weight: 800; line-height: 1; }
-  .stat-sub   { font-size: 11px; color: var(--muted); margin-top: 5px; }
-  .stat-link  { font-size: 11px; color: var(--primary); cursor: pointer; margin-top: 6px; display: inline-block; }
+/* 삭제 버튼 셀 */
+.del-cell { width: 28px; text-align: center; }
+.del-btn { opacity: 0; background: none; border: none; font-size: 14px; cursor: pointer; color: var(--danger); padding: 2px 4px; border-radius: 4px; transition: opacity .15s, background .15s; }
+tr:hover .del-btn { opacity: 1; }
+.del-btn:hover { background: #fee2e2; }
 
-  /* 필터바 */
-  .filter-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
-  .filter-bar input, .filter-bar select { padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: inherit; background: #fff; color: var(--text); }
-  .filter-bar input:focus, .filter-bar select:focus { outline: none; border-color: var(--primary); }
-  .filter-bar input { min-width: 200px; }
-  .filter-count { font-size: 12px; color: var(--muted); margin-left: auto; }
+/* 그리드 */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
 
-  /* 폼 */
-  .form-group { margin-bottom: 12px; }
-  .form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
-  .form-group label .req { color: var(--danger); }
-  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 7px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; font-family: inherit; background: #fff; color: var(--text); }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px #dbeafe; }
-  .form-group input.auto-id { background: #f8fafc; color: var(--muted); }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .form-hint { font-size: 11px; color: var(--muted); margin-top: 3px; }
-  .warn-field { border-color: var(--warning) !important; background: #fffbeb !important; }
+/* 통계 카드 */
+.stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; }
+.stat-label { font-size: 11px; color: var(--muted); margin-bottom: 5px; }
+.stat-value { font-size: 26px; font-weight: 800; line-height: 1; }
+.stat-sub { font-size: 11px; color: var(--muted); margin-top: 5px; }
+.stat-link { font-size: 11px; color: var(--primary); cursor: pointer; margin-top: 6px; display: inline-block; }
 
-  /* 모달 */
-  .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 200; align-items: center; justify-content: center; }
-  .modal-bg.open { display: flex; }
-  .modal { background: #fff; border-radius: 10px; width: 540px; max-width: 95vw; max-height: 90vh; overflow-y: auto; }
-  .modal-header { padding: 16px 18px 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-  .modal-header h3 { font-size: 14px; font-weight: 700; }
-  .modal-body { padding: 18px; }
-  .modal-footer { padding: 12px 18px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 8px; }
-  .close-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: var(--muted); line-height: 1; }
+/* 필터바 */
+.filter-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.filter-bar input, .filter-bar select { padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: inherit; background: #fff; color: var(--text); }
+.filter-bar input:focus, .filter-bar select:focus { outline: none; border-color: var(--primary); }
+.filter-bar input { min-width: 200px; }
+.filter-count { font-size: 12px; color: var(--muted); margin-left: auto; }
 
-  /* 링크 카드 */
-  .link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 10px; }
-  .link-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px; text-decoration: none; color: var(--text); transition: box-shadow .15s; }
-  .link-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,.09); border-color: var(--primary); }
-  .link-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-  .link-name { font-size: 13px; font-weight: 600; }
-  .link-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .link-url  { font-size: 10px; color: #94a3b8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px; }
+/* 폼 */
+.form-group { margin-bottom: 12px; }
+.form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+.form-group label .req { color: var(--danger); }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 7px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; font-family: inherit; background: #fff; color: var(--text); }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px #dbeafe; }
+.form-group input.auto-id { background: #f8fafc; color: var(--muted); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.warn-field { border-color: var(--warning) !important; background: #fffbeb !important; }
 
-  /* 토스트 */
-  #toast { position: fixed; bottom: 20px; right: 20px; background: #1e293b; color: #fff; padding: 9px 16px; border-radius: 8px; font-size: 13px; z-index: 999; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; transform: translateY(6px); }
-  #toast.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+/* 모달 */
+.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 200; align-items: center; justify-content: center; }
+.modal-bg.open { display: flex; }
+.modal { background: #fff; border-radius: 10px; width: 580px; max-width: 95vw; max-height: 92vh; overflow-y: auto; }
+.modal-header { padding: 16px 18px 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.modal-header h3 { font-size: 14px; font-weight: 700; }
+.modal-body { padding: 18px; }
+.modal-footer { padding: 12px 18px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 8px; }
+.close-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: var(--muted); line-height: 1; }
 
-  /* 로딩 */
-  .loading { text-align: center; padding: 40px; color: var(--muted); }
+/* 상세 모달 */
+.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
+.detail-item label { font-size: 10px; font-weight: 700; color: var(--muted); display: block; margin-bottom: 2px; text-transform: uppercase; }
+.detail-item .val { font-size: 13px; color: var(--text); word-break: break-all; }
+.detail-item.full { grid-column: 1/-1; }
+.detail-divider { grid-column: 1/-1; border: none; border-top: 1px solid var(--border); margin: 6px 0; }
+.mode-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: #f1f5f9; color: var(--muted); margin-left: 8px; vertical-align: middle; }
 
-  /* 주의사항 아이콘 */
-  .alert-icon { font-size: 13px; }
+/* 링크 카드 */
+.link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 10px; }
+.link-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px; text-decoration: none; color: var(--text); transition: box-shadow .15s; }
+.link-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,.09); border-color: var(--primary); }
+.link-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.link-name { font-size: 13px; font-weight: 600; }
+.link-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.link-url { font-size: 10px; color: #94a3b8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px; }
+
+/* 토스트 */
+#toast { position: fixed; bottom: 20px; right: 20px; background: #1e293b; color: #fff; padding: 9px 16px; border-radius: 8px; font-size: 13px; z-index: 999; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; transform: translateY(6px); }
+#toast.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.loading { text-align: center; padding: 40px; color: var(--muted); }
+.alert-icon { font-size: 13px; }
 </style>
 </head>
 <body>
-  <!-- ===== 비밀번호 인증 팝업 ===== -->
-<div id="auth-overlay" style="
-  position:fixed; inset:0; background:rgba(0,0,0,0.6);
-  z-index:9999; display:flex; align-items:center; justify-content:center;">
-  <div style="background:#fff; padding:36px 32px; border-radius:12px;
-    box-shadow:0 8px 32px rgba(0,0,0,0.2); min-width:320px; text-align:center;">
-    <div style="font-size:22px; font-weight:700; margin-bottom:8px;">🔒 운영협업포털</div>
-    <div style="font-size:13px; color:#666; margin-bottom:24px;">접속 비밀번호를 입력하세요</div>
+
+<!-- ===== 비밀번호 인증 팝업 ===== -->
+<div id="auth-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;">
+  <div style="background:#fff;padding:36px 32px;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.2);min-width:320px;text-align:center;">
+    <div style="font-size:22px;font-weight:700;margin-bottom:8px;">🔒 운영협업포털</div>
+    <div style="font-size:13px;color:#666;margin-bottom:24px;">접속 비밀번호를 입력하세요</div>
     <input id="auth-input" type="password" placeholder="비밀번호"
-      style="width:100%; padding:10px 14px; border:1px solid #ddd; border-radius:8px;
-      font-size:15px; box-sizing:border-box; margin-bottom:12px;"
-      onkeydown="if(event.key==='Enter') checkAuth()" />
-    <div id="auth-error" style="color:#e53935; font-size:12px; margin-bottom:10px; display:none;">
-      비밀번호가 올바르지 않습니다
-    </div>
-    <button onclick="checkAuth()" style="width:100%; padding:11px; background:#1a73e8;
-      color:#fff; border:none; border-radius:8px; font-size:15px; font-weight:600; cursor:pointer;">
-      확인
-    </button>
+      style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;margin-bottom:12px;"
+      onkeydown="if(event.key==='Enter') checkAuth()"/>
+    <div id="auth-error" style="color:#e53935;font-size:12px;margin-bottom:10px;display:none;">비밀번호가 올바르지 않습니다</div>
+    <button onclick="checkAuth()" style="width:100%;padding:11px;background:#1a73e8;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;">확인</button>
   </div>
 </div>
-
 <script>
-  const PORTAL_PASSWORD = 'P@ssword1!'; // ★ 비밀번호 여기서 변경
-
-  function checkAuth() {
-    const input = document.getElementById('auth-input').value;
-    if (input === PORTAL_PASSWORD) {
-      localStorage.setItem('ops_portal_auth', 'true');
-      document.getElementById('auth-overlay').style.display = 'none';
-    } else {
-      document.getElementById('auth-error').style.display = 'block';
-      document.getElementById('auth-input').value = '';
-      document.getElementById('auth-input').focus();
-    }
+const PORTAL_PASSWORD = 'shinhanez2026';
+function checkAuth() {
+  const v = document.getElementById('auth-input').value;
+  if (v === PORTAL_PASSWORD) {
+    localStorage.setItem('ops_portal_auth','true');
+    document.getElementById('auth-overlay').style.display='none';
+  } else {
+    document.getElementById('auth-error').style.display='block';
+    document.getElementById('auth-input').value='';
+    document.getElementById('auth-input').focus();
   }
-
-  (function() {
-    if (localStorage.getItem('ops_portal_auth') !== 'true') {
-      document.getElementById('auth-overlay').style.display = 'flex';
-    } else {
-      document.getElementById('auth-overlay').style.display = 'none';
-    }
-  })();
+}
+(function(){
+  if (localStorage.getItem('ops_portal_auth')==='true')
+    document.getElementById('auth-overlay').style.display='none';
+})();
 </script>
-<!-- ===== /비밀번호 인증 팝업 ===== -->
 
-  
 <!-- 사이드바 -->
 <div id="sidebar">
   <div class="logo">운영협업포털<span>Ops Collab Portal</span></div>
@@ -196,10 +217,13 @@
   <div id="content"></div>
 </div>
 
-<!-- 모달: 일정 등록 -->
+<!-- ══════════════ 모달: 일정 등록/수정 ══════════════ -->
 <div class="modal-bg" id="modal-schedule">
   <div class="modal">
-    <div class="modal-header"><h3>📅 일정 등록</h3><button class="close-btn" onclick="closeModal('modal-schedule')">✕</button></div>
+    <div class="modal-header">
+      <h3 id="modal-schedule-title">📅 일정 등록</h3>
+      <button class="close-btn" onclick="closeModal('modal-schedule')">✕</button>
+    </div>
     <div class="modal-body">
       <div class="form-row">
         <div class="form-group"><label>일정ID</label><input type="text" id="sch-id" class="auto-id" readonly></div>
@@ -228,15 +252,18 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-outline" onclick="closeModal('modal-schedule')">취소</button>
-      <button class="btn btn-primary" onclick="submitSchedule()">등록</button>
+      <button class="btn btn-primary" id="sch-submit-btn" onclick="submitSchedule()">등록</button>
     </div>
   </div>
 </div>
 
-<!-- 모달: 결함 등록 -->
+<!-- ══════════════ 모달: 결함 등록/수정 ══════════════ -->
 <div class="modal-bg" id="modal-defect">
   <div class="modal">
-    <div class="modal-header"><h3>🐛 결함 등록</h3><button class="close-btn" onclick="closeModal('modal-defect')">✕</button></div>
+    <div class="modal-header">
+      <h3 id="modal-defect-title">🐛 결함 등록</h3>
+      <button class="close-btn" onclick="closeModal('modal-defect')">✕</button>
+    </div>
     <div class="modal-body">
       <div class="form-row">
         <div class="form-group"><label>결함ID</label><input type="text" id="def-id" class="auto-id" readonly></div>
@@ -250,7 +277,7 @@
         </div>
         <div class="form-group">
           <label>심각도 <span class="req">*</span></label>
-          <select id="def-severity" onchange="checkSeverity()"><option>긴급</option><option>높음</option><option>중간</option><option>낮음</option></select>
+          <select id="def-severity"><option>긴급</option><option>높음</option><option>중간</option><option>낮음</option></select>
         </div>
       </div>
       <div class="form-row">
@@ -264,22 +291,25 @@
       <div class="form-group"><label>원인</label><input type="text" id="def-cause" placeholder="원인 분석"></div>
       <div class="form-group"><label>해결방법</label><textarea id="def-solution" rows="2" placeholder="해결 방법"></textarea></div>
       <div class="form-group" id="def-prevent-group">
-        <label>재발방지 <span id="def-prevent-req" style="display:none" class="req">* 해결 상태에서는 필수</span></label>
+        <label>재발방지 <span id="def-prevent-req" style="display:none" class="req">* 해결 상태에서 필수</span></label>
         <input type="text" id="def-prevent" placeholder="재발 방지 대책">
       </div>
       <div class="form-group"><label>등록일</label><input type="date" id="def-date"></div>
     </div>
     <div class="modal-footer">
       <button class="btn btn-outline" onclick="closeModal('modal-defect')">취소</button>
-      <button class="btn btn-primary" onclick="submitDefect()">등록</button>
+      <button class="btn btn-primary" id="def-submit-btn" onclick="submitDefect()">등록</button>
     </div>
   </div>
 </div>
 
-<!-- 모달: 영향페이지 등록 -->
+<!-- ══════════════ 모달: 영향페이지 등록/수정 ══════════════ -->
 <div class="modal-bg" id="modal-impact">
   <div class="modal">
-    <div class="modal-header"><h3>🖥️ 영향페이지 등록</h3><button class="close-btn" onclick="closeModal('modal-impact')">✕</button></div>
+    <div class="modal-header">
+      <h3 id="modal-impact-title">🖥️ 영향페이지 등록</h3>
+      <button class="close-btn" onclick="closeModal('modal-impact')">✕</button>
+    </div>
     <div class="modal-body">
       <div class="form-row">
         <div class="form-group"><label>페이지ID</label><input type="text" id="pg-id" class="auto-id" readonly></div>
@@ -305,8 +335,56 @@
     </div>
     <div class="modal-footer">
       <button class="btn btn-outline" onclick="closeModal('modal-impact')">취소</button>
-      <button class="btn btn-primary" onclick="submitImpact()">등록</button>
+      <button class="btn btn-primary" id="pg-submit-btn" onclick="submitImpact()">등록</button>
     </div>
+  </div>
+</div>
+
+<!-- ══════════════ 모달: 이관항목 등록/수정 ══════════════ -->
+<div class="modal-bg" id="modal-migration">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modal-migration-title">🔄 이관항목 등록</h3>
+      <button class="close-btn" onclick="closeModal('modal-migration')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label>이관ID</label><input type="text" id="mig-id" class="auto-id" readonly></div>
+        <div class="form-group"><label>담당자 <span class="req">*</span></label><input type="text" id="mig-owner" placeholder="홍길동"></div>
+      </div>
+      <div class="form-group"><label>항목명 <span class="req">*</span></label><input type="text" id="mig-name" placeholder="이관 항목명"></div>
+      <div class="form-row">
+        <div class="form-group"><label>이관일</label><input type="date" id="mig-date"></div>
+        <div class="form-group">
+          <label>준비상태</label>
+          <select id="mig-status"><option>준비중</option><option>검토중</option><option>완료</option><option>보류</option></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>관련일정ID</label><input type="text" id="mig-sch" placeholder="SCH-0001"></div>
+        <div class="form-group"><label>관련페이지ID</label><input type="text" id="mig-page" placeholder="PG-0001"></div>
+      </div>
+      <div class="form-group"><label>위험요소</label><input type="text" id="mig-risk" placeholder="주요 위험 요소"></div>
+      <div class="form-group"><label>메모</label><textarea id="mig-memo" rows="2" placeholder="추가 메모"></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modal-migration')">취소</button>
+      <button class="btn btn-primary" id="mig-submit-btn" onclick="submitMigration()">등록</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ 모달: 상세보기 (공용) ══════════════ -->
+<div class="modal-bg" id="modal-detail">
+  <div class="modal" style="width:620px">
+    <div class="modal-header">
+      <h3 id="detail-title">상세 정보</h3>
+      <div style="display:flex;align-items:center;gap:8px">
+        <button class="btn btn-sm btn-outline" id="detail-edit-btn" onclick="openEditFromDetail()">✏️ 수정</button>
+        <button class="close-btn" onclick="closeModal('modal-detail')">✕</button>
+      </div>
+    </div>
+    <div class="modal-body" id="detail-body"></div>
   </div>
 </div>
 
@@ -316,13 +394,14 @@
 // ══ 설정 ════════════════════════════════════════════
 window.PORTAL_CONFIG = {
   SPREADSHEET_ID: '12ZpwaDPNCV1V48xUtuWv2cooGtAjBZLIbClu3R88HoU',
-  GITHUB_OWNER:   'nvidiabigfan',
-  GITHUB_REPO:    'ops-collab-portal',
-  GITHUB_TOKEN:   localStorage.getItem('portal_gh_token') || '',
+  GITHUB_OWNER: 'nvidiabigfan',
+  GITHUB_REPO: 'ops-collab-portal',
+  GITHUB_TOKEN: localStorage.getItem('portal_gh_token') || '',
 };
 
 // ══ 상태 ════════════════════════════════════════════
 const S = { schedules:[], pages:[], defects:[], links:[], migrations:[] };
+let _detailContext = { type:null, data:null }; // 상세모달 컨텍스트
 
 // ══ 유틸 ════════════════════════════════════════════
 let _toastTimer;
@@ -334,27 +413,77 @@ function toast(msg, ms=2800) {
 }
 function openModal(id)  { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-
 function pad4(n) { return String(n).padStart(4,'0'); }
 function today() { return new Date().toISOString().slice(0,10); }
 
 function severityBadge(s) {
   const m = {'긴급':'badge-red','높음':'badge-orange','중간':'badge-yellow','낮음':'badge-blue',
              '미처리':'badge-red','처리중':'badge-yellow','해결':'badge-green','보류':'badge-gray',
-             '예정':'badge-blue','진행중':'badge-yellow','완료':'badge-green','취소':'badge-gray'};
+             '예정':'badge-blue','진행중':'badge-yellow','완료':'badge-green','취소':'badge-gray',
+             '준비중':'badge-yellow','검토중':'badge-blue'};
   return `<span class="badge ${m[s]||'badge-gray'}">${s||''}</span>`;
 }
 
-// CSV 내보내기
+function statusSelectHTML(value, options, sheetName, idKey, idVal, onChangeFn) {
+  const cls = 'ss-' + (value||'');
+  return `<select class="status-select ${cls}" 
+    onchange="${onChangeFn}(this, '${sheetName}', '${idKey}', '${idVal}')"
+    onclick="event.stopPropagation()">
+    ${options.map(o => `<option${o===value?' selected':''}>${o}</option>`).join('')}
+  </select>`;
+}
+
 function exportCSV(data, filename) {
   if (!data.length) { toast('내보낼 데이터가 없습니다'); return; }
   const keys = Object.keys(data[0]);
-  const rows = [keys.join(','), ...data.map(r => keys.map(k => `"${(r[k]||'').replace(/"/g,'""')}"`).join(','))];
+  const rows = [keys.join(','), ...data.map(r => keys.map(k=>`"${(r[k]||'').replace(/"/g,'""')}"`).join(','))];
   const blob = new Blob(['\uFEFF'+rows.join('\n')], {type:'text/csv;charset=utf-8'});
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename; a.click();
 }
 
-// ══ 내비게이션 ════════════════════════════════════════
+// ══ 상태값 인라인 변경 공통 핸들러 ═════════════════
+async function handleStatusChange(el, sheetName, idKey, idVal) {
+  const newVal = el.value;
+  // 색상 즉시 반영
+  el.className = `status-select ss-${newVal}`;
+
+  // 데이터 찾아서 전체 row 업데이트
+  const store = { '일정': S.schedules, '영향페이지': S.pages, '결함유형': S.defects, '이관항목': S.migrations };
+  const statusField = { '일정':'상태', '영향페이지':null, '결함유형':'상태', '이관항목':'준비상태' };
+  const arr = store[sheetName];
+  const row = arr && arr.find(r => r[idKey] === idVal);
+  if (!row) { toast('❌ 데이터를 찾을 수 없습니다'); return; }
+
+  const field = statusField[sheetName];
+  if (!field) { toast('❌ 이 시트는 상태 변경 미지원'); return; }
+
+  const updated = { ...row, [field]: newVal };
+  toast('⏳ 상태 저장 중...');
+  const r = await SheetsAPI.updateRow(sheetName, updated);
+  if (r.ok) {
+    row[field] = newVal; // 로컬 반영
+    toast(`✅ 상태 변경: ${newVal}`);
+  } else {
+    toast(`❌ ${r.message}`);
+    el.value = row[field]; // 롤백
+    el.className = `status-select ss-${row[field]}`;
+  }
+}
+
+// ══ 삭제 공통 핸들러 ════════════════════════════════
+async function handleDelete(sheetName, idVal, label, reloadFn) {
+  if (!confirm(`"${label}" 을(를) 삭제하시겠습니까?\n이 작업은 되돌릴 수 없습니다.`)) return;
+  toast('⏳ 삭제 중...');
+  const r = await SheetsAPI.deleteRow(sheetName, idVal);
+  if (r.ok) {
+    toast(`✅ 삭제 완료`);
+    setTimeout(reloadFn, 900);
+  } else {
+    toast(`❌ ${r.message}`);
+  }
+}
+
+// ══ 내비게이션 ══════════════════════════════════════
 function showPage(page) {
   document.querySelectorAll('#sidebar nav a').forEach(a => a.classList.remove('active'));
   document.getElementById('nav-'+page).classList.add('active');
@@ -365,74 +494,43 @@ function showPage(page) {
 
 // ══ 홈 ══════════════════════════════════════════════
 async function renderHome() {
-  setActions('');
-  setContent('<div class="loading">⏳ 데이터 로딩 중...</div>');
+  setActions(''); setContent('<div class="loading">⏳ 데이터 로딩 중...</div>');
   await Promise.all([
     SheetsAPI.getSchedules().then(d=>S.schedules=d).catch(()=>{}),
     SheetsAPI.getDefects().then(d=>S.defects=d).catch(()=>{}),
     SheetsAPI.getPages().then(d=>S.pages=d).catch(()=>{}),
     SheetsAPI.getMigrations().then(d=>S.migrations=d).catch(()=>{}),
   ]);
-
   const todayStr = today();
-  const todaySch = S.schedules.filter(s => s['시작일'] <= todayStr && (s['마감일']||todayStr) >= todayStr);
-  const criticalDef = S.defects.filter(d => d['심각도']==='긴급' || d['심각도']==='높음');
+  const todaySch = S.schedules.filter(s => s['시작일']<=todayStr && (s['마감일']||todayStr)>=todayStr);
+  const criticalDef = S.defects.filter(d => d['심각도']==='긴급'||d['심각도']==='높음');
   const pendingMig = S.migrations.filter(m => m['준비상태']!=='완료');
   const doneSch = S.schedules.filter(s => s['상태']==='완료').length;
-
   setContent(`
     <div class="grid-4" style="margin-bottom:16px">
-      <div class="stat-card">
-        <div class="stat-label">📅 오늘 일정</div>
-        <div class="stat-value">${todaySch.length}</div>
-        <div class="stat-sub">이번 주 완료 ${doneSch}건</div>
-        <span class="stat-link" onclick="showPage('schedule')">전체보기 →</span>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">🖥️ 영향 페이지</div>
-        <div class="stat-value">${S.pages.length}</div>
-        <div class="stat-sub">등록된 화면</div>
-        <span class="stat-link" onclick="showPage('impact')">전체보기 →</span>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">🐛 긴급/높음 결함</div>
-        <div class="stat-value" style="color:var(--danger)">${criticalDef.length}</div>
-        <div class="stat-sub">전체 ${S.defects.length}건</div>
-        <span class="stat-link" onclick="showPage('defect')">전체보기 →</span>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">🔄 이관 미완료</div>
-        <div class="stat-value" style="color:var(--warning)">${pendingMig.length}</div>
-        <div class="stat-sub">전체 ${S.migrations.length}건</div>
-        <span class="stat-link" onclick="showPage('migration')">전체보기 →</span>
-      </div>
+      <div class="stat-card"><div class="stat-label">📅 오늘 일정</div><div class="stat-value">${todaySch.length}</div><div class="stat-sub">완료 ${doneSch}건</div><span class="stat-link" onclick="showPage('schedule')">전체보기 →</span></div>
+      <div class="stat-card"><div class="stat-label">🖥️ 영향 페이지</div><div class="stat-value">${S.pages.length}</div><div class="stat-sub">등록된 화면</div><span class="stat-link" onclick="showPage('impact')">전체보기 →</span></div>
+      <div class="stat-card"><div class="stat-label">🐛 긴급/높음 결함</div><div class="stat-value" style="color:var(--danger)">${criticalDef.length}</div><div class="stat-sub">전체 ${S.defects.length}건</div><span class="stat-link" onclick="showPage('defect')">전체보기 →</span></div>
+      <div class="stat-card"><div class="stat-label">🔄 이관 미완료</div><div class="stat-value" style="color:var(--warning)">${pendingMig.length}</div><div class="stat-sub">전체 ${S.migrations.length}건</div><span class="stat-link" onclick="showPage('migration')">전체보기 →</span></div>
     </div>
     <div class="grid-2">
-      <div class="card">
-        <div class="card-title">오늘 일정</div>
-        <div class="tbl-wrap"><table>
-          <thead><tr><th>제목</th><th>담당자</th><th>마감일</th><th>상태</th></tr></thead>
-          <tbody>${todaySch.slice(0,6).map(s=>`<tr>
-            <td style="font-weight:500">${s['제목']||''}</td>
-            <td>${s['담당자']||''}</td>
-            <td>${s['마감일']||''}</td>
-            <td>${severityBadge(s['상태']||'')}</td>
-          </tr>`).join('')||`<tr class="empty-row"><td colspan="4">오늘 일정 없음</td></tr>`}
-          </tbody>
-        </table></div>
-      </div>
-      <div class="card">
-        <div class="card-title">미처리 긴급/높음 결함</div>
-        <div class="tbl-wrap"><table>
-          <thead><tr><th>제목</th><th>심각도</th><th>담당자</th></tr></thead>
-          <tbody>${criticalDef.filter(d=>d['상태']!=='해결').slice(0,6).map(d=>`<tr>
-            <td style="font-weight:500">${d['제목']||''}</td>
-            <td>${severityBadge(d['심각도']||'')}</td>
-            <td>${d['담당자']||''}</td>
-          </tr>`).join('')||`<tr class="empty-row"><td colspan="3">없음 ✅</td></tr>`}
-          </tbody>
-        </table></div>
-      </div>
+      <div class="card"><div class="card-title">오늘 일정</div><div class="tbl-wrap"><table>
+        <thead><tr><th>제목</th><th>담당자</th><th>마감일</th><th>상태</th></tr></thead>
+        <tbody>${todaySch.slice(0,6).map(s=>`<tr>
+          <td style="font-weight:500">${s['제목']||''}</td>
+          <td>${s['담당자']||''}</td>
+          <td>${s['마감일']||''}</td>
+          <td>${severityBadge(s['상태']||'')}</td>
+        </tr>`).join('')||'<tr class="empty-row"><td colspan="4">오늘 일정 없음</td></tr>'}
+        </tbody></table></div></div>
+      <div class="card"><div class="card-title">미처리 긴급/높음 결함</div><div class="tbl-wrap"><table>
+        <thead><tr><th>제목</th><th>심각도</th><th>담당자</th></tr></thead>
+        <tbody>${criticalDef.filter(d=>d['상태']!=='해결').slice(0,6).map(d=>`<tr>
+          <td style="font-weight:500">${d['제목']||''}</td>
+          <td>${severityBadge(d['심각도']||'')}</td>
+          <td>${d['담당자']||''}</td>
+        </tr>`).join('')||'<tr class="empty-row"><td colspan="3">없음 ✅</td></tr>'}
+        </tbody></table></div></div>
     </div>`);
 }
 
@@ -447,15 +545,14 @@ async function renderSchedule() {
   schFiltered = [...S.schedules];
   renderSchTable();
 }
-
 function renderSchTable() {
-  const q = (document.getElementById('sch-q')||{}).value||'';
+  const q  = (document.getElementById('sch-q')||{}).value||'';
   const st = (document.getElementById('sch-st')||{}).value||'';
   const tp = (document.getElementById('sch-tp')||{}).value||'';
   schFiltered = S.schedules.filter(s =>
-    (!q || (s['제목']||'').includes(q) || (s['담당자']||'').includes(q)) &&
-    (!st || s['상태']===st) && (!tp || s['업무유형']===tp));
-
+    (!q  || (s['제목']||'').includes(q)||(s['담당자']||'').includes(q)) &&
+    (!st || s['상태']===st) &&
+    (!tp || s['업무유형']===tp));
   setContent(`
     <div class="card" style="margin-bottom:0">
       <div class="filter-bar">
@@ -469,26 +566,53 @@ function renderSchTable() {
         <span class="filter-count">${schFiltered.length}건</span>
       </div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>일정ID</th><th>제목</th><th>담당자</th><th>유형</th><th>시작일</th><th>마감일</th><th>상태</th><th>관련결함</th></tr></thead>
-        <tbody>${schFiltered.map(s=>`<tr>
-          <td style="color:var(--muted);font-size:11px">${s['일정ID']||''}</td>
-          <td style="font-weight:500">${s['제목']||''}</td>
-          <td>${s['담당자']||''}</td>
-          <td><span class="badge badge-gray">${s['업무유형']||''}</span></td>
-          <td>${s['시작일']||''}</td>
-          <td>${s['마감일']||''}</td>
-          <td>${severityBadge(s['상태']||'')}</td>
-          <td style="color:var(--muted);font-size:11px">${s['관련결함ID']||''}</td>
-        </tr>`).join('')||`<tr class="empty-row"><td colspan="8">등록된 일정이 없습니다</td></tr>`}
+        <thead><tr><th>일정ID</th><th>제목</th><th>담당자</th><th>유형</th><th>시작일</th><th>마감일</th><th>상태</th><th>관련결함</th><th class="del-cell"></th></tr></thead>
+        <tbody>${schFiltered.map(s=>`
+          <tr class="clickable" ondblclick="openSchEdit(${JSON.stringify(s['일정ID']||'')})" onclick="showDetail('schedule',${JSON.stringify(s['일정ID']||'')})">
+            <td style="color:var(--muted);font-size:11px">${s['일정ID']||''}</td>
+            <td style="font-weight:500">${s['제목']||''}</td>
+            <td>${s['담당자']||''}</td>
+            <td><span class="badge badge-gray">${s['업무유형']||''}</span></td>
+            <td>${s['시작일']||''}</td>
+            <td>${s['마감일']||''}</td>
+            <td>${statusSelectHTML(s['상태']||'예정',['예정','진행중','완료','취소'],'일정','일정ID',s['일정ID']||'','handleStatusChange')}</td>
+            <td style="color:var(--muted);font-size:11px">${s['관련결함ID']||''}</td>
+            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('일정','${s['일정ID']||''}','${(s['제목']||'').replace(/'/g,"\\'")}',renderSchedule)" title="삭제">✕</button></td>
+          </tr>`).join('')||'<tr class="empty-row"><td colspan="9">등록된 일정이 없습니다</td></tr>'}
         </tbody>
       </table></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:10px">💡 클릭: 상세보기 &nbsp;·&nbsp; 더블클릭: 수정</div>
     </div>`);
 }
-
 function openSchModal() {
-  const nextId = 'SCH-' + pad4(S.schedules.length + 1);
+  const nextId = 'SCH-'+pad4(S.schedules.length+1);
+  document.getElementById('modal-schedule-title').textContent = '📅 일정 등록';
+  document.getElementById('sch-submit-btn').textContent = '등록';
+  document.getElementById('sch-submit-btn').onclick = submitSchedule;
+  'sch-id sch-owner sch-title sch-page sch-defect sch-memo'.split(' ').forEach(id=>document.getElementById(id).value='');
   document.getElementById('sch-id').value = nextId;
   document.getElementById('sch-start').value = today();
+  document.getElementById('sch-end').value = '';
+  document.getElementById('sch-type').value = '배포';
+  document.getElementById('sch-status').value = '예정';
+  openModal('modal-schedule');
+}
+function openSchEdit(id) {
+  const s = S.schedules.find(r=>r['일정ID']===id); if(!s) return;
+  document.getElementById('modal-schedule-title').textContent = '📅 일정 수정';
+  document.getElementById('sch-submit-btn').textContent = '저장';
+  document.getElementById('sch-submit-btn').onclick = ()=>submitScheduleEdit(id);
+  document.getElementById('sch-id').value    = s['일정ID']||'';
+  document.getElementById('sch-owner').value = s['담당자']||'';
+  document.getElementById('sch-title').value = s['제목']||'';
+  document.getElementById('sch-type').value  = s['업무유형']||'배포';
+  document.getElementById('sch-status').value= s['상태']||'예정';
+  document.getElementById('sch-start').value = s['시작일']||'';
+  document.getElementById('sch-end').value   = s['마감일']||'';
+  document.getElementById('sch-page').value  = s['관련페이지ID']||'';
+  document.getElementById('sch-defect').value= s['관련결함ID']||'';
+  document.getElementById('sch-memo').value  = s['메모']||'';
+  closeModal('modal-detail');
   openModal('modal-schedule');
 }
 
@@ -505,18 +629,14 @@ async function renderImpact() {
   pgFiltered = [...S.pages];
   renderPgTable();
 }
-
 function renderPgTable() {
-  const q = (document.getElementById('pg-q')||{}).value||'';
+  const q    = (document.getElementById('pg-q')||{}).value||'';
   const site = (document.getElementById('pg-site-f')||{}).value||'';
   pgFiltered = S.pages.filter(p =>
-    (!q || (p['페이지명']||'').includes(q) || (p['담당자']||'').includes(q) || (p['화면ID']||'').includes(q)) &&
+    (!q    || (p['페이지명']||'').includes(q)||(p['담당자']||'').includes(q)||(p['화면ID']||'').includes(q)) &&
     (!site || p['사이트']===site));
-
-  // 주의사항 자동 계산
   const defPageIds = new Set(S.defects.filter(d=>d['상태']!=='해결').map(d=>d['관련페이지ID']).filter(Boolean).flatMap(v=>v.split(',')).map(v=>v.trim()));
-  const schedPageIds = new Set(S.schedules.filter(d=>d['상태']==='진행중').map(d=>d['관련페이지ID']).filter(Boolean).flatMap(v=>v.split(',')).map(v=>v.trim()));
-
+  const schedPageIds = new Set(S.schedules.filter(s=>s['상태']==='진행중').map(s=>s['관련페이지ID']).filter(Boolean).flatMap(v=>v.split(',')).map(v=>v.trim()));
   const sites = [...new Set(S.pages.map(p=>p['사이트']).filter(Boolean))];
   setContent(`
     <div class="card" style="margin-bottom:0">
@@ -528,14 +648,16 @@ function renderPgTable() {
         <span class="filter-count">${pgFiltered.length}건</span>
       </div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>ID</th><th>썸네일</th><th>사이트</th><th>페이지명</th><th>화면ID</th><th>담당자</th><th>최근변경일</th><th>주의사항</th><th>URL</th></tr></thead>
+        <thead><tr><th>ID</th><th>썸네일</th><th>사이트</th><th>페이지명</th><th>화면ID</th><th>담당자</th><th>최근변경일</th><th>주의사항</th><th>URL</th><th class="del-cell"></th></tr></thead>
         <tbody>${pgFiltered.map(p=>{
           const pid = p['페이지ID']||'';
           const alerts = [];
-          if(defPageIds.has(pid)) alerts.push('<span class="alert-icon" title="미해결 결함 존재">🔴</span>');
-          if(schedPageIds.has(pid)) alerts.push('<span class="alert-icon" title="진행중 작업 있음">⚠️</span>');
-          const thumb = p['스크린샷URL'] ? `<a href="${p['스크린샷URL']}" target="_blank"><img src="${p['스크린샷URL']}" style="width:40px;height:28px;object-fit:cover;border-radius:3px;border:1px solid var(--border)" onerror="this.style.display='none'"></a>` : '<span style="color:var(--muted);font-size:11px">-</span>';
-          return `<tr>
+          if(defPageIds.has(pid)) alerts.push('<span class="alert-icon" title="미해결 결함">🔴</span>');
+          if(schedPageIds.has(pid)) alerts.push('<span class="alert-icon" title="진행중 작업">⚠️</span>');
+          const thumb = p['스크린샷URL']
+            ? `<a href="${p['스크린샷URL']}" target="_blank" onclick="event.stopPropagation()"><img src="${p['스크린샷URL']}" style="width:40px;height:28px;object-fit:cover;border-radius:3px;border:1px solid var(--border)" onerror="this.style.display='none'"></a>`
+            : '<span style="color:var(--muted);font-size:11px">-</span>';
+          return `<tr class="clickable" ondblclick="openPgEdit(${JSON.stringify(pid)})" onclick="showDetail('impact',${JSON.stringify(pid)})">
             <td style="color:var(--muted);font-size:11px">${pid}</td>
             <td>${thumb}</td>
             <td><span class="badge badge-blue">${p['사이트']||''}</span></td>
@@ -544,18 +666,43 @@ function renderPgTable() {
             <td>${p['담당자']||''}</td>
             <td>${p['최근변경일']||''}</td>
             <td>${alerts.join(' ')||'-'}</td>
-            <td>${p['URL']?`<a href="${p['URL']}" target="_blank" style="color:var(--primary);font-size:11px">링크</a>`:''}</td>
+            <td>${p['URL']?`<a href="${p['URL']}" target="_blank" onclick="event.stopPropagation()" style="color:var(--primary);font-size:11px">링크</a>`:''}</td>
+            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('영향페이지','${pid}','${(p['페이지명']||'').replace(/'/g,"\\'")}',renderImpact)" title="삭제">✕</button></td>
           </tr>`;
-        }).join('')||`<tr class="empty-row"><td colspan="9">등록된 페이지가 없습니다</td></tr>`}
+        }).join('')||'<tr class="empty-row"><td colspan="10">등록된 페이지가 없습니다</td></tr>'}
         </tbody>
       </table></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:10px">💡 클릭: 상세보기 &nbsp;·&nbsp; 더블클릭: 수정</div>
     </div>`);
 }
-
 function openPgModal() {
-  const nextId = 'PG-' + pad4(S.pages.length + 1);
+  const nextId = 'PG-'+pad4(S.pages.length+1);
+  document.getElementById('modal-impact-title').textContent = '🖥️ 영향페이지 등록';
+  document.getElementById('pg-submit-btn').textContent = '등록';
+  document.getElementById('pg-submit-btn').onclick = submitImpact;
+  'pg-id pg-owner pg-site pg-name pg-url pg-screen pg-related pg-screenshot pg-note pg-desc'.split(' ').forEach(id=>document.getElementById(id).value='');
   document.getElementById('pg-id').value = nextId;
   document.getElementById('pg-changed').value = today();
+  closeModal('modal-detail');
+  openModal('modal-impact');
+}
+function openPgEdit(id) {
+  const p = S.pages.find(r=>r['페이지ID']===id); if(!p) return;
+  document.getElementById('modal-impact-title').textContent = '🖥️ 영향페이지 수정';
+  document.getElementById('pg-submit-btn').textContent = '저장';
+  document.getElementById('pg-submit-btn').onclick = ()=>submitImpactEdit(id);
+  document.getElementById('pg-id').value         = p['페이지ID']||'';
+  document.getElementById('pg-owner').value      = p['담당자']||'';
+  document.getElementById('pg-site').value       = p['사이트']||'';
+  document.getElementById('pg-name').value       = p['페이지명']||'';
+  document.getElementById('pg-url').value        = p['URL']||'';
+  document.getElementById('pg-screen').value     = p['화면ID']||'';
+  document.getElementById('pg-related').value    = p['연관페이지ID']||'';
+  document.getElementById('pg-screenshot').value = p['스크린샷URL']||'';
+  document.getElementById('pg-changed').value    = p['최근변경일']||'';
+  document.getElementById('pg-note').value       = p['주의사항']||'';
+  document.getElementById('pg-desc').value       = p['설명']||'';
+  closeModal('modal-detail');
   openModal('modal-impact');
 }
 
@@ -570,16 +717,15 @@ async function renderDefect() {
   defFiltered = [...S.defects];
   renderDefTable();
 }
-
 function renderDefTable() {
-  const q = (document.getElementById('def-q')||{}).value||'';
+  const q  = (document.getElementById('def-q')||{}).value||'';
   const sv = (document.getElementById('def-sv')||{}).value||'';
   const st = (document.getElementById('def-st-f')||{}).value||'';
   defFiltered = S.defects.filter(d =>
-    (!q || (d['제목']||'').includes(q)||(d['담당자']||'').includes(q)) &&
-    (!sv || d['심각도']===sv) && (!st || d['상태']===st));
-
-  const cnt = (sev) => S.defects.filter(d=>d['심각도']===sev && d['상태']!=='해결').length;
+    (!q  || (d['제목']||'').includes(q)||(d['담당자']||'').includes(q)) &&
+    (!sv || d['심각도']===sv) &&
+    (!st || d['상태']===st));
+  const cnt = sev => S.defects.filter(d=>d['심각도']===sev&&d['상태']!=='해결').length;
   setContent(`
     <div class="grid-4" style="margin-bottom:14px">
       <div class="stat-card"><div class="stat-label">🔴 긴급</div><div class="stat-value" style="color:var(--danger)">${cnt('긴급')}</div></div>
@@ -599,67 +745,128 @@ function renderDefTable() {
         <span class="filter-count">${defFiltered.length}건</span>
       </div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>결함ID</th><th>제목</th><th>카테고리</th><th>심각도</th><th>상태</th><th>담당자</th><th>등록일</th><th>관련페이지</th></tr></thead>
-        <tbody>${defFiltered.map(d=>`<tr>
-          <td style="color:var(--muted);font-size:11px">${d['결함ID']||''}</td>
-          <td style="font-weight:500">${d['제목']||''}</td>
-          <td><span class="badge badge-gray">${d['카테고리']||''}</span></td>
-          <td>${severityBadge(d['심각도']||'')}</td>
-          <td>${severityBadge(d['상태']||'미처리')}</td>
-          <td>${d['담당자']||''}</td>
-          <td>${d['등록일']||''}</td>
-          <td style="font-size:11px;color:var(--muted)">${d['관련페이지ID']||''}</td>
-        </tr>`).join('')||`<tr class="empty-row"><td colspan="8">등록된 결함이 없습니다</td></tr>`}
+        <thead><tr><th>결함ID</th><th>제목</th><th>카테고리</th><th>심각도</th><th>상태</th><th>담당자</th><th>등록일</th><th>관련페이지</th><th class="del-cell"></th></tr></thead>
+        <tbody>${defFiltered.map(d=>`
+          <tr class="clickable" ondblclick="openDefEdit(${JSON.stringify(d['결함ID']||'')})" onclick="showDetail('defect',${JSON.stringify(d['결함ID']||'')})">
+            <td style="color:var(--muted);font-size:11px">${d['결함ID']||''}</td>
+            <td style="font-weight:500">${d['제목']||''}</td>
+            <td><span class="badge badge-gray">${d['카테고리']||''}</span></td>
+            <td>${severityBadge(d['심각도']||'')}</td>
+            <td>${statusSelectHTML(d['상태']||'미처리',['미처리','처리중','해결','보류'],'결함유형','결함ID',d['결함ID']||'','handleStatusChange')}</td>
+            <td>${d['담당자']||''}</td>
+            <td>${d['등록일']||''}</td>
+            <td style="font-size:11px;color:var(--muted)">${d['관련페이지ID']||''}</td>
+            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('결함유형','${d['결함ID']||''}','${(d['제목']||'').replace(/'/g,"\\'")}',renderDefect)" title="삭제">✕</button></td>
+          </tr>`).join('')||'<tr class="empty-row"><td colspan="9">등록된 결함이 없습니다</td></tr>'}
         </tbody>
       </table></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:10px">💡 클릭: 상세보기 &nbsp;·&nbsp; 더블클릭: 수정</div>
     </div>`);
 }
-
 function openDefModal() {
-  const nextId = 'DEF-' + pad4(S.defects.length + 1);
+  const nextId = 'DEF-'+pad4(S.defects.length+1);
+  document.getElementById('modal-defect-title').textContent = '🐛 결함 등록';
+  document.getElementById('def-submit-btn').textContent = '등록';
+  document.getElementById('def-submit-btn').onclick = submitDefect;
+  'def-id def-owner def-title def-page def-cause def-solution def-prevent'.split(' ').forEach(id=>document.getElementById(id).value='');
   document.getElementById('def-id').value = nextId;
   document.getElementById('def-date').value = today();
+  document.getElementById('def-symptom').value = '';
+  document.getElementById('def-category').value = 'UI/UX';
+  document.getElementById('def-severity').value = '긴급';
+  document.getElementById('def-status').value = '미처리';
+  document.getElementById('def-prevent-req').style.display='none';
+  document.getElementById('def-prevent').classList.remove('warn-field');
+  closeModal('modal-detail');
   openModal('modal-defect');
 }
-
-function checkSeverity() {
-  const sv = document.getElementById('def-severity').value;
-  const ownerLabel = document.querySelector('label[for="def-owner"]') || document.getElementById('def-owner').closest('.form-group').querySelector('label');
-  if(sv === '긴급') ownerLabel.style.color = 'var(--danger)';
-  else ownerLabel.style.color = '';
+function openDefEdit(id) {
+  const d = S.defects.find(r=>r['결함ID']===id); if(!d) return;
+  document.getElementById('modal-defect-title').textContent = '🐛 결함 수정';
+  document.getElementById('def-submit-btn').textContent = '저장';
+  document.getElementById('def-submit-btn').onclick = ()=>submitDefectEdit(id);
+  document.getElementById('def-id').value       = d['결함ID']||'';
+  document.getElementById('def-owner').value    = d['담당자']||'';
+  document.getElementById('def-title').value    = d['제목']||'';
+  document.getElementById('def-category').value = d['카테고리']||'UI/UX';
+  document.getElementById('def-severity').value = d['심각도']||'긴급';
+  document.getElementById('def-status').value   = d['상태']||'미처리';
+  document.getElementById('def-page').value     = d['관련페이지ID']||'';
+  document.getElementById('def-symptom').value  = d['증상']||'';
+  document.getElementById('def-cause').value    = d['원인']||'';
+  document.getElementById('def-solution').value = d['해결방법']||'';
+  document.getElementById('def-prevent').value  = d['재발방지']||'';
+  document.getElementById('def-date').value     = d['등록일']||'';
+  checkDefectStatus();
+  closeModal('modal-detail');
+  openModal('modal-defect');
 }
-
 function checkDefectStatus() {
   const st = document.getElementById('def-status').value;
   const req = document.getElementById('def-prevent-req');
   const field = document.getElementById('def-prevent');
-  if(st === '해결') { req.style.display='inline'; field.classList.add('warn-field'); }
+  if(st==='해결') { req.style.display='inline'; field.classList.add('warn-field'); }
   else { req.style.display='none'; field.classList.remove('warn-field'); }
 }
 
 // ══ 이관항목 ══════════════════════════════════════════
 async function renderMigration() {
-  setActions('');
+  setActions(`<button class="btn btn-primary" onclick="openMigModal()">+ 이관항목 등록</button>`);
   setContent('<div class="loading">⏳ 로딩 중...</div>');
   S.migrations = await SheetsAPI.getMigrations().catch(()=>[]);
+  renderMigTable();
+}
+function renderMigTable() {
   setContent(`
-    <div class="card">
-      <div class="card-title">이관항목 목록 (${S.migrations.length}건)</div>
+    <div class="card" style="margin-bottom:0">
+      <div style="margin-bottom:12px;font-size:12px;color:var(--muted)">전체 ${S.migrations.length}건</div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>이관ID</th><th>항목명</th><th>담당자</th><th>이관일</th><th>준비상태</th><th>위험요소</th><th>관련일정</th><th>메모</th></tr></thead>
-        <tbody>${S.migrations.map(m=>`<tr>
-          <td style="color:var(--muted);font-size:11px">${m['이관ID']||''}</td>
-          <td style="font-weight:500">${m['항목명']||''}</td>
-          <td>${m['담당자']||''}</td>
-          <td>${m['이관일']||''}</td>
-          <td>${severityBadge(m['준비상태']||'')}</td>
-          <td style="color:var(--danger);font-size:12px">${m['위험요소']||''}</td>
-          <td style="font-size:11px;color:var(--muted)">${m['관련일정ID']||''}</td>
-          <td style="font-size:11px;color:var(--muted)">${m['메모']||''}</td>
-        </tr>`).join('')||`<tr class="empty-row"><td colspan="8">등록된 이관항목이 없습니다</td></tr>`}
+        <thead><tr><th>이관ID</th><th>항목명</th><th>담당자</th><th>이관일</th><th>준비상태</th><th>위험요소</th><th>관련일정</th><th>메모</th><th class="del-cell"></th></tr></thead>
+        <tbody>${S.migrations.map(m=>`
+          <tr class="clickable" ondblclick="openMigEdit(${JSON.stringify(m['이관ID']||'')})" onclick="showDetail('migration',${JSON.stringify(m['이관ID']||'')})">
+            <td style="color:var(--muted);font-size:11px">${m['이관ID']||''}</td>
+            <td style="font-weight:500">${m['항목명']||''}</td>
+            <td>${m['담당자']||''}</td>
+            <td>${m['이관일']||''}</td>
+            <td>${statusSelectHTML(m['준비상태']||'준비중',['준비중','검토중','완료','보류'],'이관항목','이관ID',m['이관ID']||'','handleStatusChange')}</td>
+            <td style="color:var(--danger);font-size:12px">${m['위험요소']||''}</td>
+            <td style="font-size:11px;color:var(--muted)">${m['관련일정ID']||''}</td>
+            <td style="font-size:11px;color:var(--muted)">${m['메모']||''}</td>
+            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('이관항목','${m['이관ID']||''}','${(m['항목명']||'').replace(/'/g,"\\'")}',renderMigration)" title="삭제">✕</button></td>
+          </tr>`).join('')||'<tr class="empty-row"><td colspan="9">등록된 이관항목이 없습니다</td></tr>'}
         </tbody>
       </table></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:10px">💡 클릭: 상세보기 &nbsp;·&nbsp; 더블클릭: 수정</div>
     </div>`);
+}
+function openMigModal() {
+  const nextId = 'MIG-'+pad4(S.migrations.length+1);
+  document.getElementById('modal-migration-title').textContent = '🔄 이관항목 등록';
+  document.getElementById('mig-submit-btn').textContent = '등록';
+  document.getElementById('mig-submit-btn').onclick = submitMigration;
+  'mig-id mig-owner mig-name mig-sch mig-page mig-risk mig-memo'.split(' ').forEach(id=>document.getElementById(id).value='');
+  document.getElementById('mig-id').value = nextId;
+  document.getElementById('mig-date').value = today();
+  document.getElementById('mig-status').value = '준비중';
+  closeModal('modal-detail');
+  openModal('modal-migration');
+}
+function openMigEdit(id) {
+  const m = S.migrations.find(r=>r['이관ID']===id); if(!m) return;
+  document.getElementById('modal-migration-title').textContent = '🔄 이관항목 수정';
+  document.getElementById('mig-submit-btn').textContent = '저장';
+  document.getElementById('mig-submit-btn').onclick = ()=>submitMigrationEdit(id);
+  document.getElementById('mig-id').value     = m['이관ID']||'';
+  document.getElementById('mig-owner').value  = m['담당자']||'';
+  document.getElementById('mig-name').value   = m['항목명']||'';
+  document.getElementById('mig-date').value   = m['이관일']||'';
+  document.getElementById('mig-status').value = m['준비상태']||'준비중';
+  document.getElementById('mig-sch').value    = m['관련일정ID']||'';
+  document.getElementById('mig-page').value   = m['관련페이지ID']||'';
+  document.getElementById('mig-risk').value   = m['위험요소']||'';
+  document.getElementById('mig-memo').value   = m['메모']||'';
+  closeModal('modal-detail');
+  openModal('modal-migration');
 }
 
 // ══ 운영링크 ══════════════════════════════════════════
@@ -667,10 +874,8 @@ async function renderLinks() {
   setActions('');
   setContent('<div class="loading">⏳ 로딩 중...</div>');
   S.links = await SheetsAPI.getLinks().catch(()=>[]);
-
   const cats = [...new Set(S.links.map(l=>l['분류']).filter(Boolean))];
   if(!cats.length) { setContent('<div class="card" style="text-align:center;color:var(--muted);padding:40px">등록된 링크가 없습니다</div>'); return; }
-
   setContent(cats.map(cat=>`
     <div class="card">
       <div class="card-title">${cat}</div>
@@ -688,26 +893,119 @@ async function renderLinks() {
     </div>`).join(''));
 }
 
-// ══ 폼 제출 ═══════════════════════════════════════════
+// ══ 상세 모달 ════════════════════════════════════════
+function showDetail(type, id) {
+  const stores = { schedule: S.schedules, impact: S.pages, defect: S.defects, migration: S.migrations };
+  const idKeys  = { schedule:'일정ID', impact:'페이지ID', defect:'결함ID', migration:'이관ID' };
+  const data = stores[type] && stores[type].find(r => r[idKeys[type]]===id);
+  if (!data) return;
+  _detailContext = { type, id };
+
+  const titles = { schedule:'📅 일정 상세', impact:'🖥️ 영향페이지 상세', defect:'🐛 결함 상세', migration:'🔄 이관항목 상세' };
+  document.getElementById('detail-title').textContent = titles[type];
+
+  const field = (label, val, full=false) =>
+    `<div class="detail-item${full?' full':''}">
+       <label>${label}</label>
+       <div class="val">${val||'<span style="color:#ccc">-</span>'}</div>
+     </div>`;
+
+  let body = '';
+  if (type === 'schedule') {
+    body = `<div class="detail-grid">
+      ${field('일정ID', data['일정ID'])} ${field('담당자', data['담당자'])}
+      ${field('제목', data['제목'], true)}
+      ${field('업무유형', severityBadge(data['업무유형']))} ${field('상태', severityBadge(data['상태']))}
+      ${field('시작일', data['시작일'])} ${field('마감일', data['마감일'])}
+      ${field('관련페이지ID', data['관련페이지ID'])} ${field('관련결함ID', data['관련결함ID'])}
+      ${field('메모', data['메모'], true)}
+    </div>`;
+  } else if (type === 'impact') {
+    const thumb = data['스크린샷URL'] ? `<a href="${data['스크린샷URL']}" target="_blank"><img src="${data['스크린샷URL']}" style="max-width:100%;border-radius:6px;border:1px solid var(--border);margin-top:4px"></a>` : '';
+    body = `<div class="detail-grid">
+      ${field('페이지ID', data['페이지ID'])} ${field('담당자', data['담당자'])}
+      ${field('사이트', `<span class="badge badge-blue">${data['사이트']||''}</span>`)} ${field('페이지명', data['페이지명'])}
+      ${field('화면ID', data['화면ID'])} ${field('최근변경일', data['최근변경일'])}
+      ${field('URL', data['URL']?`<a href="${data['URL']}" target="_blank" style="color:var(--primary)">${data['URL']}</a>`:'')}
+      ${field('연관페이지ID', data['연관페이지ID'])} 
+      ${field('주의사항', data['주의사항'], true)}
+      ${field('설명', data['설명'], true)}
+      ${thumb?`<div class="detail-item full"><label>스크린샷</label>${thumb}</div>`:''}
+    </div>`;
+  } else if (type === 'defect') {
+    body = `<div class="detail-grid">
+      ${field('결함ID', data['결함ID'])} ${field('담당자', data['담당자'])}
+      ${field('제목', data['제목'], true)}
+      ${field('카테고리', `<span class="badge badge-gray">${data['카테고리']||''}</span>`)} ${field('심각도', severityBadge(data['심각도']))}
+      ${field('상태', severityBadge(data['상태']))} ${field('등록일', data['등록일'])}
+      ${field('관련페이지ID', data['관련페이지ID'])} <hr class="detail-divider">
+      ${field('증상', data['증상'], true)}
+      ${field('원인', data['원인'], true)}
+      ${field('해결방법', data['해결방법'], true)}
+      ${field('재발방지', data['재발방지'], true)}
+    </div>`;
+  } else if (type === 'migration') {
+    body = `<div class="detail-grid">
+      ${field('이관ID', data['이관ID'])} ${field('담당자', data['담당자'])}
+      ${field('항목명', data['항목명'], true)}
+      ${field('이관일', data['이관일'])} ${field('준비상태', severityBadge(data['준비상태']))}
+      ${field('관련일정ID', data['관련일정ID'])} ${field('관련페이지ID', data['관련페이지ID'])}
+      ${field('위험요소', data['위험요소']?`<span style="color:var(--danger)">${data['위험요소']}</span>`:'')} 
+      ${field('메모', data['메모'], true)}
+    </div>`;
+  }
+  document.getElementById('detail-body').innerHTML = body;
+  openModal('modal-detail');
+}
+function openEditFromDetail() {
+  const { type, id } = _detailContext;
+  if (!type || !id) return;
+  if (type==='schedule')  openSchEdit(id);
+  else if (type==='impact') openPgEdit(id);
+  else if (type==='defect') openDefEdit(id);
+  else if (type==='migration') openMigEdit(id);
+}
+
+// ══ 폼 제출 — 등록 ════════════════════════════════════
 async function submitSchedule() {
   const title = document.getElementById('sch-title').value.trim();
   const owner = document.getElementById('sch-owner').value.trim();
   if (!title||!owner) { toast('❌ 제목과 담당자는 필수입니다'); return; }
   const row = {
-    '일정ID':document.getElementById('sch-id').value,
+    '일정ID':   document.getElementById('sch-id').value,
     '제목':title,'담당자':owner,
-    '업무유형':document.getElementById('sch-type').value,
-    '상태':document.getElementById('sch-status').value,
-    '시작일':document.getElementById('sch-start').value,
-    '마감일':document.getElementById('sch-end').value,
-    '관련페이지ID':document.getElementById('sch-page').value,
-    '관련결함ID':document.getElementById('sch-defect').value,
-    '메모':document.getElementById('sch-memo').value,
+    '업무유형': document.getElementById('sch-type').value,
+    '상태':     document.getElementById('sch-status').value,
+    '시작일':   document.getElementById('sch-start').value,
+    '마감일':   document.getElementById('sch-end').value,
+    '관련페이지ID': document.getElementById('sch-page').value,
+    '관련결함ID':   document.getElementById('sch-defect').value,
+    '메모':     document.getElementById('sch-memo').value,
   };
   toast('⏳ 저장 중...');
   const r = await SheetsAPI.addSchedule(row);
   closeModal('modal-schedule');
   toast(r.ok ? '✅ 일정 등록 완료' : `❌ ${r.message}`);
+  if(r.ok) setTimeout(renderSchedule, 800);
+}
+async function submitScheduleEdit(id) {
+  const title = document.getElementById('sch-title').value.trim();
+  const owner = document.getElementById('sch-owner').value.trim();
+  if (!title||!owner) { toast('❌ 제목과 담당자는 필수입니다'); return; }
+  const row = {
+    '일정ID': id, '제목':title,'담당자':owner,
+    '업무유형': document.getElementById('sch-type').value,
+    '상태':     document.getElementById('sch-status').value,
+    '시작일':   document.getElementById('sch-start').value,
+    '마감일':   document.getElementById('sch-end').value,
+    '관련페이지ID': document.getElementById('sch-page').value,
+    '관련결함ID':   document.getElementById('sch-defect').value,
+    '메모':     document.getElementById('sch-memo').value,
+  };
+  toast('⏳ 수정 중...');
+  const r = await SheetsAPI.updateRow('일정', row);
+  closeModal('modal-schedule');
+  toast(r.ok ? '✅ 일정 수정 완료' : `❌ ${r.message}`);
   if(r.ok) setTimeout(renderSchedule, 800);
 }
 
@@ -719,16 +1017,15 @@ async function submitDefect() {
   if(!title||!owner) { toast('❌ 제목과 담당자는 필수입니다'); return; }
   if(status==='해결'&&!prevent) { toast('⚠️ 해결 상태에서는 재발방지 항목이 필수입니다'); return; }
   const row = {
-    '결함ID':document.getElementById('def-id').value,
+    '결함ID': document.getElementById('def-id').value,
     '제목':title,'카테고리':document.getElementById('def-category').value,
-    '심각도':document.getElementById('def-severity').value,
-    '상태':status,
-    '증상':document.getElementById('def-symptom').value,
-    '원인':document.getElementById('def-cause').value,
-    '해결방법':document.getElementById('def-solution').value,
-    '관련페이지ID':document.getElementById('def-page').value,
+    '심각도': document.getElementById('def-severity').value, '상태':status,
+    '증상': document.getElementById('def-symptom').value,
+    '원인': document.getElementById('def-cause').value,
+    '해결방법': document.getElementById('def-solution').value,
+    '관련페이지ID': document.getElementById('def-page').value,
     '재발방지':prevent,'담당자':owner,
-    '등록일':document.getElementById('def-date').value,
+    '등록일': document.getElementById('def-date').value,
   };
   toast('⏳ 저장 중...');
   const r = await SheetsAPI.addDefect(row);
@@ -736,15 +1033,59 @@ async function submitDefect() {
   toast(r.ok ? '✅ 결함 등록 완료' : `❌ ${r.message}`);
   if(r.ok) setTimeout(renderDefect, 800);
 }
+async function submitDefectEdit(id) {
+  const title = document.getElementById('def-title').value.trim();
+  const owner = document.getElementById('def-owner').value.trim();
+  const status = document.getElementById('def-status').value;
+  const prevent = document.getElementById('def-prevent').value.trim();
+  if(!title||!owner) { toast('❌ 제목과 담당자는 필수입니다'); return; }
+  if(status==='해결'&&!prevent) { toast('⚠️ 해결 상태에서는 재발방지 항목이 필수입니다'); return; }
+  const row = {
+    '결함ID':id,'제목':title,'카테고리':document.getElementById('def-category').value,
+    '심각도':document.getElementById('def-severity').value,'상태':status,
+    '증상':document.getElementById('def-symptom').value,
+    '원인':document.getElementById('def-cause').value,
+    '해결방법':document.getElementById('def-solution').value,
+    '관련페이지ID':document.getElementById('def-page').value,
+    '재발방지':prevent,'담당자':owner,
+    '등록일':document.getElementById('def-date').value,
+  };
+  toast('⏳ 수정 중...');
+  const r = await SheetsAPI.updateRow('결함유형', row);
+  closeModal('modal-defect');
+  toast(r.ok ? '✅ 결함 수정 완료' : `❌ ${r.message}`);
+  if(r.ok) setTimeout(renderDefect, 800);
+}
 
 async function submitImpact() {
-  const name = document.getElementById('pg-name').value.trim();
+  const name  = document.getElementById('pg-name').value.trim();
   const owner = document.getElementById('pg-owner').value.trim();
-  const site = document.getElementById('pg-site').value.trim();
+  const site  = document.getElementById('pg-site').value.trim();
   if(!name||!owner||!site) { toast('❌ 사이트명, 페이지명, 담당자는 필수입니다'); return; }
   const row = {
-    '페이지ID':document.getElementById('pg-id').value,
+    '페이지ID': document.getElementById('pg-id').value,
     '사이트':site,'페이지명':name,'담당자':owner,
+    'URL': document.getElementById('pg-url').value,
+    '화면ID': document.getElementById('pg-screen').value,
+    '연관페이지ID': document.getElementById('pg-related').value,
+    '스크린샷URL': document.getElementById('pg-screenshot').value,
+    '최근변경일': document.getElementById('pg-changed').value,
+    '주의사항': document.getElementById('pg-note').value,
+    '설명': document.getElementById('pg-desc').value,
+  };
+  toast('⏳ 저장 중...');
+  const r = await SheetsAPI.appendRow('영향페이지', row);
+  closeModal('modal-impact');
+  toast(r.ok ? '✅ 페이지 등록 완료' : `❌ ${r.message}`);
+  if(r.ok) setTimeout(renderImpact, 800);
+}
+async function submitImpactEdit(id) {
+  const name  = document.getElementById('pg-name').value.trim();
+  const owner = document.getElementById('pg-owner').value.trim();
+  const site  = document.getElementById('pg-site').value.trim();
+  if(!name||!owner||!site) { toast('❌ 사이트명, 페이지명, 담당자는 필수입니다'); return; }
+  const row = {
+    '페이지ID':id,'사이트':site,'페이지명':name,'담당자':owner,
     'URL':document.getElementById('pg-url').value,
     '화면ID':document.getElementById('pg-screen').value,
     '연관페이지ID':document.getElementById('pg-related').value,
@@ -753,11 +1094,51 @@ async function submitImpact() {
     '주의사항':document.getElementById('pg-note').value,
     '설명':document.getElementById('pg-desc').value,
   };
-  toast('⏳ 저장 중...');
-  const r = await SheetsAPI.appendRow('영향페이지', row);
+  toast('⏳ 수정 중...');
+  const r = await SheetsAPI.updateRow('영향페이지', row);
   closeModal('modal-impact');
-  toast(r.ok ? '✅ 페이지 등록 완료' : `❌ ${r.message}`);
+  toast(r.ok ? '✅ 페이지 수정 완료' : `❌ ${r.message}`);
   if(r.ok) setTimeout(renderImpact, 800);
+}
+
+async function submitMigration() {
+  const name  = document.getElementById('mig-name').value.trim();
+  const owner = document.getElementById('mig-owner').value.trim();
+  if(!name||!owner) { toast('❌ 항목명과 담당자는 필수입니다'); return; }
+  const row = {
+    '이관ID':   document.getElementById('mig-id').value,
+    '항목명':name,'담당자':owner,
+    '이관일':   document.getElementById('mig-date').value,
+    '준비상태': document.getElementById('mig-status').value,
+    '관련일정ID': document.getElementById('mig-sch').value,
+    '관련페이지ID': document.getElementById('mig-page').value,
+    '위험요소': document.getElementById('mig-risk').value,
+    '메모':     document.getElementById('mig-memo').value,
+  };
+  toast('⏳ 저장 중...');
+  const r = await SheetsAPI.appendRow('이관항목', row);
+  closeModal('modal-migration');
+  toast(r.ok ? '✅ 이관항목 등록 완료' : `❌ ${r.message}`);
+  if(r.ok) setTimeout(renderMigration, 800);
+}
+async function submitMigrationEdit(id) {
+  const name  = document.getElementById('mig-name').value.trim();
+  const owner = document.getElementById('mig-owner').value.trim();
+  if(!name||!owner) { toast('❌ 항목명과 담당자는 필수입니다'); return; }
+  const row = {
+    '이관ID':id,'항목명':name,'담당자':owner,
+    '이관일': document.getElementById('mig-date').value,
+    '준비상태': document.getElementById('mig-status').value,
+    '관련일정ID': document.getElementById('mig-sch').value,
+    '관련페이지ID': document.getElementById('mig-page').value,
+    '위험요소': document.getElementById('mig-risk').value,
+    '메모': document.getElementById('mig-memo').value,
+  };
+  toast('⏳ 수정 중...');
+  const r = await SheetsAPI.updateRow('이관항목', row);
+  closeModal('modal-migration');
+  toast(r.ok ? '✅ 이관항목 수정 완료' : `❌ ${r.message}`);
+  if(r.ok) setTimeout(renderMigration, 800);
 }
 
 // ══ 헬퍼 ════════════════════════════════════════════
@@ -775,8 +1156,7 @@ function checkToken() {
 // ══ 초기화 ═══════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
   const d = new Date();
-  document.getElementById('sidebar-footer').textContent =
-    d.toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'short'});
+  document.getElementById('sidebar-footer').textContent = d.toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'short'});
   checkToken();
   showPage('home');
 });
