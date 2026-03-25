@@ -3,407 +3,281 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¬ÃÂ­ÃÂÃÂ¸</title>
+<title>운영협업포털</title>
 <style>
-:root {
-  --primary: #2563eb; --primary-dark: #1d4ed8;
-  --bg: #f1f5f9; --card: #ffffff; --border: #e2e8f0;
-  --text: #1e293b; --muted: #64748b;
-  --success: #16a34a; --warning: #d97706; --danger: #dc2626;
-  --sidebar-w: 204px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Apple SD Gothic Neo','Malgun Gothic',sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; font-size: 13px; }
+  :root {
+    --primary: #2563eb; --primary-dark: #1d4ed8;
+    --bg: #f1f5f9; --card: #ffffff; --border: #e2e8f0;
+    --text: #1e293b; --muted: #64748b;
+    --success: #16a34a; --warning: #d97706; --danger: #dc2626;
+    --sidebar-w: 204px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Apple SD Gothic Neo','Malgun Gothic',sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; font-size: 13px; }
 
-/* ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ«ÃÂÃÂÃÂ«ÃÂ°ÃÂ */
-#sidebar { width: var(--sidebar-w); background: #1e293b; color: #f8fafc; display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; }
-.logo { padding: 18px 16px; font-size: 14px; font-weight: 700; border-bottom: 1px solid #334155; line-height: 1.4; }
-.logo span { display: block; font-size: 11px; font-weight: 400; color: #94a3b8; margin-top: 2px; }
-#sidebar nav { flex: 1; padding: 6px 0; }
-#sidebar nav a { display: flex; align-items: center; gap: 9px; padding: 9px 16px; color: #cbd5e1; text-decoration: none; font-size: 13px; cursor: pointer; transition: background .15s; user-select: none; }
-#sidebar nav a:hover { background: #334155; color: #f1f5f9; }
-#sidebar nav a.active { background: var(--primary); color: #fff; }
-.nav-icon { font-size: 15px; width: 18px; text-align: center; }
-.sidebar-footer { padding: 10px 16px; font-size: 11px; color: #475569; border-top: 1px solid #334155; }
+  /* 사이드바 */
+  #sidebar { width: var(--sidebar-w); background: #1e293b; color: #f8fafc; display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; }
+  .logo { padding: 18px 16px; font-size: 14px; font-weight: 700; border-bottom: 1px solid #334155; line-height: 1.4; }
+  .logo span { display: block; font-size: 11px; font-weight: 400; color: #94a3b8; margin-top: 2px; }
+  #sidebar nav { flex: 1; padding: 6px 0; }
+  #sidebar nav a { display: flex; align-items: center; gap: 9px; padding: 9px 16px; color: #cbd5e1; text-decoration: none; font-size: 13px; cursor: pointer; transition: background .15s; user-select: none; }
+  #sidebar nav a:hover { background: #334155; color: #f1f5f9; }
+  #sidebar nav a.active { background: var(--primary); color: #fff; }
+  .nav-icon { font-size: 15px; width: 18px; text-align: center; }
+  .sidebar-footer { padding: 10px 16px; font-size: 11px; color: #475569; border-top: 1px solid #334155; }
 
-/* ÃÂ«ÃÂ©ÃÂÃÂ¬ÃÂÃÂ¸ */
-#main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; }
-#topbar { background: var(--card); border-bottom: 1px solid var(--border); padding: 0 20px; height: 50px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
-.page-title { font-size: 14px; font-weight: 700; }
-#content { padding: 20px; flex: 1; }
+  /* 메인 */
+  #main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; }
+  #topbar { background: var(--card); border-bottom: 1px solid var(--border); padding: 0 20px; height: 50px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+  .page-title { font-size: 14px; font-weight: 700; }
+  #content { padding: 20px; flex: 1; }
 
-/* ÃÂ¬ÃÂ¹ÃÂ´ÃÂ«ÃÂÃÂ */
-.card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px; margin-bottom: 16px; }
-.card-title { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 14px; text-transform: uppercase; letter-spacing: .06em; }
+  /* 카드 */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px; margin-bottom: 16px; }
+  .card-title { font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 14px; text-transform: uppercase; letter-spacing: .06em; }
 
-/* ÃÂ«ÃÂ²ÃÂÃÂ­ÃÂÃÂ¼ */
-.btn { display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; transition: background .15s; font-family: inherit; }
-.btn-primary { background: var(--primary); color: #fff; }
-.btn-primary:hover { background: var(--primary-dark); }
-.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
-.btn-outline:hover { background: var(--bg); }
-.btn-ghost { background: transparent; border: none; color: var(--muted); padding: 4px 8px; }
-.btn-ghost:hover { color: var(--text); background: var(--bg); }
-.btn-danger { background: #fee2e2; color: var(--danger); border: none; }
-.btn-danger:hover { background: #fecaca; }
-.btn-sm { padding: 3px 8px; font-size: 11px; }
+  /* 버튼 */
+  .btn { display: inline-flex; align-items: center; gap: 5px; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; transition: background .15s; font-family: inherit; }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .btn-outline:hover { background: var(--bg); }
+  .btn-ghost { background: transparent; border: none; color: var(--muted); padding: 4px 8px; }
+  .btn-ghost:hover { color: var(--text); background: var(--bg); }
 
-/* ÃÂ«ÃÂ°ÃÂ°ÃÂ¬ÃÂ§ÃÂ */
-.badge { display: inline-block; padding: 2px 7px; border-radius: 99px; font-size: 11px; font-weight: 600; white-space: nowrap; }
-.badge-blue { background: #dbeafe; color: #1d4ed8; }
-.badge-green { background: #dcfce7; color: #15803d; }
-.badge-red { background: #fee2e2; color: #b91c1c; }
-.badge-yellow { background: #fef9c3; color: #a16207; }
-.badge-orange { background: #ffedd5; color: #c2410c; }
-.badge-gray { background: #f1f5f9; color: #475569; }
-.badge-purple { background: #ede9fe; color: #6d28d9; }
+  /* 배지 */
+  .badge { display: inline-block; padding: 2px 7px; border-radius: 99px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .badge-blue   { background: #dbeafe; color: #1d4ed8; }
+  .badge-green  { background: #dcfce7; color: #15803d; }
+  .badge-red    { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #a16207; }
+  .badge-orange { background: #ffedd5; color: #c2410c; }
+  .badge-gray   { background: #f1f5f9; color: #475569; }
+  .badge-purple { background: #ede9fe; color: #6d28d9; }
 
-/* ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ«ÃÂ¸ÃÂ */
-.tbl-wrap { overflow-x: auto; }
-table { width: 100%; border-collapse: collapse; }
-th { background: #f8fafc; text-align: left; padding: 8px 10px; font-size: 11px; color: var(--muted); border-bottom: 1px solid var(--border); font-weight: 700; white-space: nowrap; }
-td { padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
-tr:last-child td { border-bottom: none; }
-tr.clickable:hover td { background: #f0f7ff; cursor: pointer; }
-tr.clickable:active td { background: #dbeafe; }
-.empty-row td { text-align: center; color: var(--muted); padding: 32px; }
+  /* 테이블 */
+  .tbl-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: #f8fafc; text-align: left; padding: 8px 10px; font-size: 11px; color: var(--muted); border-bottom: 1px solid var(--border); font-weight: 700; white-space: nowrap; }
+  td { padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafc; }
+  .empty-row td { text-align: center; color: var(--muted); padding: 32px; }
 
-/* ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ ÃÂ«ÃÂÃÂÃÂ«ÃÂ¡ÃÂ­ÃÂ«ÃÂÃÂ¤ÃÂ¬ÃÂÃÂ´ (ÃÂ¬ÃÂÃÂ¸ÃÂ«ÃÂÃÂ¼ÃÂ¬ÃÂÃÂ¸) */
-.status-select {
-  appearance: none; -webkit-appearance: none;
-  border: none; background: transparent;
-  font-size: 11px; font-weight: 600; font-family: inherit;
-  padding: 2px 18px 2px 7px; border-radius: 99px;
-  cursor: pointer; outline: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23666'/%3E%3C/svg%3E");
-  background-repeat: no-repeat; background-position: right 5px center;
-  transition: box-shadow .15s;
-}
-.status-select:focus { box-shadow: 0 0 0 2px var(--primary); }
-/* ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ«ÃÂ³ÃÂ ÃÂ¬ÃÂÃÂ */
-.ss-ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ   { background-color: #dbeafe; color: #1d4ed8; }
-.ss-ÃÂ¬ÃÂ§ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂ¤ÃÂ  { background-color: #fef9c3; color: #a16207; }
-.ss-ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ   { background-color: #dcfce7; color: #15803d; }
-.ss-ÃÂ¬ÃÂ·ÃÂ¨ÃÂ¬ÃÂÃÂ   { background-color: #f1f5f9; color: #475569; }
-.ss-ÃÂ«ÃÂ¯ÃÂ¸ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬  { background-color: #fee2e2; color: #b91c1c; }
-.ss-ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬ÃÂ¬ÃÂ¤ÃÂ  { background-color: #fef9c3; color: #a16207; }
-.ss-ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°   { background-color: #dcfce7; color: #15803d; }
-.ss-ÃÂ«ÃÂ³ÃÂ´ÃÂ«ÃÂ¥ÃÂ   { background-color: #f1f5f9; color: #475569; }
-.ss-ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂ¤ÃÂ  { background-color: #fef9c3; color: #a16207; }
-.ss-ÃÂªÃÂ²ÃÂÃÂ­ÃÂÃÂ ÃÂ¬ÃÂ¤ÃÂ  { background-color: #dbeafe; color: #1d4ed8; }
+  /* 그리드 */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
 
-/* ÃÂ¬ÃÂÃÂ­ÃÂ¬ÃÂ ÃÂ ÃÂ«ÃÂ²ÃÂÃÂ­ÃÂÃÂ¼ ÃÂ¬ÃÂÃÂ */
-.del-cell { width: 28px; text-align: center; }
-.del-btn { opacity: 0; background: none; border: none; font-size: 14px; cursor: pointer; color: var(--danger); padding: 2px 4px; border-radius: 4px; transition: opacity .15s, background .15s; }
-tr:hover .del-btn { opacity: 1; }
-.del-btn:hover { background: #fee2e2; }
+  /* 통계 카드 */
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; }
+  .stat-label { font-size: 11px; color: var(--muted); margin-bottom: 5px; }
+  .stat-value { font-size: 26px; font-weight: 800; line-height: 1; }
+  .stat-sub   { font-size: 11px; color: var(--muted); margin-top: 5px; }
+  .stat-link  { font-size: 11px; color: var(--primary); cursor: pointer; margin-top: 6px; display: inline-block; }
 
-/* ÃÂªÃÂ·ÃÂ¸ÃÂ«ÃÂ¦ÃÂ¬ÃÂ«ÃÂÃÂ */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
-.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+  /* 필터바 */
+  .filter-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+  .filter-bar input, .filter-bar select { padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: inherit; background: #fff; color: var(--text); }
+  .filter-bar input:focus, .filter-bar select:focus { outline: none; border-color: var(--primary); }
+  .filter-bar input { min-width: 200px; }
+  .filter-count { font-size: 12px; color: var(--muted); margin-left: auto; }
 
-/* ÃÂ­ÃÂÃÂµÃÂªÃÂ³ÃÂ ÃÂ¬ÃÂ¹ÃÂ´ÃÂ«ÃÂÃÂ */
-.stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; }
-.stat-label { font-size: 11px; color: var(--muted); margin-bottom: 5px; }
-.stat-value { font-size: 26px; font-weight: 800; line-height: 1; }
-.stat-sub { font-size: 11px; color: var(--muted); margin-top: 5px; }
-.stat-link { font-size: 11px; color: var(--primary); cursor: pointer; margin-top: 6px; display: inline-block; }
+  /* 폼 */
+  .form-group { margin-bottom: 12px; }
+  .form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+  .form-group label .req { color: var(--danger); }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 7px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; font-family: inherit; background: #fff; color: var(--text); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px #dbeafe; }
+  .form-group input.auto-id { background: #f8fafc; color: var(--muted); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .form-hint { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .warn-field { border-color: var(--warning) !important; background: #fffbeb !important; }
 
-/* ÃÂ­ÃÂÃÂÃÂ­ÃÂÃÂ°ÃÂ«ÃÂ°ÃÂ */
-.filter-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
-.filter-bar input, .filter-bar select { padding: 6px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 12px; font-family: inherit; background: #fff; color: var(--text); }
-.filter-bar input:focus, .filter-bar select:focus { outline: none; border-color: var(--primary); }
-.filter-bar input { min-width: 200px; }
-.filter-count { font-size: 12px; color: var(--muted); margin-left: auto; }
+  /* 모달 */
+  .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 200; align-items: center; justify-content: center; }
+  .modal-bg.open { display: flex; }
+  .modal { background: #fff; border-radius: 10px; width: 540px; max-width: 95vw; max-height: 90vh; overflow-y: auto; }
+  .modal-header { padding: 16px 18px 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .modal-header h3 { font-size: 14px; font-weight: 700; }
+  .modal-body { padding: 18px; }
+  .modal-footer { padding: 12px 18px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 8px; }
+  .close-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: var(--muted); line-height: 1; }
 
-/* ÃÂ­ÃÂÃÂ¼ */
-.form-group { margin-bottom: 12px; }
-.form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
-.form-group label .req { color: var(--danger); }
-.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 7px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; font-family: inherit; background: #fff; color: var(--text); }
-.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px #dbeafe; }
-.form-group input.auto-id { background: #f8fafc; color: var(--muted); }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.warn-field { border-color: var(--warning) !important; background: #fffbeb !important; }
+  /* 링크 카드 */
+  .link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 10px; }
+  .link-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px; text-decoration: none; color: var(--text); transition: box-shadow .15s; }
+  .link-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,.09); border-color: var(--primary); }
+  .link-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .link-name { font-size: 13px; font-weight: 600; }
+  .link-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .link-url  { font-size: 10px; color: #94a3b8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px; }
 
-/* ÃÂ«ÃÂªÃÂ¨ÃÂ«ÃÂÃÂ¬ */
-.modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 200; align-items: center; justify-content: center; }
-.modal-bg.open { display: flex; }
-.modal { background: #fff; border-radius: 10px; width: 580px; max-width: 95vw; max-height: 92vh; overflow-y: auto; }
-.modal-header { padding: 16px 18px 12px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
-.modal-header h3 { font-size: 14px; font-weight: 700; }
-.modal-body { padding: 18px; }
-.modal-footer { padding: 12px 18px; border-top: 1px solid var(--border); display: flex; justify-content: flex-end; gap: 8px; }
-.close-btn { background: none; border: none; font-size: 18px; cursor: pointer; color: var(--muted); line-height: 1; }
+  /* 토스트 */
+  #toast { position: fixed; bottom: 20px; right: 20px; background: #1e293b; color: #fff; padding: 9px 16px; border-radius: 8px; font-size: 13px; z-index: 999; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; transform: translateY(6px); }
+  #toast.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
-/* ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸ ÃÂ«ÃÂªÃÂ¨ÃÂ«ÃÂÃÂ¬ */
-.detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 16px; }
-.detail-item label { font-size: 10px; font-weight: 700; color: var(--muted); display: block; margin-bottom: 2px; text-transform: uppercase; }
-.detail-item .val { font-size: 13px; color: var(--text); word-break: break-all; }
-.detail-item.full { grid-column: 1/-1; }
-.detail-divider { grid-column: 1/-1; border: none; border-top: 1px solid var(--border); margin: 6px 0; }
-.mode-badge { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 4px; background: #f1f5f9; color: var(--muted); margin-left: 8px; vertical-align: middle; }
+  /* 로딩 */
+  .loading { text-align: center; padding: 40px; color: var(--muted); }
 
-/* ÃÂ«ÃÂ§ÃÂÃÂ­ÃÂÃÂ¬ ÃÂ¬ÃÂ¹ÃÂ´ÃÂ«ÃÂÃÂ */
-.link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 10px; }
-.link-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px; text-decoration: none; color: var(--text); transition: box-shadow .15s; }
-.link-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,.09); border-color: var(--primary); }
-.link-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-.link-name { font-size: 13px; font-weight: 600; }
-.link-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
-.link-url { font-size: 10px; color: #94a3b8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px; }
-
-/* ÃÂ­ÃÂÃÂ ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¸ */
-#toast { position: fixed; bottom: 20px; right: 20px; background: #1e293b; color: #fff; padding: 9px 16px; border-radius: 8px; font-size: 13px; z-index: 999; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; transform: translateY(6px); }
-#toast.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
-.loading { text-align: center; padding: 40px; color: var(--muted); }
-.alert-icon { font-size: 13px; }
+  /* 주의사항 아이콘 */
+  .alert-icon { font-size: 13px; }
 </style>
 </head>
 <body>
 
-<!-- ===== ÃÂ«ÃÂ¹ÃÂÃÂ«ÃÂ°ÃÂÃÂ«ÃÂ²ÃÂÃÂ­ÃÂÃÂ¸ ÃÂ¬ÃÂÃÂ¸ÃÂ¬ÃÂ¦ÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ ===== -->
-<div id="auth-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;display:flex;align-items:center;justify-content:center;">
-  <div style="background:#fff;padding:36px 32px;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.2);min-width:320px;text-align:center;">
-    <div style="font-size:22px;font-weight:700;margin-bottom:8px;">ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¬ÃÂ­ÃÂÃÂ¸</div>
-    <div style="font-size:13px;color:#666;margin-bottom:24px;">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂÃÂ ÃÂ«ÃÂ¹ÃÂÃÂ«ÃÂ°ÃÂÃÂ«ÃÂ²ÃÂÃÂ­ÃÂÃÂ¸ÃÂ«ÃÂ¥ÃÂ¼ ÃÂ¬ÃÂÃÂÃÂ«ÃÂ ÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ¸ÃÂ¬ÃÂÃÂ</div>
-    <input id="auth-input" type="password" placeholder="ÃÂ«ÃÂ¹ÃÂÃÂ«ÃÂ°ÃÂÃÂ«ÃÂ²ÃÂÃÂ­ÃÂÃÂ¸"
-      style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-size:15px;box-sizing:border-box;margin-bottom:12px;"
-      onkeydown="if(event.key==='Enter') checkAuth()"/>
-    <div id="auth-error" style="color:#e53935;font-size:12px;margin-bottom:10px;display:none;">ÃÂ«ÃÂ¹ÃÂÃÂ«ÃÂ°ÃÂÃÂ«ÃÂ²ÃÂÃÂ­ÃÂÃÂ¸ÃÂªÃÂ°ÃÂ ÃÂ¬ÃÂÃÂ¬ÃÂ«ÃÂ°ÃÂÃÂ«ÃÂ¥ÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂµÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤</div>
-    <button onclick="checkAuth()" style="width:100%;padding:11px;background:#1a73e8;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;">ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ¸</button>
-  </div>
-</div>
-<script>
-const PORTAL_PASSWORD = 'shinhanez2026';
-function checkAuth() {
-  const v = document.getElementById('auth-input').value;
-  if (v === PORTAL_PASSWORD) {
-    localStorage.setItem('ops_portal_auth','true');
-    document.getElementById('auth-overlay').style.display='none';
-  } else {
-    document.getElementById('auth-error').style.display='block';
-    document.getElementById('auth-input').value='';
-    document.getElementById('auth-input').focus();
-  }
-}
-(function(){
-  if (localStorage.getItem('ops_portal_auth')==='true')
-    document.getElementById('auth-overlay').style.display='none';
-})();
-</script>
-
-<!-- ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ«ÃÂÃÂÃÂ«ÃÂ°ÃÂ -->
+<!-- 사이드바 -->
 <div id="sidebar">
-  <div class="logo">ÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¬ÃÂ­ÃÂÃÂ¸<span>Ops Collab Portal</span></div>
+  <div class="logo">운영협업포털<span>Ops Collab Portal</span></div>
   <nav>
-    <a id="nav-home"      onclick="showPage('home')">      <span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ </span> ÃÂ­ÃÂÃÂ</a>
-    <a id="nav-schedule"  onclick="showPage('schedule')">  <span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ</span> ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂÃÂªÃÂ´ÃÂÃÂ«ÃÂ¦ÃÂ¬</a>
-    <a id="nav-impact"    onclick="showPage('impact')">    <span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ¥ÃÂ¯ÃÂ¸ÃÂ</span> ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ«ÃÂÃÂÃÂªÃÂ´ÃÂÃÂ«ÃÂ¦ÃÂ¬</a>
-    <a id="nav-defect"    onclick="showPage('defect')">    <span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ</span> ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ÃÂªÃÂ´ÃÂÃÂ«ÃÂ¦ÃÂ¬</a>
-    <a id="nav-migration" onclick="showPage('migration')"> <span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ</span> ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©</a>
-    <a id="nav-links"     onclick="showPage('links')">     <span class="nav-icon">ÃÂ°ÃÂÃÂÃÂ</span> ÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂÃÂÃÂ«ÃÂ§ÃÂÃÂ­ÃÂÃÂ¬</a>
+    <a id="nav-home"      onclick="showPage('home')">      <span class="nav-icon">🏠</span> 홈</a>
+    <a id="nav-schedule"  onclick="showPage('schedule')">  <span class="nav-icon">📅</span> 일정관리</a>
+    <a id="nav-impact"    onclick="showPage('impact')">    <span class="nav-icon">🖥️</span> 영향도관리</a>
+    <a id="nav-defect"    onclick="showPage('defect')">    <span class="nav-icon">🐛</span> 결함관리</a>
+    <a id="nav-migration" onclick="showPage('migration')"> <span class="nav-icon">🔄</span> 이관항목</a>
+    <a id="nav-links"     onclick="showPage('links')">     <span class="nav-icon">🔗</span> 운영링크</a>
   </nav>
   <div class="sidebar-footer" id="sidebar-footer"></div>
 </div>
 
-<!-- ÃÂ«ÃÂ©ÃÂÃÂ¬ÃÂÃÂ¸ -->
+<!-- 메인 -->
 <div id="main">
   <div id="topbar">
-    <span class="page-title" id="topbar-title">ÃÂ­ÃÂÃÂ</span>
+    <span class="page-title" id="topbar-title">홈</span>
     <div id="topbar-actions" style="display:flex;gap:8px;align-items:center"></div>
   </div>
   <div id="content"></div>
 </div>
 
-<!-- ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ«ÃÂªÃÂ¨ÃÂ«ÃÂÃÂ¬: ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ/ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ -->
+<!-- 모달: 일정 등록 -->
 <div class="modal-bg" id="modal-schedule">
   <div class="modal">
-    <div class="modal-header">
-      <h3 id="modal-schedule-title">ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ</h3>
-      <button class="close-btn" onclick="closeModal('modal-schedule')">ÃÂ¢ÃÂÃÂ</button>
-    </div>
+    <div class="modal-header"><h3>📅 일정 등록</h3><button class="close-btn" onclick="closeModal('modal-schedule')">✕</button></div>
     <div class="modal-body">
       <div class="form-row">
-        <div class="form-group"><label>ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID</label><input type="text" id="sch-id" class="auto-id" readonly></div>
-        <div class="form-group"><label>ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ <span class="req">*</span></label><input type="text" id="sch-owner" placeholder="ÃÂ­ÃÂÃÂÃÂªÃÂ¸ÃÂ¸ÃÂ«ÃÂÃÂ"></div>
+        <div class="form-group"><label>일정ID</label><input type="text" id="sch-id" class="auto-id" readonly></div>
+        <div class="form-group"><label>담당자 <span class="req">*</span></label><input type="text" id="sch-owner" placeholder="홍길동"></div>
       </div>
-      <div class="form-group"><label>ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ© <span class="req">*</span></label><input type="text" id="sch-title" placeholder="ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©"></div>
+      <div class="form-group"><label>제목 <span class="req">*</span></label><input type="text" id="sch-title" placeholder="일정 제목"></div>
       <div class="form-row">
         <div class="form-group">
-          <label>ÃÂ¬ÃÂÃÂÃÂ«ÃÂ¬ÃÂ´ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ <span class="req">*</span></label>
-          <select id="sch-type"><option>ÃÂ«ÃÂ°ÃÂ°ÃÂ­ÃÂÃÂ¬</option><option>ÃÂ¬ÃÂ ÃÂÃÂªÃÂ²ÃÂ</option><option>ÃÂ¬ÃÂÃÂ´ÃÂ«ÃÂ²ÃÂ¤ÃÂ­ÃÂÃÂ¸</option><option>ÃÂªÃÂ¸ÃÂ´ÃÂªÃÂ¸ÃÂÃÂ«ÃÂÃÂÃÂ¬ÃÂÃÂ</option><option>ÃÂªÃÂ¸ÃÂ°ÃÂ­ÃÂÃÂ</option></select>
+          <label>업무유형 <span class="req">*</span></label>
+          <select id="sch-type"><option>배포</option><option>점검</option><option>이벤트</option><option>긴급대응</option><option>기타</option></select>
         </div>
         <div class="form-group">
-          <label>ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ</label>
-          <select id="sch-status"><option>ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ</option><option>ÃÂ¬ÃÂ§ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂ¤ÃÂ</option><option>ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ</option><option>ÃÂ¬ÃÂ·ÃÂ¨ÃÂ¬ÃÂÃÂ</option></select>
+          <label>상태</label>
+          <select id="sch-status"><option>예정</option><option>진행중</option><option>완료</option><option>취소</option></select>
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¼ <span class="req">*</span></label><input type="date" id="sch-start"></div>
-        <div class="form-group"><label>ÃÂ«ÃÂ§ÃÂÃÂªÃÂ°ÃÂÃÂ¬ÃÂÃÂ¼ <span class="req">*</span></label><input type="date" id="sch-end"></div>
+        <div class="form-group"><label>시작일 <span class="req">*</span></label><input type="date" id="sch-start"></div>
+        <div class="form-group"><label>마감일 <span class="req">*</span></label><input type="date" id="sch-end"></div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID</label><input type="text" id="sch-page" placeholder="PG-0001 (ÃÂ¬ÃÂÃÂ¼ÃÂ­ÃÂÃÂ ÃÂªÃÂµÃÂ¬ÃÂ«ÃÂ¶ÃÂ)"></div>
-        <div class="form-group"><label>ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID</label><input type="text" id="sch-defect" placeholder="DEF-0001 (ÃÂ¬ÃÂÃÂ¼ÃÂ­ÃÂÃÂ ÃÂªÃÂµÃÂ¬ÃÂ«ÃÂ¶ÃÂ)"></div>
+        <div class="form-group"><label>관련페이지ID</label><input type="text" id="sch-page" placeholder="PG-0001 (쉼표 구분)"></div>
+        <div class="form-group"><label>관련결함ID</label><input type="text" id="sch-defect" placeholder="DEF-0001 (쉼표 구분)"></div>
       </div>
-      <div class="form-group"><label>ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨</label><textarea id="sch-memo" rows="2" placeholder="ÃÂ¬ÃÂ¶ÃÂÃÂªÃÂ°ÃÂ ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨"></textarea></div>
+      <div class="form-group"><label>메모</label><textarea id="sch-memo" rows="2" placeholder="추가 메모"></textarea></div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-outline" onclick="closeModal('modal-schedule')">ÃÂ¬ÃÂ·ÃÂ¨ÃÂ¬ÃÂÃÂ</button>
-      <button class="btn btn-primary" id="sch-submit-btn" onclick="submitSchedule()">ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ</button>
+      <button class="btn btn-outline" onclick="closeModal('modal-schedule')">취소</button>
+      <button class="btn btn-primary" onclick="submitSchedule()">등록</button>
     </div>
   </div>
 </div>
 
-<!-- ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ«ÃÂªÃÂ¨ÃÂ«ÃÂÃÂ¬: ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ/ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ -->
+<!-- 모달: 결함 등록 -->
 <div class="modal-bg" id="modal-defect">
   <div class="modal">
-    <div class="modal-header">
-      <h3 id="modal-defect-title">ÃÂ°ÃÂÃÂÃÂ ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ</h3>
-      <button class="close-btn" onclick="closeModal('modal-defect')">ÃÂ¢ÃÂÃÂ</button>
-    </div>
+    <div class="modal-header"><h3>🐛 결함 등록</h3><button class="close-btn" onclick="closeModal('modal-defect')">✕</button></div>
     <div class="modal-body">
       <div class="form-row">
-        <div class="form-group"><label>ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID</label><input type="text" id="def-id" class="auto-id" readonly></div>
-        <div class="form-group"><label>ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ <span class="req">*</span></label><input type="text" id="def-owner" placeholder="ÃÂ­ÃÂÃÂÃÂªÃÂ¸ÃÂ¸ÃÂ«ÃÂÃÂ"></div>
+        <div class="form-group"><label>결함ID</label><input type="text" id="def-id" class="auto-id" readonly></div>
+        <div class="form-group"><label>담당자 <span class="req">*</span></label><input type="text" id="def-owner" placeholder="홍길동"></div>
       </div>
-      <div class="form-group"><label>ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ© <span class="req">*</span></label><input type="text" id="def-title" placeholder="ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©"></div>
+      <div class="form-group"><label>제목 <span class="req">*</span></label><input type="text" id="def-title" placeholder="결함 제목"></div>
       <div class="form-row">
         <div class="form-group">
-          <label>ÃÂ¬ÃÂ¹ÃÂ´ÃÂ­ÃÂÃÂÃÂªÃÂ³ÃÂ ÃÂ«ÃÂ¦ÃÂ¬ <span class="req">*</span></label>
-          <select id="def-category"><option>UI/UX</option><option>ÃÂªÃÂ¸ÃÂ°ÃÂ«ÃÂÃÂ¥ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂ¥ÃÂ</option><option>ÃÂ¬ÃÂÃÂ±ÃÂ«ÃÂÃÂ¥</option><option>ÃÂ«ÃÂ³ÃÂ´ÃÂ¬ÃÂÃÂ</option><option>ÃÂ«ÃÂÃÂ°ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ°</option><option>ÃÂªÃÂ¸ÃÂ°ÃÂ­ÃÂÃÂ</option></select>
+          <label>카테고리 <span class="req">*</span></label>
+          <select id="def-category"><option>UI/UX</option><option>기능오류</option><option>성능</option><option>보안</option><option>데이터</option><option>기타</option></select>
         </div>
         <div class="form-group">
-          <label>ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ <span class="req">*</span></label>
-          <select id="def-severity"><option>ÃÂªÃÂ¸ÃÂ´ÃÂªÃÂ¸ÃÂ</option><option>ÃÂ«ÃÂÃÂÃÂ¬ÃÂÃÂ</option><option>ÃÂ¬ÃÂ¤ÃÂÃÂªÃÂ°ÃÂ</option><option>ÃÂ«ÃÂÃÂ®ÃÂ¬ÃÂÃÂ</option></select>
+          <label>심각도 <span class="req">*</span></label>
+          <select id="def-severity" onchange="checkSeverity()"><option>긴급</option><option>높음</option><option>중간</option><option>낮음</option></select>
         </div>
       </div>
       <div class="form-row">
         <div class="form-group">
-          <label>ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ</label>
-          <select id="def-status" onchange="checkDefectStatus()"><option>ÃÂ«ÃÂ¯ÃÂ¸ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬</option><option>ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬ÃÂ¬ÃÂ¤ÃÂ</option><option>ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°</option><option>ÃÂ«ÃÂ³ÃÂ´ÃÂ«ÃÂ¥ÃÂ</option></select>
+          <label>상태</label>
+          <select id="def-status" onchange="checkDefectStatus()"><option>미처리</option><option>처리중</option><option>해결</option><option>보류</option></select>
         </div>
-        <div class="form-group"><label>ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID</label><input type="text" id="def-page" placeholder="PG-0001"></div>
+        <div class="form-group"><label>관련페이지ID</label><input type="text" id="def-page" placeholder="PG-0001"></div>
       </div>
-      <div class="form-group"><label>ÃÂ¬ÃÂ¦ÃÂÃÂ¬ÃÂÃÂ <span class="req">*</span></label><textarea id="def-symptom" rows="2" placeholder="ÃÂ«ÃÂ°ÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂ¦ÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂªÃÂ"></textarea></div>
-      <div class="form-group"><label>ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸</label><input type="text" id="def-cause" placeholder="ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸ ÃÂ«ÃÂ¶ÃÂÃÂ¬ÃÂÃÂ"></div>
-      <div class="form-group"><label>ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°ÃÂ«ÃÂ°ÃÂ©ÃÂ«ÃÂ²ÃÂ</label><textarea id="def-solution" rows="2" placeholder="ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ° ÃÂ«ÃÂ°ÃÂ©ÃÂ«ÃÂ²ÃÂ"></textarea></div>
+      <div class="form-group"><label>증상 <span class="req">*</span></label><textarea id="def-symptom" rows="2" placeholder="발생 증상 설명"></textarea></div>
+      <div class="form-group"><label>원인</label><input type="text" id="def-cause" placeholder="원인 분석"></div>
+      <div class="form-group"><label>해결방법</label><textarea id="def-solution" rows="2" placeholder="해결 방법"></textarea></div>
       <div class="form-group" id="def-prevent-group">
-        <label>ÃÂ¬ÃÂÃÂ¬ÃÂ«ÃÂ°ÃÂÃÂ«ÃÂ°ÃÂ©ÃÂ¬ÃÂ§ÃÂ <span id="def-prevent-req" style="display:none" class="req">* ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ° ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ</span></label>
-        <input type="text" id="def-prevent" placeholder="ÃÂ¬ÃÂÃÂ¬ÃÂ«ÃÂ°ÃÂ ÃÂ«ÃÂ°ÃÂ©ÃÂ¬ÃÂ§ÃÂ ÃÂ«ÃÂÃÂÃÂ¬ÃÂ±ÃÂ">
+        <label>재발방지 <span id="def-prevent-req" style="display:none" class="req">* 해결 상태에서는 필수</span></label>
+        <input type="text" id="def-prevent" placeholder="재발 방지 대책">
       </div>
-      <div class="form-group"><label>ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ¬ÃÂÃÂ¼</label><input type="date" id="def-date"></div>
+      <div class="form-group"><label>등록일</label><input type="date" id="def-date"></div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-outline" onclick="closeModal('modal-defect')">ÃÂ¬ÃÂ·ÃÂ¨ÃÂ¬ÃÂÃÂ</button>
-      <button class="btn btn-primary" id="def-submit-btn" onclick="submitDefect()">ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ</button>
+      <button class="btn btn-outline" onclick="closeModal('modal-defect')">취소</button>
+      <button class="btn btn-primary" onclick="submitDefect()">등록</button>
     </div>
   </div>
 </div>
 
-<!-- ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ«ÃÂªÃÂ¨ÃÂ«ÃÂÃÂ¬: ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ/ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ -->
+<!-- 모달: 영향페이지 등록 -->
 <div class="modal-bg" id="modal-impact">
   <div class="modal">
-    <div class="modal-header">
-      <h3 id="modal-impact-title">ÃÂ°ÃÂÃÂÃÂ¥ÃÂ¯ÃÂ¸ÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ</h3>
-      <button class="close-btn" onclick="closeModal('modal-impact')">ÃÂ¢ÃÂÃÂ</button>
-    </div>
+    <div class="modal-header"><h3>🖥️ 영향페이지 등록</h3><button class="close-btn" onclick="closeModal('modal-impact')">✕</button></div>
     <div class="modal-body">
       <div class="form-row">
-        <div class="form-group"><label>ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID</label><input type="text" id="pg-id" class="auto-id" readonly></div>
-        <div class="form-group"><label>ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ <span class="req">*</span></label><input type="text" id="pg-owner" placeholder="ÃÂ­ÃÂÃÂÃÂªÃÂ¸ÃÂ¸ÃÂ«ÃÂÃÂ"></div>
+        <div class="form-group"><label>페이지ID</label><input type="text" id="pg-id" class="auto-id" readonly></div>
+        <div class="form-group"><label>담당자 <span class="req">*</span></label><input type="text" id="pg-owner" placeholder="홍길동"></div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸ÃÂ«ÃÂªÃÂ <span class="req">*</span></label><input type="text" id="pg-site" placeholder="ÃÂ¬ÃÂ²ÃÂ­ÃÂ¬ÃÂÃÂ½ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸"></div>
-        <div class="form-group"><label>ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ <span class="req">*</span></label><input type="text" id="pg-name" placeholder="ÃÂ«ÃÂ³ÃÂ´ÃÂ­ÃÂÃÂÃÂ«ÃÂ£ÃÂ ÃÂ¬ÃÂ¡ÃÂ°ÃÂ­ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´"></div>
+        <div class="form-group"><label>사이트명 <span class="req">*</span></label><input type="text" id="pg-site" placeholder="청약사이트"></div>
+        <div class="form-group"><label>페이지명 <span class="req">*</span></label><input type="text" id="pg-name" placeholder="보험료 조회 화면"></div>
       </div>
       <div class="form-row">
         <div class="form-group"><label>URL</label><input type="text" id="pg-url" placeholder="https://..."></div>
-        <div class="form-group"><label>ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ID</label><input type="text" id="pg-screen" placeholder="SCR-0001"></div>
+        <div class="form-group"><label>화면ID</label><input type="text" id="pg-screen" placeholder="SCR-0001"></div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>ÃÂ¬ÃÂÃÂ°ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID</label><input type="text" id="pg-related" placeholder="PG-0001 (ÃÂ¬ÃÂÃÂ¼ÃÂ­ÃÂÃÂ ÃÂªÃÂµÃÂ¬ÃÂ«ÃÂ¶ÃÂ)"></div>
-        <div class="form-group"><label>ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¬ÃÂ«ÃÂ¦ÃÂ°ÃÂ¬ÃÂÃÂ·URL</label><input type="text" id="pg-screenshot" placeholder="Google Drive ÃÂªÃÂ³ÃÂµÃÂ¬ÃÂÃÂ ÃÂ«ÃÂ§ÃÂÃÂ­ÃÂÃÂ¬"></div>
+        <div class="form-group"><label>연관페이지ID</label><input type="text" id="pg-related" placeholder="PG-0001 (쉼표 구분)"></div>
+        <div class="form-group"><label>스크린샷URL</label><input type="text" id="pg-screenshot" placeholder="Google Drive 공유링크"></div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label>ÃÂ¬ÃÂµÃÂÃÂªÃÂ·ÃÂ¼ÃÂ«ÃÂ³ÃÂÃÂªÃÂ²ÃÂ½ÃÂ¬ÃÂÃÂ¼</label><input type="date" id="pg-changed"></div>
-        <div class="form-group"><label>ÃÂ¬ÃÂ£ÃÂ¼ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¬ÃÂ­ÃÂÃÂ­</label><input type="text" id="pg-note" placeholder="ÃÂ­ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂÃÂ¬ÃÂ­ÃÂÃÂ­"></div>
+        <div class="form-group"><label>최근변경일</label><input type="date" id="pg-changed"></div>
+        <div class="form-group"><label>주의사항</label><input type="text" id="pg-note" placeholder="특이사항"></div>
       </div>
-      <div class="form-group"><label>ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂªÃÂ</label><textarea id="pg-desc" rows="2" placeholder="ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂªÃÂ"></textarea></div>
+      <div class="form-group"><label>설명</label><textarea id="pg-desc" rows="2" placeholder="화면 설명"></textarea></div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-outline" onclick="closeModal('modal-impact')">ÃÂ¬ÃÂ·ÃÂ¨ÃÂ¬ÃÂÃÂ</button>
-      <button class="btn btn-primary" id="pg-submit-btn" onclick="submitImpact()">ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ</button>
+      <button class="btn btn-outline" onclick="closeModal('modal-impact')">취소</button>
+      <button class="btn btn-primary" onclick="submitImpact()">등록</button>
     </div>
-  </div>
-</div>
-
-<!-- ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ«ÃÂªÃÂ¨ÃÂ«ÃÂÃÂ¬: ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ© ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ/ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ -->
-<div class="modal-bg" id="modal-migration">
-  <div class="modal">
-    <div class="modal-header">
-      <h3 id="modal-migration-title">ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ© ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ</h3>
-      <button class="close-btn" onclick="closeModal('modal-migration')">ÃÂ¢ÃÂÃÂ</button>
-    </div>
-    <div class="modal-body">
-      <div class="form-row">
-        <div class="form-group"><label>ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID</label><input type="text" id="mig-id" class="auto-id" readonly></div>
-        <div class="form-group"><label>ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ <span class="req">*</span></label><input type="text" id="mig-owner" placeholder="ÃÂ­ÃÂÃÂÃÂªÃÂ¸ÃÂ¸ÃÂ«ÃÂÃÂ"></div>
-      </div>
-      <div class="form-group"><label>ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂªÃÂ <span class="req">*</span></label><input type="text" id="mig-name" placeholder="ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂ ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂªÃÂ"></div>
-      <div class="form-row">
-        <div class="form-group"><label>ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ¬ÃÂÃÂ¼</label><input type="date" id="mig-date"></div>
-        <div class="form-group">
-          <label>ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ</label>
-          <select id="mig-status"><option>ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂ¤ÃÂ</option><option>ÃÂªÃÂ²ÃÂÃÂ­ÃÂÃÂ ÃÂ¬ÃÂ¤ÃÂ</option><option>ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ</option><option>ÃÂ«ÃÂ³ÃÂ´ÃÂ«ÃÂ¥ÃÂ</option></select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID</label><input type="text" id="mig-sch" placeholder="SCH-0001"></div>
-        <div class="form-group"><label>ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID</label><input type="text" id="mig-page" placeholder="PG-0001"></div>
-      </div>
-      <div class="form-group"><label>ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ</label><input type="text" id="mig-risk" placeholder="ÃÂ¬ÃÂ£ÃÂ¼ÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ"></div>
-      <div class="form-group"><label>ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨</label><textarea id="mig-memo" rows="2" placeholder="ÃÂ¬ÃÂ¶ÃÂÃÂªÃÂ°ÃÂ ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨"></textarea></div>
-    </div>
-    <div class="modal-footer">
-      <button class="btn btn-outline" onclick="closeModal('modal-migration')">ÃÂ¬ÃÂ·ÃÂ¨ÃÂ¬ÃÂÃÂ</button>
-      <button class="btn btn-primary" id="mig-submit-btn" onclick="submitMigration()">ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ</button>
-    </div>
-  </div>
-</div>
-
-<!-- ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ«ÃÂªÃÂ¨ÃÂ«ÃÂÃÂ¬: ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸ÃÂ«ÃÂ³ÃÂ´ÃÂªÃÂ¸ÃÂ° (ÃÂªÃÂ³ÃÂµÃÂ¬ÃÂÃÂ©) ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ -->
-<div class="modal-bg" id="modal-detail">
-  <div class="modal" style="width:620px">
-    <div class="modal-header">
-      <h3 id="detail-title">ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸ ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂ³ÃÂ´</h3>
-      <div style="display:flex;align-items:center;gap:8px">
-        <button class="btn btn-sm btn-outline" id="detail-edit-btn" onclick="openEditFromDetail()">ÃÂ¢ÃÂÃÂÃÂ¯ÃÂ¸ÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ</button>
-        <button class="close-btn" onclick="closeModal('modal-detail')">ÃÂ¢ÃÂÃÂ</button>
-      </div>
-    </div>
-    <div class="modal-body" id="detail-body"></div>
   </div>
 </div>
 
 <div id="toast"></div>
 <script src="js/sheets_api.js"></script>
 <script>
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ¤ÃÂ¬ÃÂ ÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ 설정 ════════════════════════════════════════════
 window.PORTAL_CONFIG = {
   SPREADSHEET_ID: '12ZpwaDPNCV1V48xUtuWv2cooGtAjBZLIbClu3R88HoU',
-  GITHUB_OWNER: 'nvidiabigfan',
-  GITHUB_REPO: 'ops-collab-portal',
-  GITHUB_TOKEN: localStorage.getItem('portal_gh_token') || '',
+  GITHUB_OWNER:   'nvidiabigfan',
+  GITHUB_REPO:    'ops-collab-portal',
+  GITHUB_TOKEN:   localStorage.getItem('portal_gh_token') || '',
 };
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ 상태 ════════════════════════════════════════════
 const S = { schedules:[], pages:[], defects:[], links:[], migrations:[] };
-let _detailContext = { type:null, data:null }; // ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸ÃÂ«ÃÂªÃÂ¨ÃÂ«ÃÂÃÂ¬ ÃÂ¬ÃÂ»ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¸
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ¸ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ 유틸 ════════════════════════════════════════════
 let _toastTimer;
 function toast(msg, ms=2800) {
   const el = document.getElementById('toast');
@@ -413,469 +287,353 @@ function toast(msg, ms=2800) {
 }
 function openModal(id)  { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
 function pad4(n) { return String(n).padStart(4,'0'); }
 function today() { return new Date().toISOString().slice(0,10); }
 
 function severityBadge(s) {
-  const m = {'ÃÂªÃÂ¸ÃÂ´ÃÂªÃÂ¸ÃÂ':'badge-red','ÃÂ«ÃÂÃÂÃÂ¬ÃÂÃÂ':'badge-orange','ÃÂ¬ÃÂ¤ÃÂÃÂªÃÂ°ÃÂ':'badge-yellow','ÃÂ«ÃÂÃÂ®ÃÂ¬ÃÂÃÂ':'badge-blue',
-             'ÃÂ«ÃÂ¯ÃÂ¸ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬':'badge-red','ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬ÃÂ¬ÃÂ¤ÃÂ':'badge-yellow','ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°':'badge-green','ÃÂ«ÃÂ³ÃÂ´ÃÂ«ÃÂ¥ÃÂ':'badge-gray',
-             'ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ':'badge-blue','ÃÂ¬ÃÂ§ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂ¤ÃÂ':'badge-yellow','ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ':'badge-green','ÃÂ¬ÃÂ·ÃÂ¨ÃÂ¬ÃÂÃÂ':'badge-gray',
-             'ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂ¤ÃÂ':'badge-yellow','ÃÂªÃÂ²ÃÂÃÂ­ÃÂÃÂ ÃÂ¬ÃÂ¤ÃÂ':'badge-blue'};
+  const m = {'긴급':'badge-red','높음':'badge-orange','중간':'badge-yellow','낮음':'badge-blue',
+             '미처리':'badge-red','처리중':'badge-yellow','해결':'badge-green','보류':'badge-gray',
+             '예정':'badge-blue','진행중':'badge-yellow','완료':'badge-green','취소':'badge-gray'};
   return `<span class="badge ${m[s]||'badge-gray'}">${s||''}</span>`;
 }
 
-function statusSelectHTML(value, options, sheetName, idKey, idVal, onChangeFn) {
-  const cls = 'ss-' + (value||'');
-  return `<select class="status-select ${cls}" 
-    onchange="${onChangeFn}(this, '${sheetName}', '${idKey}', '${idVal}')"
-    onclick="event.stopPropagation()">
-    ${options.map(o => `<option${o===value?' selected':''}>${o}</option>`).join('')}
-  </select>`;
-}
-
+// CSV 내보내기
 function exportCSV(data, filename) {
-  if (!data.length) { toast('ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂ³ÃÂ´ÃÂ«ÃÂÃÂ¼ ÃÂ«ÃÂÃÂ°ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ°ÃÂªÃÂ°ÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂµÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤'); return; }
+  if (!data.length) { toast('내보낼 데이터가 없습니다'); return; }
   const keys = Object.keys(data[0]);
-  const rows = [keys.join(','), ...data.map(r => keys.map(k=>`"${(r[k]||'').replace(/"/g,'""')}"`).join(','))];
+  const rows = [keys.join(','), ...data.map(r => keys.map(k => `"${(r[k]||'').replace(/"/g,'""')}"`).join(','))];
   const blob = new Blob(['\uFEFF'+rows.join('\n')], {type:'text/csv;charset=utf-8'});
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename; a.click();
 }
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂªÃÂ°ÃÂ ÃÂ¬ÃÂÃÂ¸ÃÂ«ÃÂÃÂ¼ÃÂ¬ÃÂÃÂ¸ ÃÂ«ÃÂ³ÃÂÃÂªÃÂ²ÃÂ½ ÃÂªÃÂ³ÃÂµÃÂ­ÃÂÃÂµ ÃÂ­ÃÂÃÂ¸ÃÂ«ÃÂÃÂ¤ÃÂ«ÃÂÃÂ¬ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
-async function handleStatusChange(el, sheetName, idKey, idVal) {
-  const newVal = el.value;
-  // ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂ¦ÃÂÃÂ¬ÃÂÃÂ ÃÂ«ÃÂ°ÃÂÃÂ¬ÃÂÃÂ
-  el.className = `status-select ss-${newVal}`;
-
-  // ÃÂ«ÃÂÃÂ°ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ° ÃÂ¬ÃÂ°ÃÂ¾ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ row ÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ°ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸
-  const store = { 'ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ': S.schedules, 'ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ': S.pages, 'ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ': S.defects, 'ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©': S.migrations };
-  const statusField = { 'ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ':'ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ', 'ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ':null, 'ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ':'ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ', 'ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©':'ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ' };
-  const arr = store[sheetName];
-  const row = arr && arr.find(r => r[idKey] === idVal);
-  if (!row) { toast('ÃÂ¢ÃÂÃÂ ÃÂ«ÃÂÃÂ°ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ°ÃÂ«ÃÂ¥ÃÂ¼ ÃÂ¬ÃÂ°ÃÂ¾ÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂµÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤'); return; }
-
-  const field = statusField[sheetName];
-  if (!field) { toast('ÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ´ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¸ÃÂ«ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ ÃÂ«ÃÂ³ÃÂÃÂªÃÂ²ÃÂ½ ÃÂ«ÃÂ¯ÃÂ¸ÃÂ¬ÃÂ§ÃÂÃÂ¬ÃÂÃÂ'); return; }
-
-  const updated = { ...row, [field]: newVal };
-  toast('ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂÃÂ¥ ÃÂ¬ÃÂ¤ÃÂ...');
-  const r = await SheetsAPI.updateRow(sheetName, updated);
-  if (r.ok) {
-    row[field] = newVal; // ÃÂ«ÃÂ¡ÃÂÃÂ¬ÃÂ»ÃÂ¬ ÃÂ«ÃÂ°ÃÂÃÂ¬ÃÂÃÂ
-    toast(`ÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ ÃÂ«ÃÂ³ÃÂÃÂªÃÂ²ÃÂ½: ${newVal}`);
-  } else {
-    toast(`ÃÂ¢ÃÂÃÂ ${r.message}`);
-    el.value = row[field]; // ÃÂ«ÃÂ¡ÃÂ¤ÃÂ«ÃÂ°ÃÂ±
-    el.className = `status-select ss-${row[field]}`;
-  }
-}
-
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ­ÃÂ¬ÃÂ ÃÂ ÃÂªÃÂ³ÃÂµÃÂ­ÃÂÃÂµ ÃÂ­ÃÂÃÂ¸ÃÂ«ÃÂÃÂ¤ÃÂ«ÃÂÃÂ¬ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
-async function handleDelete(sheetName, idVal, label, reloadFn) {
-  if (!confirm(`"${label}" ÃÂ¬ÃÂÃÂ(ÃÂ«ÃÂ¥ÃÂ¼) ÃÂ¬ÃÂÃÂ­ÃÂ¬ÃÂ ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂªÃÂ²ÃÂ ÃÂ¬ÃÂÃÂµÃÂ«ÃÂÃÂÃÂªÃÂ¹ÃÂ?\nÃÂ¬ÃÂÃÂ´ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂÃÂ«ÃÂ¦ÃÂ´ ÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂµÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤.`)) return;
-  toast('ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂÃÂ­ÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂ¤ÃÂ...');
-  const r = await SheetsAPI.deleteRow(sheetName, idVal);
-  if (r.ok) {
-    toast(`ÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ­ÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ`);
-    setTimeout(reloadFn, 900);
-  } else {
-    toast(`ÃÂ¢ÃÂÃÂ ${r.message}`);
-  }
-}
-
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂ¹ÃÂÃÂªÃÂ²ÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ 내비게이션 ════════════════════════════════════════
 function showPage(page) {
   document.querySelectorAll('#sidebar nav a').forEach(a => a.classList.remove('active'));
   document.getElementById('nav-'+page).classList.add('active');
-  const titles = {home:'ÃÂ­ÃÂÃÂ',schedule:'ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂÃÂªÃÂ´ÃÂÃÂ«ÃÂ¦ÃÂ¬',impact:'ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ«ÃÂÃÂÃÂªÃÂ´ÃÂÃÂ«ÃÂ¦ÃÂ¬',defect:'ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ÃÂªÃÂ´ÃÂÃÂ«ÃÂ¦ÃÂ¬',migration:'ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©',links:'ÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂÃÂÃÂ«ÃÂ§ÃÂÃÂ­ÃÂÃÂ¬'};
+  const titles = {home:'홈',schedule:'일정관리',impact:'영향도관리',defect:'결함관리',migration:'이관항목',links:'운영링크'};
   document.getElementById('topbar-title').textContent = titles[page];
-  ({home:renderHome,schedule:renderSchedule,impact:()=>renderImpact(),defect:renderDefect,migration:renderMigration,links:renderLinks})[page]();
+  ({home:renderHome,schedule:renderSchedule,impact:renderImpact,defect:renderDefect,migration:renderMigration,links:renderLinks})[page]();
 }
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ 홈 ══════════════════════════════════════════════
 async function renderHome() {
-  setActions(''); setContent('<div class="loading">ÃÂ¢ÃÂÃÂ³ ÃÂ«ÃÂÃÂ°ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ° ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ© ÃÂ¬ÃÂ¤ÃÂ...</div>');
+  setActions('');
+  setContent('<div class="loading">⏳ 데이터 로딩 중...</div>');
   await Promise.all([
     SheetsAPI.getSchedules().then(d=>S.schedules=d).catch(()=>{}),
     SheetsAPI.getDefects().then(d=>S.defects=d).catch(()=>{}),
     SheetsAPI.getPages().then(d=>S.pages=d).catch(()=>{}),
     SheetsAPI.getMigrations().then(d=>S.migrations=d).catch(()=>{}),
   ]);
+
   const todayStr = today();
-  const todaySch = S.schedules.filter(s => s['ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¼']<=todayStr && (s['ÃÂ«ÃÂ§ÃÂÃÂªÃÂ°ÃÂÃÂ¬ÃÂÃÂ¼']||todayStr)>=todayStr);
-  const criticalDef = S.defects.filter(d => d['ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ']==='ÃÂªÃÂ¸ÃÂ´ÃÂªÃÂ¸ÃÂ'||d['ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ']==='ÃÂ«ÃÂÃÂÃÂ¬ÃÂÃÂ');
-  const pendingMig = S.migrations.filter(m => m['ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']!=='ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ');
-  const doneSch = S.schedules.filter(s => s['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']==='ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ').length;
+  const todaySch = S.schedules.filter(s => s['시작일'] <= todayStr && (s['마감일']||todayStr) >= todayStr);
+  const criticalDef = S.defects.filter(d => d['심각도']==='긴급' || d['심각도']==='높음');
+  const pendingMig = S.migrations.filter(m => m['준비상태']!=='완료');
+  const doneSch = S.schedules.filter(s => s['상태']==='완료').length;
+
   setContent(`
     <div class="grid-4" style="margin-bottom:16px">
-      <div class="stat-card"><div class="stat-label">ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂÃÂ ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ</div><div class="stat-value">${todaySch.length}</div><div class="stat-sub">ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ ${doneSch}ÃÂªÃÂ±ÃÂ´</div><span class="stat-link" onclick="showPage('schedule')">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ÃÂ«ÃÂ³ÃÂ´ÃÂªÃÂ¸ÃÂ° ÃÂ¢ÃÂÃÂ</span></div>
-      <div class="stat-card"><div class="stat-label">ÃÂ°ÃÂÃÂÃÂ¥ÃÂ¯ÃÂ¸ÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ</div><div class="stat-value">${S.pages.length}</div><div class="stat-sub">ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´</div><span class="stat-link" onclick="showPage('impact')">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ÃÂ«ÃÂ³ÃÂ´ÃÂªÃÂ¸ÃÂ° ÃÂ¢ÃÂÃÂ</span></div>
-      <div class="stat-card"><div class="stat-label">ÃÂ°ÃÂÃÂÃÂ ÃÂªÃÂ¸ÃÂ´ÃÂªÃÂ¸ÃÂ/ÃÂ«ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨</div><div class="stat-value" style="color:var(--danger)">${criticalDef.length}</div><div class="stat-sub">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ ${S.defects.length}ÃÂªÃÂ±ÃÂ´</div><span class="stat-link" onclick="showPage('defect')">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ÃÂ«ÃÂ³ÃÂ´ÃÂªÃÂ¸ÃÂ° ÃÂ¢ÃÂÃÂ</span></div>
-      <div class="stat-card"><div class="stat-label">ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂ ÃÂ«ÃÂ¯ÃÂ¸ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ</div><div class="stat-value" style="color:var(--warning)">${pendingMig.length}</div><div class="stat-sub">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ ${S.migrations.length}ÃÂªÃÂ±ÃÂ´</div><span class="stat-link" onclick="showPage('migration')">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ÃÂ«ÃÂ³ÃÂ´ÃÂªÃÂ¸ÃÂ° ÃÂ¢ÃÂÃÂ</span></div>
+      <div class="stat-card">
+        <div class="stat-label">📅 오늘 일정</div>
+        <div class="stat-value">${todaySch.length}</div>
+        <div class="stat-sub">이번 주 완료 ${doneSch}건</div>
+        <span class="stat-link" onclick="showPage('schedule')">전체보기 →</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">🖥️ 영향 페이지</div>
+        <div class="stat-value">${S.pages.length}</div>
+        <div class="stat-sub">등록된 화면</div>
+        <span class="stat-link" onclick="showPage('impact')">전체보기 →</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">🐛 긴급/높음 결함</div>
+        <div class="stat-value" style="color:var(--danger)">${criticalDef.length}</div>
+        <div class="stat-sub">전체 ${S.defects.length}건</div>
+        <span class="stat-link" onclick="showPage('defect')">전체보기 →</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">🔄 이관 미완료</div>
+        <div class="stat-value" style="color:var(--warning)">${pendingMig.length}</div>
+        <div class="stat-sub">전체 ${S.migrations.length}건</div>
+        <span class="stat-link" onclick="showPage('migration')">전체보기 →</span>
+      </div>
     </div>
     <div class="grid-2">
-      <div class="card"><div class="card-title">ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂÃÂ ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ</div><div class="tbl-wrap"><table>
-        <thead><tr><th>ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©</th><th>ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ</th><th>ÃÂ«ÃÂ§ÃÂÃÂªÃÂ°ÃÂÃÂ¬ÃÂÃÂ¼</th><th>ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ</th></tr></thead>
-        <tbody>${todaySch.slice(0,6).map(s=>`<tr>
-          <td style="font-weight:500">${s['ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©']||''}</td>
-          <td>${s['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ']||''}</td>
-          <td>${s['ÃÂ«ÃÂ§ÃÂÃÂªÃÂ°ÃÂÃÂ¬ÃÂÃÂ¼']||''}</td>
-          <td>${severityBadge(s['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']||'')}</td>
-        </tr>`).join('')||'<tr class="empty-row"><td colspan="4">ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂÃÂ ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ</td></tr>'}
-        </tbody></table></div></div>
-      <div class="card"><div class="card-title">ÃÂ«ÃÂ¯ÃÂ¸ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬ ÃÂªÃÂ¸ÃÂ´ÃÂªÃÂ¸ÃÂ/ÃÂ«ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨</div><div class="tbl-wrap"><table>
-        <thead><tr><th>ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©</th><th>ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ</th><th>ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ</th></tr></thead>
-        <tbody>${criticalDef.filter(d=>d['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']!=='ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°').slice(0,6).map(d=>`<tr>
-          <td style="font-weight:500">${d['ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©']||''}</td>
-          <td>${severityBadge(d['ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ']||'')}</td>
-          <td>${d['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ']||''}</td>
-        </tr>`).join('')||'<tr class="empty-row"><td colspan="3">ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ ÃÂ¢ÃÂÃÂ</td></tr>'}
-        </tbody></table></div></div>
+      <div class="card">
+        <div class="card-title">오늘 일정</div>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th>제목</th><th>담당자</th><th>마감일</th><th>상태</th></tr></thead>
+          <tbody>${todaySch.slice(0,6).map(s=>`<tr>
+            <td style="font-weight:500">${s['제목']||''}</td>
+            <td>${s['담당자']||''}</td>
+            <td>${s['마감일']||''}</td>
+            <td>${severityBadge(s['상태']||'')}</td>
+          </tr>`).join('')||`<tr class="empty-row"><td colspan="4">오늘 일정 없음</td></tr>`}
+          </tbody>
+        </table></div>
+      </div>
+      <div class="card">
+        <div class="card-title">미처리 긴급/높음 결함</div>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th>제목</th><th>심각도</th><th>담당자</th></tr></thead>
+          <tbody>${criticalDef.filter(d=>d['상태']!=='해결').slice(0,6).map(d=>`<tr>
+            <td style="font-weight:500">${d['제목']||''}</td>
+            <td>${severityBadge(d['심각도']||'')}</td>
+            <td>${d['담당자']||''}</td>
+          </tr>`).join('')||`<tr class="empty-row"><td colspan="3">없음 ✅</td></tr>`}
+          </tbody>
+        </table></div>
+      </div>
     </div>`);
 }
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂÃÂªÃÂ´ÃÂÃÂ«ÃÂ¦ÃÂ¬ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ 일정관리 ══════════════════════════════════════════
 let schFiltered = [];
 async function renderSchedule() {
   setActions(`
-    <button class="btn btn-outline" onclick="exportCSV(schFiltered,'ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ_${today()}.csv')">CSV</button>
-    <button class="btn btn-primary" onclick="openSchModal()">+ ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ</button>`);
-  setContent('<div class="loading">ÃÂ¢ÃÂÃÂ³ ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ© ÃÂ¬ÃÂ¤ÃÂ...</div>');
+    <button class="btn btn-outline" onclick="exportCSV(schFiltered,'일정_${today()}.csv')">CSV</button>
+    <button class="btn btn-primary" onclick="openSchModal()">+ 일정 등록</button>`);
+  setContent('<div class="loading">⏳ 로딩 중...</div>');
   S.schedules = await SheetsAPI.getSchedules().catch(()=>[]);
   schFiltered = [...S.schedules];
   renderSchTable();
 }
+
 function renderSchTable() {
-  const q  = (document.getElementById('sch-q')||{}).value||'';
+  const q = (document.getElementById('sch-q')||{}).value||'';
   const st = (document.getElementById('sch-st')||{}).value||'';
   const tp = (document.getElementById('sch-tp')||{}).value||'';
   schFiltered = S.schedules.filter(s =>
-    (!q  || (s['ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©']||'').includes(q)||(s['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ']||'').includes(q)) &&
-    (!st || s['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']===st) &&
-    (!tp || s['ÃÂ¬ÃÂÃÂÃÂ«ÃÂ¬ÃÂ´ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ']===tp));
+    (!q || (s['제목']||'').includes(q) || (s['담당자']||'').includes(q)) &&
+    (!st || s['상태']===st) && (!tp || s['업무유형']===tp));
+
   setContent(`
     <div class="card" style="margin-bottom:0">
       <div class="filter-bar">
-        <input id="sch-q" placeholder="ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©, ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ ÃÂªÃÂ²ÃÂÃÂ¬ÃÂÃÂ" oninput="renderSchTable()" value="${(document.getElementById('sch-q')||{}).value||''}">
+        <input id="sch-q" placeholder="🔍 제목, 담당자 검색" oninput="renderSchTable()" value="${(document.getElementById('sch-q')||{}).value||''}">
         <select id="sch-st" onchange="renderSchTable()">
-          <option value="">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ</option><option>ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ</option><option>ÃÂ¬ÃÂ§ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂ¤ÃÂ</option><option>ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ</option><option>ÃÂ¬ÃÂ·ÃÂ¨ÃÂ¬ÃÂÃÂ</option>
+          <option value="">전체 상태</option><option>예정</option><option>진행중</option><option>완료</option><option>취소</option>
         </select>
         <select id="sch-tp" onchange="renderSchTable()">
-          <option value="">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ</option><option>ÃÂ«ÃÂ°ÃÂ°ÃÂ­ÃÂÃÂ¬</option><option>ÃÂ¬ÃÂ ÃÂÃÂªÃÂ²ÃÂ</option><option>ÃÂ¬ÃÂÃÂ´ÃÂ«ÃÂ²ÃÂ¤ÃÂ­ÃÂÃÂ¸</option><option>ÃÂªÃÂ¸ÃÂ´ÃÂªÃÂ¸ÃÂÃÂ«ÃÂÃÂÃÂ¬ÃÂÃÂ</option><option>ÃÂªÃÂ¸ÃÂ°ÃÂ­ÃÂÃÂ</option>
+          <option value="">전체 유형</option><option>배포</option><option>점검</option><option>이벤트</option><option>긴급대응</option><option>기타</option>
         </select>
-        <span class="filter-count">${schFiltered.length}ÃÂªÃÂ±ÃÂ´</span>
+        <span class="filter-count">${schFiltered.length}건</span>
       </div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID</th><th>ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©</th><th>ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ</th><th>ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ</th><th>ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¼</th><th>ÃÂ«ÃÂ§ÃÂÃÂªÃÂ°ÃÂÃÂ¬ÃÂÃÂ¼</th><th>ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ</th><th>ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨</th><th class="del-cell"></th></tr></thead>
-        <tbody>${schFiltered.map(s=>`
-          <tr class="clickable" ondblclick="openSchEdit(${JSON.stringify(s['ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID']||'')})" onclick="showDetail('schedule',${JSON.stringify(s['ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID']||'')})">
-            <td style="color:var(--muted);font-size:11px">${s['ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID']||''}</td>
-            <td style="font-weight:500">${s['ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©']||''}</td>
-            <td>${s['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ']||''}</td>
-            <td><span class="badge badge-gray">${s['ÃÂ¬ÃÂÃÂÃÂ«ÃÂ¬ÃÂ´ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ']||''}</span></td>
-            <td>${s['ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¼']||''}</td>
-            <td>${s['ÃÂ«ÃÂ§ÃÂÃÂªÃÂ°ÃÂÃÂ¬ÃÂÃÂ¼']||''}</td>
-            <td>${statusSelectHTML(s['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']||'ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ',['ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ','ÃÂ¬ÃÂ§ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂ¤ÃÂ','ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ','ÃÂ¬ÃÂ·ÃÂ¨ÃÂ¬ÃÂÃÂ'],'ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ','ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID',s['ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID']||'','handleStatusChange')}</td>
-            <td style="color:var(--muted);font-size:11px">${s['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID']||''}</td>
-            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ','${s['ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID']||''}','${(s['ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©']||'').replace(/'/g,"\\'")}',renderSchedule)" title="ÃÂ¬ÃÂÃÂ­ÃÂ¬ÃÂ ÃÂ">ÃÂ¢ÃÂÃÂ</button></td>
-          </tr>`).join('')||'<tr class="empty-row"><td colspan="9">ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂÃÂ´ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂµÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤</td></tr>'}
+        <thead><tr><th>일정ID</th><th>제목</th><th>담당자</th><th>유형</th><th>시작일</th><th>마감일</th><th>상태</th><th>관련결함</th></tr></thead>
+        <tbody>${schFiltered.map(s=>`<tr>
+          <td style="color:var(--muted);font-size:11px">${s['일정ID']||''}</td>
+          <td style="font-weight:500">${s['제목']||''}</td>
+          <td>${s['담당자']||''}</td>
+          <td><span class="badge badge-gray">${s['업무유형']||''}</span></td>
+          <td>${s['시작일']||''}</td>
+          <td>${s['마감일']||''}</td>
+          <td>${severityBadge(s['상태']||'')}</td>
+          <td style="color:var(--muted);font-size:11px">${s['관련결함ID']||''}</td>
+        </tr>`).join('')||`<tr class="empty-row"><td colspan="8">등록된 일정이 없습니다</td></tr>`}
         </tbody>
       </table></div>
-      <div style="font-size:11px;color:var(--muted);margin-top:10px">ÃÂ°ÃÂÃÂÃÂ¡ ÃÂ­ÃÂÃÂ´ÃÂ«ÃÂ¦ÃÂ­: ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸ÃÂ«ÃÂ³ÃÂ´ÃÂªÃÂ¸ÃÂ° &nbsp;ÃÂÃÂ·&nbsp; ÃÂ«ÃÂÃÂÃÂ«ÃÂ¸ÃÂÃÂ­ÃÂÃÂ´ÃÂ«ÃÂ¦ÃÂ­: ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ</div>
     </div>`);
 }
+
 function openSchModal() {
-  const nextId = 'SCH-'+pad4(S.schedules.length+1);
-  document.getElementById('modal-schedule-title').textContent = 'ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ';
-  document.getElementById('sch-submit-btn').textContent = 'ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ';
-  document.getElementById('sch-submit-btn').onclick = submitSchedule;
-  'sch-id sch-owner sch-title sch-page sch-defect sch-memo'.split(' ').forEach(id=>document.getElementById(id).value='');
+  const nextId = 'SCH-' + pad4(S.schedules.length + 1);
   document.getElementById('sch-id').value = nextId;
   document.getElementById('sch-start').value = today();
-  document.getElementById('sch-end').value = '';
-  document.getElementById('sch-type').value = 'ÃÂ«ÃÂ°ÃÂ°ÃÂ­ÃÂÃÂ¬';
-  document.getElementById('sch-status').value = 'ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ';
-  openModal('modal-schedule');
-}
-function openSchEdit(id) {
-  const s = S.schedules.find(r=>r['ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID']===id); if(!s) return;
-  document.getElementById('modal-schedule-title').textContent = 'ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ';
-  document.getElementById('sch-submit-btn').textContent = 'ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂÃÂ¥';
-  document.getElementById('sch-submit-btn').onclick = ()=>submitScheduleEdit(id);
-  document.getElementById('sch-id').value    = s['ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID']||'';
-  document.getElementById('sch-owner').value = s['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ']||'';
-  document.getElementById('sch-title').value = s['ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©']||'';
-  document.getElementById('sch-type').value  = s['ÃÂ¬ÃÂÃÂÃÂ«ÃÂ¬ÃÂ´ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ']||'ÃÂ«ÃÂ°ÃÂ°ÃÂ­ÃÂÃÂ¬';
-  document.getElementById('sch-status').value= s['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']||'ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ';
-  document.getElementById('sch-start').value = s['ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¼']||'';
-  document.getElementById('sch-end').value   = s['ÃÂ«ÃÂ§ÃÂÃÂªÃÂ°ÃÂÃÂ¬ÃÂÃÂ¼']||'';
-  document.getElementById('sch-page').value  = s['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID']||'';
-  document.getElementById('sch-defect').value= s['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID']||'';
-  document.getElementById('sch-memo').value  = s['ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨']||'';
-  closeModal('modal-detail');
   openModal('modal-schedule');
 }
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ«ÃÂÃÂÃÂªÃÂ´ÃÂÃÂ«ÃÂ¦ÃÂ¬ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ 영향도관리 ════════════════════════════════════════
 let pgFiltered = [];
-async function renderImpact() { /* replaced by product_impact.js */ }
+async function renderImpact() {
+  setActions(`<button class="btn btn-primary" onclick="openPgModal()">+ 페이지 등록</button>`);
+  setContent('<div class="loading">⏳ 로딩 중...</div>');
+  await Promise.all([
+    SheetsAPI.getPages().then(d=>S.pages=d).catch(()=>{}),
+    SheetsAPI.getDefects().then(d=>S.defects=d).catch(()=>{}),
+    SheetsAPI.getSchedules().then(d=>S.schedules=d).catch(()=>{}),
+  ]);
+  pgFiltered = [...S.pages];
+  renderPgTable();
+}
+
 function renderPgTable() {
-  const q    = (document.getElementById('pg-q')||{}).value||'';
+  const q = (document.getElementById('pg-q')||{}).value||'';
   const site = (document.getElementById('pg-site-f')||{}).value||'';
   pgFiltered = S.pages.filter(p =>
-    (!q    || (p['ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ']||'').includes(q)||(p['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ']||'').includes(q)||(p['ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ID']||'').includes(q)) &&
-    (!site || p['ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸']===site));
-  const defPageIds = new Set(S.defects.filter(d=>d['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']!=='ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°').map(d=>d['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID']).filter(Boolean).flatMap(v=>v.split(',')).map(v=>v.trim()));
-  const schedPageIds = new Set(S.schedules.filter(s=>s['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']==='ÃÂ¬ÃÂ§ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂ¤ÃÂ').map(s=>s['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID']).filter(Boolean).flatMap(v=>v.split(',')).map(v=>v.trim()));
-  const sites = [...new Set(S.pages.map(p=>p['ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸']).filter(Boolean))];
+    (!q || (p['페이지명']||'').includes(q) || (p['담당자']||'').includes(q) || (p['화면ID']||'').includes(q)) &&
+    (!site || p['사이트']===site));
+
+  // 주의사항 자동 계산
+  const defPageIds = new Set(S.defects.filter(d=>d['상태']!=='해결').map(d=>d['관련페이지ID']).filter(Boolean).flatMap(v=>v.split(',')).map(v=>v.trim()));
+  const schedPageIds = new Set(S.schedules.filter(d=>d['상태']==='진행중').map(d=>d['관련페이지ID']).filter(Boolean).flatMap(v=>v.split(',')).map(v=>v.trim()));
+
+  const sites = [...new Set(S.pages.map(p=>p['사이트']).filter(Boolean))];
   setContent(`
     <div class="card" style="margin-bottom:0">
       <div class="filter-bar">
-        <input id="pg-q" placeholder="ÃÂ°ÃÂÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ, ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ, ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ID ÃÂªÃÂ²ÃÂÃÂ¬ÃÂÃÂ" oninput="renderPgTable()" value="${(document.getElementById('pg-q')||{}).value||''}">
+        <input id="pg-q" placeholder="🔍 페이지명, 담당자, 화면ID 검색" oninput="renderPgTable()" value="${(document.getElementById('pg-q')||{}).value||''}">
         <select id="pg-site-f" onchange="renderPgTable()">
-          <option value="">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸</option>${sites.map(s=>`<option>${s}</option>`).join('')}
+          <option value="">전체 사이트</option>${sites.map(s=>`<option>${s}</option>`).join('')}
         </select>
-        <span class="filter-count">${pgFiltered.length}ÃÂªÃÂ±ÃÂ´</span>
+        <span class="filter-count">${pgFiltered.length}건</span>
       </div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>ID</th><th>ÃÂ¬ÃÂÃÂ¸ÃÂ«ÃÂÃÂ¤ÃÂ¬ÃÂÃÂ¼</th><th>ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸</th><th>ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ</th><th>ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ID</th><th>ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ</th><th>ÃÂ¬ÃÂµÃÂÃÂªÃÂ·ÃÂ¼ÃÂ«ÃÂ³ÃÂÃÂªÃÂ²ÃÂ½ÃÂ¬ÃÂÃÂ¼</th><th>ÃÂ¬ÃÂ£ÃÂ¼ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¬ÃÂ­ÃÂÃÂ­</th><th>URL</th><th class="del-cell"></th></tr></thead>
+        <thead><tr><th>ID</th><th>썸네일</th><th>사이트</th><th>페이지명</th><th>화면ID</th><th>담당자</th><th>최근변경일</th><th>주의사항</th><th>URL</th></tr></thead>
         <tbody>${pgFiltered.map(p=>{
-          const pid = p['ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID']||'';
+          const pid = p['페이지ID']||'';
           const alerts = [];
-          if(defPageIds.has(pid)) alerts.push('<span class="alert-icon" title="ÃÂ«ÃÂ¯ÃÂ¸ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ° ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨">ÃÂ°ÃÂÃÂÃÂ´</span>');
-          if(schedPageIds.has(pid)) alerts.push('<span class="alert-icon" title="ÃÂ¬ÃÂ§ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂ¤ÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ">ÃÂ¢ÃÂÃÂ ÃÂ¯ÃÂ¸ÃÂ</span>');
-          const thumb = p['ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¬ÃÂ«ÃÂ¦ÃÂ°ÃÂ¬ÃÂÃÂ·URL']
-            ? `<a href="${p['ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¬ÃÂ«ÃÂ¦ÃÂ°ÃÂ¬ÃÂÃÂ·URL']}" target="_blank" onclick="event.stopPropagation()"><img src="${p['ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¬ÃÂ«ÃÂ¦ÃÂ°ÃÂ¬ÃÂÃÂ·URL']}" style="width:40px;height:28px;object-fit:cover;border-radius:3px;border:1px solid var(--border)" onerror="this.style.display='none'"></a>`
-            : '<span style="color:var(--muted);font-size:11px">-</span>';
-          return `<tr class="clickable" ondblclick="openPgEdit(${JSON.stringify(pid)})" onclick="showDetail('impact',${JSON.stringify(pid)})">
+          if(defPageIds.has(pid)) alerts.push('<span class="alert-icon" title="미해결 결함 존재">🔴</span>');
+          if(schedPageIds.has(pid)) alerts.push('<span class="alert-icon" title="진행중 작업 있음">⚠️</span>');
+          const thumb = p['스크린샷URL'] ? `<a href="${p['스크린샷URL']}" target="_blank"><img src="${p['스크린샷URL']}" style="width:40px;height:28px;object-fit:cover;border-radius:3px;border:1px solid var(--border)" onerror="this.style.display='none'"></a>` : '<span style="color:var(--muted);font-size:11px">-</span>';
+          return `<tr>
             <td style="color:var(--muted);font-size:11px">${pid}</td>
             <td>${thumb}</td>
-            <td><span class="badge badge-blue">${p['ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸']||''}</span></td>
-            <td style="font-weight:500">${p['ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ']||''}</td>
-            <td style="font-size:11px;color:var(--muted)">${p['ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ID']||''}</td>
-            <td>${p['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ']||''}</td>
-            <td>${p['ÃÂ¬ÃÂµÃÂÃÂªÃÂ·ÃÂ¼ÃÂ«ÃÂ³ÃÂÃÂªÃÂ²ÃÂ½ÃÂ¬ÃÂÃÂ¼']||''}</td>
+            <td><span class="badge badge-blue">${p['사이트']||''}</span></td>
+            <td style="font-weight:500">${p['페이지명']||''}</td>
+            <td style="font-size:11px;color:var(--muted)">${p['화면ID']||''}</td>
+            <td>${p['담당자']||''}</td>
+            <td>${p['최근변경일']||''}</td>
             <td>${alerts.join(' ')||'-'}</td>
-            <td>${p['URL']?`<a href="${p['URL']}" target="_blank" onclick="event.stopPropagation()" style="color:var(--primary);font-size:11px">ÃÂ«ÃÂ§ÃÂÃÂ­ÃÂÃÂ¬</a>`:''}</td>
-            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ','${pid}','${(p['ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ']||'').replace(/'/g,"\\'")}',renderImpact)" title="ÃÂ¬ÃÂÃÂ­ÃÂ¬ÃÂ ÃÂ">ÃÂ¢ÃÂÃÂ</button></td>
+            <td>${p['URL']?`<a href="${p['URL']}" target="_blank" style="color:var(--primary);font-size:11px">링크</a>`:''}</td>
           </tr>`;
-        }).join('')||'<tr class="empty-row"><td colspan="10">ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂªÃÂ°ÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂµÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤</td></tr>'}
+        }).join('')||`<tr class="empty-row"><td colspan="9">등록된 페이지가 없습니다</td></tr>`}
         </tbody>
       </table></div>
-      <div style="font-size:11px;color:var(--muted);margin-top:10px">ÃÂ°ÃÂÃÂÃÂ¡ ÃÂ­ÃÂÃÂ´ÃÂ«ÃÂ¦ÃÂ­: ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸ÃÂ«ÃÂ³ÃÂ´ÃÂªÃÂ¸ÃÂ° &nbsp;ÃÂÃÂ·&nbsp; ÃÂ«ÃÂÃÂÃÂ«ÃÂ¸ÃÂÃÂ­ÃÂÃÂ´ÃÂ«ÃÂ¦ÃÂ­: ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ</div>
     </div>`);
 }
+
 function openPgModal() {
-  const nextId = 'PG-'+pad4(S.pages.length+1);
-  document.getElementById('modal-impact-title').textContent = 'ÃÂ°ÃÂÃÂÃÂ¥ÃÂ¯ÃÂ¸ÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ';
-  document.getElementById('pg-submit-btn').textContent = 'ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ';
-  document.getElementById('pg-submit-btn').onclick = submitImpact;
-  'pg-id pg-owner pg-site pg-name pg-url pg-screen pg-related pg-screenshot pg-note pg-desc'.split(' ').forEach(id=>document.getElementById(id).value='');
+  const nextId = 'PG-' + pad4(S.pages.length + 1);
   document.getElementById('pg-id').value = nextId;
   document.getElementById('pg-changed').value = today();
-  closeModal('modal-detail');
-  openModal('modal-impact');
-}
-function openPgEdit(id) {
-  const p = S.pages.find(r=>r['ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID']===id); if(!p) return;
-  document.getElementById('modal-impact-title').textContent = 'ÃÂ°ÃÂÃÂÃÂ¥ÃÂ¯ÃÂ¸ÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ';
-  document.getElementById('pg-submit-btn').textContent = 'ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂÃÂ¥';
-  document.getElementById('pg-submit-btn').onclick = ()=>submitImpactEdit(id);
-  document.getElementById('pg-id').value         = p['ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID']||'';
-  document.getElementById('pg-owner').value      = p['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ']||'';
-  document.getElementById('pg-site').value       = p['ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸']||'';
-  document.getElementById('pg-name').value       = p['ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ']||'';
-  document.getElementById('pg-url').value        = p['URL']||'';
-  document.getElementById('pg-screen').value     = p['ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ID']||'';
-  document.getElementById('pg-related').value    = p['ÃÂ¬ÃÂÃÂ°ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID']||'';
-  document.getElementById('pg-screenshot').value = p['ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¬ÃÂ«ÃÂ¦ÃÂ°ÃÂ¬ÃÂÃÂ·URL']||'';
-  document.getElementById('pg-changed').value    = p['ÃÂ¬ÃÂµÃÂÃÂªÃÂ·ÃÂ¼ÃÂ«ÃÂ³ÃÂÃÂªÃÂ²ÃÂ½ÃÂ¬ÃÂÃÂ¼']||'';
-  document.getElementById('pg-note').value       = p['ÃÂ¬ÃÂ£ÃÂ¼ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¬ÃÂ­ÃÂÃÂ­']||'';
-  document.getElementById('pg-desc').value       = p['ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂªÃÂ']||'';
-  closeModal('modal-detail');
   openModal('modal-impact');
 }
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ÃÂªÃÂ´ÃÂÃÂ«ÃÂ¦ÃÂ¬ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ 결함관리 ══════════════════════════════════════════
 let defFiltered = [];
 async function renderDefect() {
   setActions(`
-    <button class="btn btn-outline" onclick="exportCSV(defFiltered,'ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨_${today()}.csv')">CSV</button>
-    <button class="btn btn-primary" onclick="openDefModal()">+ ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ</button>`);
-  setContent('<div class="loading">ÃÂ¢ÃÂÃÂ³ ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ© ÃÂ¬ÃÂ¤ÃÂ...</div>');
+    <button class="btn btn-outline" onclick="exportCSV(defFiltered,'결함_${today()}.csv')">CSV</button>
+    <button class="btn btn-primary" onclick="openDefModal()">+ 결함 등록</button>`);
+  setContent('<div class="loading">⏳ 로딩 중...</div>');
   S.defects = await SheetsAPI.getDefects().catch(()=>[]);
   defFiltered = [...S.defects];
   renderDefTable();
 }
+
 function renderDefTable() {
-  const q  = (document.getElementById('def-q')||{}).value||'';
+  const q = (document.getElementById('def-q')||{}).value||'';
   const sv = (document.getElementById('def-sv')||{}).value||'';
   const st = (document.getElementById('def-st-f')||{}).value||'';
   defFiltered = S.defects.filter(d =>
-    (!q  || (d['ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©']||'').includes(q)||(d['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ']||'').includes(q)) &&
-    (!sv || d['ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ']===sv) &&
-    (!st || d['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']===st));
-  const cnt = sev => S.defects.filter(d=>d['ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ']===sev&&d['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']!=='ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°').length;
+    (!q || (d['제목']||'').includes(q)||(d['담당자']||'').includes(q)) &&
+    (!sv || d['심각도']===sv) && (!st || d['상태']===st));
+
+  const cnt = (sev) => S.defects.filter(d=>d['심각도']===sev && d['상태']!=='해결').length;
   setContent(`
     <div class="grid-4" style="margin-bottom:14px">
-      <div class="stat-card"><div class="stat-label">ÃÂ°ÃÂÃÂÃÂ´ ÃÂªÃÂ¸ÃÂ´ÃÂªÃÂ¸ÃÂ</div><div class="stat-value" style="color:var(--danger)">${cnt('ÃÂªÃÂ¸ÃÂ´ÃÂªÃÂ¸ÃÂ')}</div></div>
-      <div class="stat-card"><div class="stat-label">ÃÂ°ÃÂÃÂÃÂ  ÃÂ«ÃÂÃÂÃÂ¬ÃÂÃÂ</div><div class="stat-value" style="color:#c2410c">${cnt('ÃÂ«ÃÂÃÂÃÂ¬ÃÂÃÂ')}</div></div>
-      <div class="stat-card"><div class="stat-label">ÃÂ°ÃÂÃÂÃÂ¡ ÃÂ¬ÃÂ¤ÃÂÃÂªÃÂ°ÃÂ</div><div class="stat-value" style="color:var(--warning)">${cnt('ÃÂ¬ÃÂ¤ÃÂÃÂªÃÂ°ÃÂ')}</div></div>
-      <div class="stat-card"><div class="stat-label">ÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°</div><div class="stat-value" style="color:var(--success)">${S.defects.filter(d=>d['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']==='ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°').length}</div></div>
+      <div class="stat-card"><div class="stat-label">🔴 긴급</div><div class="stat-value" style="color:var(--danger)">${cnt('긴급')}</div></div>
+      <div class="stat-card"><div class="stat-label">🟠 높음</div><div class="stat-value" style="color:#c2410c">${cnt('높음')}</div></div>
+      <div class="stat-card"><div class="stat-label">🟡 중간</div><div class="stat-value" style="color:var(--warning)">${cnt('중간')}</div></div>
+      <div class="stat-card"><div class="stat-label">✅ 해결</div><div class="stat-value" style="color:var(--success)">${S.defects.filter(d=>d['상태']==='해결').length}</div></div>
     </div>
     <div class="card" style="margin-bottom:0">
       <div class="filter-bar">
-        <input id="def-q" placeholder="ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©, ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ ÃÂªÃÂ²ÃÂÃÂ¬ÃÂÃÂ" oninput="renderDefTable()" value="${(document.getElementById('def-q')||{}).value||''}">
+        <input id="def-q" placeholder="🔍 제목, 담당자 검색" oninput="renderDefTable()" value="${(document.getElementById('def-q')||{}).value||''}">
         <select id="def-sv" onchange="renderDefTable()">
-          <option value="">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ</option><option>ÃÂªÃÂ¸ÃÂ´ÃÂªÃÂ¸ÃÂ</option><option>ÃÂ«ÃÂÃÂÃÂ¬ÃÂÃÂ</option><option>ÃÂ¬ÃÂ¤ÃÂÃÂªÃÂ°ÃÂ</option><option>ÃÂ«ÃÂÃÂ®ÃÂ¬ÃÂÃÂ</option>
+          <option value="">전체 심각도</option><option>긴급</option><option>높음</option><option>중간</option><option>낮음</option>
         </select>
         <select id="def-st-f" onchange="renderDefTable()">
-          <option value="">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ</option><option>ÃÂ«ÃÂ¯ÃÂ¸ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬</option><option>ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬ÃÂ¬ÃÂ¤ÃÂ</option><option>ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°</option><option>ÃÂ«ÃÂ³ÃÂ´ÃÂ«ÃÂ¥ÃÂ</option>
+          <option value="">전체 상태</option><option>미처리</option><option>처리중</option><option>해결</option><option>보류</option>
         </select>
-        <span class="filter-count">${defFiltered.length}ÃÂªÃÂ±ÃÂ´</span>
+        <span class="filter-count">${defFiltered.length}건</span>
       </div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID</th><th>ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©</th><th>ÃÂ¬ÃÂ¹ÃÂ´ÃÂ­ÃÂÃÂÃÂªÃÂ³ÃÂ ÃÂ«ÃÂ¦ÃÂ¬</th><th>ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ</th><th>ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ</th><th>ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ</th><th>ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ¬ÃÂÃÂ¼</th><th>ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ</th><th class="del-cell"></th></tr></thead>
-        <tbody>${defFiltered.map(d=>`
-          <tr class="clickable" ondblclick="openDefEdit(${JSON.stringify(d['ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID']||'')})" onclick="showDetail('defect',${JSON.stringify(d['ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID']||'')})">
-            <td style="color:var(--muted);font-size:11px">${d['ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID']||''}</td>
-            <td style="font-weight:500">${d['ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©']||''}</td>
-            <td><span class="badge badge-gray">${d['ÃÂ¬ÃÂ¹ÃÂ´ÃÂ­ÃÂÃÂÃÂªÃÂ³ÃÂ ÃÂ«ÃÂ¦ÃÂ¬']||''}</span></td>
-            <td>${severityBadge(d['ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ']||'')}</td>
-            <td>${statusSelectHTML(d['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']||'ÃÂ«ÃÂ¯ÃÂ¸ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬',['ÃÂ«ÃÂ¯ÃÂ¸ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬','ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬ÃÂ¬ÃÂ¤ÃÂ','ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°','ÃÂ«ÃÂ³ÃÂ´ÃÂ«ÃÂ¥ÃÂ'],'ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ','ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID',d['ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID']||'','handleStatusChange')}</td>
-            <td>${d['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ']||''}</td>
-            <td>${d['ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ¬ÃÂÃÂ¼']||''}</td>
-            <td style="font-size:11px;color:var(--muted)">${d['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID']||''}</td>
-            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ','${d['ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID']||''}','${(d['ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©']||'').replace(/'/g,"\\'")}',renderDefect)" title="ÃÂ¬ÃÂÃÂ­ÃÂ¬ÃÂ ÃÂ">ÃÂ¢ÃÂÃÂ</button></td>
-          </tr>`).join('')||'<tr class="empty-row"><td colspan="9">ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ÃÂ¬ÃÂÃÂ´ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂµÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤</td></tr>'}
+        <thead><tr><th>결함ID</th><th>제목</th><th>카테고리</th><th>심각도</th><th>상태</th><th>담당자</th><th>등록일</th><th>관련페이지</th></tr></thead>
+        <tbody>${defFiltered.map(d=>`<tr>
+          <td style="color:var(--muted);font-size:11px">${d['결함ID']||''}</td>
+          <td style="font-weight:500">${d['제목']||''}</td>
+          <td><span class="badge badge-gray">${d['카테고리']||''}</span></td>
+          <td>${severityBadge(d['심각도']||'')}</td>
+          <td>${severityBadge(d['상태']||'미처리')}</td>
+          <td>${d['담당자']||''}</td>
+          <td>${d['등록일']||''}</td>
+          <td style="font-size:11px;color:var(--muted)">${d['관련페이지ID']||''}</td>
+        </tr>`).join('')||`<tr class="empty-row"><td colspan="8">등록된 결함이 없습니다</td></tr>`}
         </tbody>
       </table></div>
-      <div style="font-size:11px;color:var(--muted);margin-top:10px">ÃÂ°ÃÂÃÂÃÂ¡ ÃÂ­ÃÂÃÂ´ÃÂ«ÃÂ¦ÃÂ­: ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸ÃÂ«ÃÂ³ÃÂ´ÃÂªÃÂ¸ÃÂ° &nbsp;ÃÂÃÂ·&nbsp; ÃÂ«ÃÂÃÂÃÂ«ÃÂ¸ÃÂÃÂ­ÃÂÃÂ´ÃÂ«ÃÂ¦ÃÂ­: ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ</div>
     </div>`);
 }
+
 function openDefModal() {
-  const nextId = 'DEF-'+pad4(S.defects.length+1);
-  document.getElementById('modal-defect-title').textContent = 'ÃÂ°ÃÂÃÂÃÂ ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ';
-  document.getElementById('def-submit-btn').textContent = 'ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ';
-  document.getElementById('def-submit-btn').onclick = submitDefect;
-  'def-id def-owner def-title def-page def-cause def-solution def-prevent'.split(' ').forEach(id=>document.getElementById(id).value='');
+  const nextId = 'DEF-' + pad4(S.defects.length + 1);
   document.getElementById('def-id').value = nextId;
   document.getElementById('def-date').value = today();
-  document.getElementById('def-symptom').value = '';
-  document.getElementById('def-category').value = 'UI/UX';
-  document.getElementById('def-severity').value = 'ÃÂªÃÂ¸ÃÂ´ÃÂªÃÂ¸ÃÂ';
-  document.getElementById('def-status').value = 'ÃÂ«ÃÂ¯ÃÂ¸ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬';
-  document.getElementById('def-prevent-req').style.display='none';
-  document.getElementById('def-prevent').classList.remove('warn-field');
-  closeModal('modal-detail');
   openModal('modal-defect');
 }
-function openDefEdit(id) {
-  const d = S.defects.find(r=>r['ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID']===id); if(!d) return;
-  document.getElementById('modal-defect-title').textContent = 'ÃÂ°ÃÂÃÂÃÂ ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ';
-  document.getElementById('def-submit-btn').textContent = 'ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂÃÂ¥';
-  document.getElementById('def-submit-btn').onclick = ()=>submitDefectEdit(id);
-  document.getElementById('def-id').value       = d['ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID']||'';
-  document.getElementById('def-owner').value    = d['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ']||'';
-  document.getElementById('def-title').value    = d['ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©']||'';
-  document.getElementById('def-category').value = d['ÃÂ¬ÃÂ¹ÃÂ´ÃÂ­ÃÂÃÂÃÂªÃÂ³ÃÂ ÃÂ«ÃÂ¦ÃÂ¬']||'UI/UX';
-  document.getElementById('def-severity').value = d['ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ']||'ÃÂªÃÂ¸ÃÂ´ÃÂªÃÂ¸ÃÂ';
-  document.getElementById('def-status').value   = d['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']||'ÃÂ«ÃÂ¯ÃÂ¸ÃÂ¬ÃÂ²ÃÂÃÂ«ÃÂ¦ÃÂ¬';
-  document.getElementById('def-page').value     = d['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID']||'';
-  document.getElementById('def-symptom').value  = d['ÃÂ¬ÃÂ¦ÃÂÃÂ¬ÃÂÃÂ']||'';
-  document.getElementById('def-cause').value    = d['ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸']||'';
-  document.getElementById('def-solution').value = d['ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°ÃÂ«ÃÂ°ÃÂ©ÃÂ«ÃÂ²ÃÂ']||'';
-  document.getElementById('def-prevent').value  = d['ÃÂ¬ÃÂÃÂ¬ÃÂ«ÃÂ°ÃÂÃÂ«ÃÂ°ÃÂ©ÃÂ¬ÃÂ§ÃÂ']||'';
-  document.getElementById('def-date').value     = d['ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ¬ÃÂÃÂ¼']||'';
-  checkDefectStatus();
-  closeModal('modal-detail');
-  openModal('modal-defect');
+
+function checkSeverity() {
+  const sv = document.getElementById('def-severity').value;
+  const ownerLabel = document.querySelector('label[for="def-owner"]') || document.getElementById('def-owner').closest('.form-group').querySelector('label');
+  if(sv === '긴급') ownerLabel.style.color = 'var(--danger)';
+  else ownerLabel.style.color = '';
 }
+
 function checkDefectStatus() {
   const st = document.getElementById('def-status').value;
   const req = document.getElementById('def-prevent-req');
   const field = document.getElementById('def-prevent');
-  if(st==='ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°') { req.style.display='inline'; field.classList.add('warn-field'); }
+  if(st === '해결') { req.style.display='inline'; field.classList.add('warn-field'); }
   else { req.style.display='none'; field.classList.remove('warn-field'); }
 }
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ© ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ 이관항목 ══════════════════════════════════════════
 async function renderMigration() {
-  setActions(`<button class="btn btn-primary" onclick="openMigModal()">+ ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ© ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ</button>`);
-  setContent('<div class="loading">ÃÂ¢ÃÂÃÂ³ ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ© ÃÂ¬ÃÂ¤ÃÂ...</div>');
+  setActions('');
+  setContent('<div class="loading">⏳ 로딩 중...</div>');
   S.migrations = await SheetsAPI.getMigrations().catch(()=>[]);
-  renderMigTable();
-}
-function renderMigTable() {
   setContent(`
-    <div class="card" style="margin-bottom:0">
-      <div style="margin-bottom:12px;font-size:12px;color:var(--muted)">ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ²ÃÂ´ ${S.migrations.length}ÃÂªÃÂ±ÃÂ´</div>
+    <div class="card">
+      <div class="card-title">이관항목 목록 (${S.migrations.length}건)</div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID</th><th>ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂªÃÂ</th><th>ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ</th><th>ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ¬ÃÂÃÂ¼</th><th>ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ</th><th>ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ</th><th>ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ</th><th>ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨</th><th class="del-cell"></th></tr></thead>
-        <tbody>${S.migrations.map(m=>`
-          <tr class="clickable" ondblclick="openMigEdit(${JSON.stringify(m['ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID']||'')})" onclick="showDetail('migration',${JSON.stringify(m['ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID']||'')})">
-            <td style="color:var(--muted);font-size:11px">${m['ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID']||''}</td>
-            <td style="font-weight:500">${m['ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂªÃÂ']||''}</td>
-            <td>${m['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ']||''}</td>
-            <td>${m['ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ¬ÃÂÃÂ¼']||''}</td>
-            <td>${statusSelectHTML(m['ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']||'ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂ¤ÃÂ',['ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂ¤ÃÂ','ÃÂªÃÂ²ÃÂÃÂ­ÃÂÃÂ ÃÂ¬ÃÂ¤ÃÂ','ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ','ÃÂ«ÃÂ³ÃÂ´ÃÂ«ÃÂ¥ÃÂ'],'ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©','ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID',m['ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID']||'','handleStatusChange')}</td>
-            <td style="color:var(--danger);font-size:12px">${m['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ']||''}</td>
-            <td style="font-size:11px;color:var(--muted)">${m['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID']||''}</td>
-            <td style="font-size:11px;color:var(--muted)">${m['ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨']||''}</td>
-            <td class="del-cell"><button class="del-btn" onclick="event.stopPropagation();handleDelete('ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©','${m['ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID']||''}','${(m['ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂªÃÂ']||'').replace(/'/g,"\\'")}',renderMigration)" title="ÃÂ¬ÃÂÃÂ­ÃÂ¬ÃÂ ÃÂ">ÃÂ¢ÃÂÃÂ</button></td>
-          </tr>`).join('')||'<tr class="empty-row"><td colspan="9">ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ¬ÃÂÃÂ´ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂµÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤</td></tr>'}
+        <thead><tr><th>이관ID</th><th>항목명</th><th>담당자</th><th>이관일</th><th>준비상태</th><th>위험요소</th><th>관련일정</th><th>메모</th></tr></thead>
+        <tbody>${S.migrations.map(m=>`<tr>
+          <td style="color:var(--muted);font-size:11px">${m['이관ID']||''}</td>
+          <td style="font-weight:500">${m['항목명']||''}</td>
+          <td>${m['담당자']||''}</td>
+          <td>${m['이관일']||''}</td>
+          <td>${severityBadge(m['준비상태']||'')}</td>
+          <td style="color:var(--danger);font-size:12px">${m['위험요소']||''}</td>
+          <td style="font-size:11px;color:var(--muted)">${m['관련일정ID']||''}</td>
+          <td style="font-size:11px;color:var(--muted)">${m['메모']||''}</td>
+        </tr>`).join('')||`<tr class="empty-row"><td colspan="8">등록된 이관항목이 없습니다</td></tr>`}
         </tbody>
       </table></div>
-      <div style="font-size:11px;color:var(--muted);margin-top:10px">ÃÂ°ÃÂÃÂÃÂ¡ ÃÂ­ÃÂÃÂ´ÃÂ«ÃÂ¦ÃÂ­: ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸ÃÂ«ÃÂ³ÃÂ´ÃÂªÃÂ¸ÃÂ° &nbsp;ÃÂÃÂ·&nbsp; ÃÂ«ÃÂÃÂÃÂ«ÃÂ¸ÃÂÃÂ­ÃÂÃÂ´ÃÂ«ÃÂ¦ÃÂ­: ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ</div>
     </div>`);
 }
-function openMigModal() {
-  const nextId = 'MIG-'+pad4(S.migrations.length+1);
-  document.getElementById('modal-migration-title').textContent = 'ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ© ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ';
-  document.getElementById('mig-submit-btn').textContent = 'ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ';
-  document.getElementById('mig-submit-btn').onclick = submitMigration;
-  'mig-id mig-owner mig-name mig-sch mig-page mig-risk mig-memo'.split(' ').forEach(id=>document.getElementById(id).value='');
-  document.getElementById('mig-id').value = nextId;
-  document.getElementById('mig-date').value = today();
-  document.getElementById('mig-status').value = 'ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂ¤ÃÂ';
-  closeModal('modal-detail');
-  openModal('modal-migration');
-}
-function openMigEdit(id) {
-  const m = S.migrations.find(r=>r['ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID']===id); if(!m) return;
-  document.getElementById('modal-migration-title').textContent = 'ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ© ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ';
-  document.getElementById('mig-submit-btn').textContent = 'ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂÃÂ¥';
-  document.getElementById('mig-submit-btn').onclick = ()=>submitMigrationEdit(id);
-  document.getElementById('mig-id').value     = m['ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID']||'';
-  document.getElementById('mig-owner').value  = m['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ']||'';
-  document.getElementById('mig-name').value   = m['ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂªÃÂ']||'';
-  document.getElementById('mig-date').value   = m['ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ¬ÃÂÃÂ¼']||'';
-  document.getElementById('mig-status').value = m['ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']||'ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂ¤ÃÂ';
-  document.getElementById('mig-sch').value    = m['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID']||'';
-  document.getElementById('mig-page').value   = m['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID']||'';
-  document.getElementById('mig-risk').value   = m['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ']||'';
-  document.getElementById('mig-memo').value   = m['ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨']||'';
-  closeModal('modal-detail');
-  openModal('modal-migration');
-}
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂÃÂÃÂ«ÃÂ§ÃÂÃÂ­ÃÂÃÂ¬ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ 운영링크 ══════════════════════════════════════════
 async function renderLinks() {
   setActions('');
-  setContent('<div class="loading">ÃÂ¢ÃÂÃÂ³ ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ© ÃÂ¬ÃÂ¤ÃÂ...</div>');
+  setContent('<div class="loading">⏳ 로딩 중...</div>');
   S.links = await SheetsAPI.getLinks().catch(()=>[]);
-  const cats = [...new Set(S.links.map(l=>l['ÃÂ«ÃÂ¶ÃÂÃÂ«ÃÂ¥ÃÂ']).filter(Boolean))];
-  if(!cats.length) { setContent('<div class="card" style="text-align:center;color:var(--muted);padding:40px">ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ«ÃÂÃÂ ÃÂ«ÃÂ§ÃÂÃÂ­ÃÂÃÂ¬ÃÂªÃÂ°ÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂµÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤</div>'); return; }
+
+  const cats = [...new Set(S.links.map(l=>l['분류']).filter(Boolean))];
+  if(!cats.length) { setContent('<div class="card" style="text-align:center;color:var(--muted);padding:40px">등록된 링크가 없습니다</div>'); return; }
+
   setContent(cats.map(cat=>`
     <div class="card">
       <div class="card-title">${cat}</div>
       <div class="link-grid">
-        ${S.links.filter(l=>l['ÃÂ«ÃÂ¶ÃÂÃÂ«ÃÂ¥ÃÂ']===cat).sort((a,b)=>+(a['ÃÂ«ÃÂÃÂ¸ÃÂ¬ÃÂ¶ÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ']||99)-(+(b['ÃÂ«ÃÂÃÂ¸ÃÂ¬ÃÂ¶ÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ']||99))).map(l=>`
+        ${S.links.filter(l=>l['분류']===cat).sort((a,b)=>+(a['노출순서']||99)-(+(b['노출순서']||99))).map(l=>`
           <a class="link-card" href="${l['URL']||'#'}" target="_blank">
-            <span class="link-icon">ÃÂ°ÃÂÃÂÃÂ</span>
+            <span class="link-icon">🔗</span>
             <div style="min-width:0">
-              <div class="link-name">${l['ÃÂ¬ÃÂÃÂ´ÃÂ«ÃÂ¦ÃÂ']||''}</div>
-              ${l['ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂªÃÂ']?`<div class="link-desc">${l['ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂªÃÂ']}</div>`:''}
+              <div class="link-name">${l['이름']||''}</div>
+              ${l['설명']?`<div class="link-desc">${l['설명']}</div>`:''}
               <div class="link-url">${l['URL']||''}</div>
             </div>
           </a>`).join('')}
@@ -883,119 +641,26 @@ async function renderLinks() {
     </div>`).join(''));
 }
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸ ÃÂ«ÃÂªÃÂ¨ÃÂ«ÃÂÃÂ¬ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
-function showDetail(type, id) {
-  const stores = { schedule: S.schedules, impact: S.pages, defect: S.defects, migration: S.migrations };
-  const idKeys  = { schedule:'ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID', impact:'ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID', defect:'ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID', migration:'ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID' };
-  const data = stores[type] && stores[type].find(r => r[idKeys[type]]===id);
-  if (!data) return;
-  _detailContext = { type, id };
-
-  const titles = { schedule:'ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸', impact:'ÃÂ°ÃÂÃÂÃÂ¥ÃÂ¯ÃÂ¸ÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸', defect:'ÃÂ°ÃÂÃÂÃÂ ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸', migration:'ÃÂ°ÃÂÃÂÃÂ ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ© ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸' };
-  document.getElementById('detail-title').textContent = titles[type];
-
-  const field = (label, val, full=false) =>
-    `<div class="detail-item${full?' full':''}">
-       <label>${label}</label>
-       <div class="val">${val||'<span style="color:#ccc">-</span>'}</div>
-     </div>`;
-
-  let body = '';
-  if (type === 'schedule') {
-    body = `<div class="detail-grid">
-      ${field('ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID', data['ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID'])} ${field('ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ', data['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ'])}
-      ${field('ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©', data['ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©'], true)}
-      ${field('ÃÂ¬ÃÂÃÂÃÂ«ÃÂ¬ÃÂ´ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ', severityBadge(data['ÃÂ¬ÃÂÃÂÃÂ«ÃÂ¬ÃÂ´ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ']))} ${field('ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ', severityBadge(data['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']))}
-      ${field('ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¼', data['ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¼'])} ${field('ÃÂ«ÃÂ§ÃÂÃÂªÃÂ°ÃÂÃÂ¬ÃÂÃÂ¼', data['ÃÂ«ÃÂ§ÃÂÃÂªÃÂ°ÃÂÃÂ¬ÃÂÃÂ¼'])}
-      ${field('ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID', data['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID'])} ${field('ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID', data['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID'])}
-      ${field('ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨', data['ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨'], true)}
-    </div>`;
-  } else if (type === 'impact') {
-    const thumb = data['ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¬ÃÂ«ÃÂ¦ÃÂ°ÃÂ¬ÃÂÃÂ·URL'] ? `<a href="${data['ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¬ÃÂ«ÃÂ¦ÃÂ°ÃÂ¬ÃÂÃÂ·URL']}" target="_blank"><img src="${data['ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¬ÃÂ«ÃÂ¦ÃÂ°ÃÂ¬ÃÂÃÂ·URL']}" style="max-width:100%;border-radius:6px;border:1px solid var(--border);margin-top:4px"></a>` : '';
-    body = `<div class="detail-grid">
-      ${field('ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID', data['ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID'])} ${field('ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ', data['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ'])}
-      ${field('ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸', `<span class="badge badge-blue">${data['ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸']||''}</span>`)} ${field('ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ', data['ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ'])}
-      ${field('ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ID', data['ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ID'])} ${field('ÃÂ¬ÃÂµÃÂÃÂªÃÂ·ÃÂ¼ÃÂ«ÃÂ³ÃÂÃÂªÃÂ²ÃÂ½ÃÂ¬ÃÂÃÂ¼', data['ÃÂ¬ÃÂµÃÂÃÂªÃÂ·ÃÂ¼ÃÂ«ÃÂ³ÃÂÃÂªÃÂ²ÃÂ½ÃÂ¬ÃÂÃÂ¼'])}
-      ${field('URL', data['URL']?`<a href="${data['URL']}" target="_blank" style="color:var(--primary)">${data['URL']}</a>`:'')}
-      ${field('ÃÂ¬ÃÂÃÂ°ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID', data['ÃÂ¬ÃÂÃÂ°ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID'])} 
-      ${field('ÃÂ¬ÃÂ£ÃÂ¼ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¬ÃÂ­ÃÂÃÂ­', data['ÃÂ¬ÃÂ£ÃÂ¼ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¬ÃÂ­ÃÂÃÂ­'], true)}
-      ${field('ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂªÃÂ', data['ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂªÃÂ'], true)}
-      ${thumb?`<div class="detail-item full"><label>ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¬ÃÂ«ÃÂ¦ÃÂ°ÃÂ¬ÃÂÃÂ·</label>${thumb}</div>`:''}
-    </div>`;
-  } else if (type === 'defect') {
-    body = `<div class="detail-grid">
-      ${field('ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID', data['ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID'])} ${field('ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ', data['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ'])}
-      ${field('ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©', data['ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©'], true)}
-      ${field('ÃÂ¬ÃÂ¹ÃÂ´ÃÂ­ÃÂÃÂÃÂªÃÂ³ÃÂ ÃÂ«ÃÂ¦ÃÂ¬', `<span class="badge badge-gray">${data['ÃÂ¬ÃÂ¹ÃÂ´ÃÂ­ÃÂÃÂÃÂªÃÂ³ÃÂ ÃÂ«ÃÂ¦ÃÂ¬']||''}</span>`)} ${field('ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ', severityBadge(data['ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ']))}
-      ${field('ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ', severityBadge(data['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']))} ${field('ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ¬ÃÂÃÂ¼', data['ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ¬ÃÂÃÂ¼'])}
-      ${field('ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID', data['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID'])} <hr class="detail-divider">
-      ${field('ÃÂ¬ÃÂ¦ÃÂÃÂ¬ÃÂÃÂ', data['ÃÂ¬ÃÂ¦ÃÂÃÂ¬ÃÂÃÂ'], true)}
-      ${field('ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸', data['ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸'], true)}
-      ${field('ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°ÃÂ«ÃÂ°ÃÂ©ÃÂ«ÃÂ²ÃÂ', data['ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°ÃÂ«ÃÂ°ÃÂ©ÃÂ«ÃÂ²ÃÂ'], true)}
-      ${field('ÃÂ¬ÃÂÃÂ¬ÃÂ«ÃÂ°ÃÂÃÂ«ÃÂ°ÃÂ©ÃÂ¬ÃÂ§ÃÂ', data['ÃÂ¬ÃÂÃÂ¬ÃÂ«ÃÂ°ÃÂÃÂ«ÃÂ°ÃÂ©ÃÂ¬ÃÂ§ÃÂ'], true)}
-    </div>`;
-  } else if (type === 'migration') {
-    body = `<div class="detail-grid">
-      ${field('ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID', data['ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID'])} ${field('ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ', data['ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ'])}
-      ${field('ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂªÃÂ', data['ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂªÃÂ'], true)}
-      ${field('ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ¬ÃÂÃÂ¼', data['ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ¬ÃÂÃÂ¼'])} ${field('ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ', severityBadge(data['ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ']))}
-      ${field('ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID', data['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID'])} ${field('ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID', data['ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID'])}
-      ${field('ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ', data['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ']?`<span style="color:var(--danger)">${data['ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ']}</span>`:'')} 
-      ${field('ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨', data['ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨'], true)}
-    </div>`;
-  }
-  document.getElementById('detail-body').innerHTML = body;
-  openModal('modal-detail');
-}
-function openEditFromDetail() {
-  const { type, id } = _detailContext;
-  if (!type || !id) return;
-  if (type==='schedule')  openSchEdit(id);
-  else if (type==='impact') openPgEdit(id);
-  else if (type==='defect') openDefEdit(id);
-  else if (type==='migration') openMigEdit(id);
-}
-
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂ¼ ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂ¶ÃÂ ÃÂ¢ÃÂÃÂ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ 폼 제출 ═══════════════════════════════════════════
 async function submitSchedule() {
   const title = document.getElementById('sch-title').value.trim();
   const owner = document.getElementById('sch-owner').value.trim();
-  if (!title||!owner) { toast('ÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©ÃÂªÃÂ³ÃÂ¼ ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤'); return; }
+  if (!title||!owner) { toast('❌ 제목과 담당자는 필수입니다'); return; }
   const row = {
-    'ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID':   document.getElementById('sch-id').value,
-    'ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©':title,'ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ':owner,
-    'ÃÂ¬ÃÂÃÂÃÂ«ÃÂ¬ÃÂ´ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ': document.getElementById('sch-type').value,
-    'ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ':     document.getElementById('sch-status').value,
-    'ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¼':   document.getElementById('sch-start').value,
-    'ÃÂ«ÃÂ§ÃÂÃÂªÃÂ°ÃÂÃÂ¬ÃÂÃÂ¼':   document.getElementById('sch-end').value,
-    'ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID': document.getElementById('sch-page').value,
-    'ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID':   document.getElementById('sch-defect').value,
-    'ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨':     document.getElementById('sch-memo').value,
+    '일정ID':document.getElementById('sch-id').value,
+    '제목':title,'담당자':owner,
+    '업무유형':document.getElementById('sch-type').value,
+    '상태':document.getElementById('sch-status').value,
+    '시작일':document.getElementById('sch-start').value,
+    '마감일':document.getElementById('sch-end').value,
+    '관련페이지ID':document.getElementById('sch-page').value,
+    '관련결함ID':document.getElementById('sch-defect').value,
+    '메모':document.getElementById('sch-memo').value,
   };
-  toast('ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂÃÂ¥ ÃÂ¬ÃÂ¤ÃÂ...');
+  toast('⏳ 저장 중...');
   const r = await SheetsAPI.addSchedule(row);
   closeModal('modal-schedule');
-  toast(r.ok ? 'ÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ' : `ÃÂ¢ÃÂÃÂ ${r.message}`);
-  if(r.ok) setTimeout(renderSchedule, 800);
-}
-async function submitScheduleEdit(id) {
-  const title = document.getElementById('sch-title').value.trim();
-  const owner = document.getElementById('sch-owner').value.trim();
-  if (!title||!owner) { toast('ÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©ÃÂªÃÂ³ÃÂ¼ ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤'); return; }
-  const row = {
-    'ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID': id, 'ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©':title,'ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ':owner,
-    'ÃÂ¬ÃÂÃÂÃÂ«ÃÂ¬ÃÂ´ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ': document.getElementById('sch-type').value,
-    'ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ':     document.getElementById('sch-status').value,
-    'ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¼':   document.getElementById('sch-start').value,
-    'ÃÂ«ÃÂ§ÃÂÃÂªÃÂ°ÃÂÃÂ¬ÃÂÃÂ¼':   document.getElementById('sch-end').value,
-    'ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID': document.getElementById('sch-page').value,
-    'ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID':   document.getElementById('sch-defect').value,
-    'ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨':     document.getElementById('sch-memo').value,
-  };
-  toast('ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂ¤ÃÂ...');
-  const r = await SheetsAPI.updateRow('ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ', row);
-  closeModal('modal-schedule');
-  toast(r.ok ? 'ÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ' : `ÃÂ¢ÃÂÃÂ ${r.message}`);
+  toast(r.ok ? '✅ 일정 등록 완료' : `❌ ${r.message}`);
   if(r.ok) setTimeout(renderSchedule, 800);
 }
 
@@ -1004,153 +669,70 @@ async function submitDefect() {
   const owner = document.getElementById('def-owner').value.trim();
   const status = document.getElementById('def-status').value;
   const prevent = document.getElementById('def-prevent').value.trim();
-  if(!title||!owner) { toast('ÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©ÃÂªÃÂ³ÃÂ¼ ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤'); return; }
-  if(status==='ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°'&&!prevent) { toast('ÃÂ¢ÃÂÃÂ ÃÂ¯ÃÂ¸ÃÂ ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ° ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ ÃÂ¬ÃÂÃÂ¬ÃÂ«ÃÂ°ÃÂÃÂ«ÃÂ°ÃÂ©ÃÂ¬ÃÂ§ÃÂ ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ¬ÃÂÃÂ´ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤'); return; }
+  if(!title||!owner) { toast('❌ 제목과 담당자는 필수입니다'); return; }
+  if(status==='해결'&&!prevent) { toast('⚠️ 해결 상태에서는 재발방지 항목이 필수입니다'); return; }
   const row = {
-    'ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID': document.getElementById('def-id').value,
-    'ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©':title,'ÃÂ¬ÃÂ¹ÃÂ´ÃÂ­ÃÂÃÂÃÂªÃÂ³ÃÂ ÃÂ«ÃÂ¦ÃÂ¬':document.getElementById('def-category').value,
-    'ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ': document.getElementById('def-severity').value, 'ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ':status,
-    'ÃÂ¬ÃÂ¦ÃÂÃÂ¬ÃÂÃÂ': document.getElementById('def-symptom').value,
-    'ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸': document.getElementById('def-cause').value,
-    'ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°ÃÂ«ÃÂ°ÃÂ©ÃÂ«ÃÂ²ÃÂ': document.getElementById('def-solution').value,
-    'ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID': document.getElementById('def-page').value,
-    'ÃÂ¬ÃÂÃÂ¬ÃÂ«ÃÂ°ÃÂÃÂ«ÃÂ°ÃÂ©ÃÂ¬ÃÂ§ÃÂ':prevent,'ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ':owner,
-    'ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ¬ÃÂÃÂ¼': document.getElementById('def-date').value,
+    '결함ID':document.getElementById('def-id').value,
+    '제목':title,'카테고리':document.getElementById('def-category').value,
+    '심각도':document.getElementById('def-severity').value,
+    '상태':status,
+    '증상':document.getElementById('def-symptom').value,
+    '원인':document.getElementById('def-cause').value,
+    '해결방법':document.getElementById('def-solution').value,
+    '관련페이지ID':document.getElementById('def-page').value,
+    '재발방지':prevent,'담당자':owner,
+    '등록일':document.getElementById('def-date').value,
   };
-  toast('ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂÃÂ¥ ÃÂ¬ÃÂ¤ÃÂ...');
+  toast('⏳ 저장 중...');
   const r = await SheetsAPI.addDefect(row);
   closeModal('modal-defect');
-  toast(r.ok ? 'ÃÂ¢ÃÂÃÂ ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ' : `ÃÂ¢ÃÂÃÂ ${r.message}`);
-  if(r.ok) setTimeout(renderDefect, 800);
-}
-async function submitDefectEdit(id) {
-  const title = document.getElementById('def-title').value.trim();
-  const owner = document.getElementById('def-owner').value.trim();
-  const status = document.getElementById('def-status').value;
-  const prevent = document.getElementById('def-prevent').value.trim();
-  if(!title||!owner) { toast('ÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©ÃÂªÃÂ³ÃÂ¼ ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤'); return; }
-  if(status==='ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°'&&!prevent) { toast('ÃÂ¢ÃÂÃÂ ÃÂ¯ÃÂ¸ÃÂ ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ° ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ ÃÂ¬ÃÂÃÂ¬ÃÂ«ÃÂ°ÃÂÃÂ«ÃÂ°ÃÂ©ÃÂ¬ÃÂ§ÃÂ ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ¬ÃÂÃÂ´ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤'); return; }
-  const row = {
-    'ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ID':id,'ÃÂ¬ÃÂ ÃÂÃÂ«ÃÂªÃÂ©':title,'ÃÂ¬ÃÂ¹ÃÂ´ÃÂ­ÃÂÃÂÃÂªÃÂ³ÃÂ ÃÂ«ÃÂ¦ÃÂ¬':document.getElementById('def-category').value,
-    'ÃÂ¬ÃÂÃÂ¬ÃÂªÃÂ°ÃÂÃÂ«ÃÂÃÂ':document.getElementById('def-severity').value,'ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ':status,
-    'ÃÂ¬ÃÂ¦ÃÂÃÂ¬ÃÂÃÂ':document.getElementById('def-symptom').value,
-    'ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¸':document.getElementById('def-cause').value,
-    'ÃÂ­ÃÂÃÂ´ÃÂªÃÂ²ÃÂ°ÃÂ«ÃÂ°ÃÂ©ÃÂ«ÃÂ²ÃÂ':document.getElementById('def-solution').value,
-    'ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID':document.getElementById('def-page').value,
-    'ÃÂ¬ÃÂÃÂ¬ÃÂ«ÃÂ°ÃÂÃÂ«ÃÂ°ÃÂ©ÃÂ¬ÃÂ§ÃÂ':prevent,'ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ':owner,
-    'ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂÃÂ¬ÃÂÃÂ¼':document.getElementById('def-date').value,
-  };
-  toast('ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂ¤ÃÂ...');
-  const r = await SheetsAPI.updateRow('ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ÃÂ¬ÃÂÃÂ ÃÂ­ÃÂÃÂ', row);
-  closeModal('modal-defect');
-  toast(r.ok ? 'ÃÂ¢ÃÂÃÂ ÃÂªÃÂ²ÃÂ°ÃÂ­ÃÂÃÂ¨ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ' : `ÃÂ¢ÃÂÃÂ ${r.message}`);
+  toast(r.ok ? '✅ 결함 등록 완료' : `❌ ${r.message}`);
   if(r.ok) setTimeout(renderDefect, 800);
 }
 
 async function submitImpact() {
-  const name  = document.getElementById('pg-name').value.trim();
+  const name = document.getElementById('pg-name').value.trim();
   const owner = document.getElementById('pg-owner').value.trim();
-  const site  = document.getElementById('pg-site').value.trim();
-  if(!name||!owner||!site) { toast('ÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸ÃÂ«ÃÂªÃÂ, ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ, ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤'); return; }
+  const site = document.getElementById('pg-site').value.trim();
+  if(!name||!owner||!site) { toast('❌ 사이트명, 페이지명, 담당자는 필수입니다'); return; }
   const row = {
-    'ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID': document.getElementById('pg-id').value,
-    'ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸':site,'ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ':name,'ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ':owner,
-    'URL': document.getElementById('pg-url').value,
-    'ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ID': document.getElementById('pg-screen').value,
-    'ÃÂ¬ÃÂÃÂ°ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID': document.getElementById('pg-related').value,
-    'ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¬ÃÂ«ÃÂ¦ÃÂ°ÃÂ¬ÃÂÃÂ·URL': document.getElementById('pg-screenshot').value,
-    'ÃÂ¬ÃÂµÃÂÃÂªÃÂ·ÃÂ¼ÃÂ«ÃÂ³ÃÂÃÂªÃÂ²ÃÂ½ÃÂ¬ÃÂÃÂ¼': document.getElementById('pg-changed').value,
-    'ÃÂ¬ÃÂ£ÃÂ¼ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¬ÃÂ­ÃÂÃÂ­': document.getElementById('pg-note').value,
-    'ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂªÃÂ': document.getElementById('pg-desc').value,
-  };
-  toast('ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂÃÂ¥ ÃÂ¬ÃÂ¤ÃÂ...');
-  const r = await SheetsAPI.appendRow('ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ', row);
-  closeModal('modal-impact');
-  toast(r.ok ? 'ÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ' : `ÃÂ¢ÃÂÃÂ ${r.message}`);
-  if(r.ok) setTimeout(renderImpact, 800);
-}
-async function submitImpactEdit(id) {
-  const name  = document.getElementById('pg-name').value.trim();
-  const owner = document.getElementById('pg-owner').value.trim();
-  const site  = document.getElementById('pg-site').value.trim();
-  if(!name||!owner||!site) { toast('ÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸ÃÂ«ÃÂªÃÂ, ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ, ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤'); return; }
-  const row = {
-    'ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID':id,'ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ´ÃÂ­ÃÂÃÂ¸':site,'ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂÃÂ«ÃÂªÃÂ':name,'ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ':owner,
+    '페이지ID':document.getElementById('pg-id').value,
+    '사이트':site,'페이지명':name,'담당자':owner,
     'URL':document.getElementById('pg-url').value,
-    'ÃÂ­ÃÂÃÂÃÂ«ÃÂ©ÃÂ´ID':document.getElementById('pg-screen').value,
-    'ÃÂ¬ÃÂÃÂ°ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID':document.getElementById('pg-related').value,
-    'ÃÂ¬ÃÂÃÂ¤ÃÂ­ÃÂÃÂ¬ÃÂ«ÃÂ¦ÃÂ°ÃÂ¬ÃÂÃÂ·URL':document.getElementById('pg-screenshot').value,
-    'ÃÂ¬ÃÂµÃÂÃÂªÃÂ·ÃÂ¼ÃÂ«ÃÂ³ÃÂÃÂªÃÂ²ÃÂ½ÃÂ¬ÃÂÃÂ¼':document.getElementById('pg-changed').value,
-    'ÃÂ¬ÃÂ£ÃÂ¼ÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ¬ÃÂ­ÃÂÃÂ­':document.getElementById('pg-note').value,
-    'ÃÂ¬ÃÂÃÂ¤ÃÂ«ÃÂªÃÂ':document.getElementById('pg-desc').value,
+    '화면ID':document.getElementById('pg-screen').value,
+    '연관페이지ID':document.getElementById('pg-related').value,
+    '스크린샷URL':document.getElementById('pg-screenshot').value,
+    '최근변경일':document.getElementById('pg-changed').value,
+    '주의사항':document.getElementById('pg-note').value,
+    '설명':document.getElementById('pg-desc').value,
   };
-  toast('ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂ¤ÃÂ...');
-  const r = await SheetsAPI.updateRow('ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ', row);
+  toast('⏳ 저장 중...');
+  const r = await SheetsAPI.appendRow('영향페이지', row);
   closeModal('modal-impact');
-  toast(r.ok ? 'ÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ' : `ÃÂ¢ÃÂÃÂ ${r.message}`);
+  toast(r.ok ? '✅ 페이지 등록 완료' : `❌ ${r.message}`);
   if(r.ok) setTimeout(renderImpact, 800);
 }
 
-async function submitMigration() {
-  const name  = document.getElementById('mig-name').value.trim();
-  const owner = document.getElementById('mig-owner').value.trim();
-  if(!name||!owner) { toast('ÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂªÃÂÃÂªÃÂ³ÃÂ¼ ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤'); return; }
-  const row = {
-    'ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID':   document.getElementById('mig-id').value,
-    'ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂªÃÂ':name,'ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ':owner,
-    'ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ¬ÃÂÃÂ¼':   document.getElementById('mig-date').value,
-    'ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ': document.getElementById('mig-status').value,
-    'ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID': document.getElementById('mig-sch').value,
-    'ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID': document.getElementById('mig-page').value,
-    'ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ': document.getElementById('mig-risk').value,
-    'ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨':     document.getElementById('mig-memo').value,
-  };
-  toast('ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂÃÂ¥ ÃÂ¬ÃÂ¤ÃÂ...');
-  const r = await SheetsAPI.appendRow('ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©', row);
-  closeModal('modal-migration');
-  toast(r.ok ? 'ÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ© ÃÂ«ÃÂÃÂ±ÃÂ«ÃÂ¡ÃÂ ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ' : `ÃÂ¢ÃÂÃÂ ${r.message}`);
-  if(r.ok) setTimeout(renderMigration, 800);
-}
-async function submitMigrationEdit(id) {
-  const name  = document.getElementById('mig-name').value.trim();
-  const owner = document.getElementById('mig-owner').value.trim();
-  if(!name||!owner) { toast('ÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂªÃÂÃÂªÃÂ³ÃÂ¼ ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂ ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ«ÃÂÃÂÃÂ«ÃÂÃÂ¤'); return; }
-  const row = {
-    'ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂID':id,'ÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©ÃÂ«ÃÂªÃÂ':name,'ÃÂ«ÃÂÃÂ´ÃÂ«ÃÂÃÂ¹ÃÂ¬ÃÂÃÂ':owner,
-    'ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ¬ÃÂÃÂ¼': document.getElementById('mig-date').value,
-    'ÃÂ¬ÃÂ¤ÃÂÃÂ«ÃÂ¹ÃÂÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ': document.getElementById('mig-status').value,
-    'ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ¬ÃÂÃÂ¼ÃÂ¬ÃÂ ÃÂID': document.getElementById('mig-sch').value,
-    'ÃÂªÃÂ´ÃÂÃÂ«ÃÂ ÃÂ¨ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ´ÃÂ¬ÃÂ§ÃÂID': document.getElementById('mig-page').value,
-    'ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂÃÂ¬ÃÂÃÂ': document.getElementById('mig-risk').value,
-    'ÃÂ«ÃÂ©ÃÂÃÂ«ÃÂªÃÂ¨': document.getElementById('mig-memo').value,
-  };
-  toast('ÃÂ¢ÃÂÃÂ³ ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂ¤ÃÂ...');
-  const r = await SheetsAPI.updateRow('ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ©', row);
-  closeModal('modal-migration');
-  toast(r.ok ? 'ÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂÃÂ´ÃÂªÃÂ´ÃÂÃÂ­ÃÂÃÂ­ÃÂ«ÃÂªÃÂ© ÃÂ¬ÃÂÃÂÃÂ¬ÃÂ ÃÂ ÃÂ¬ÃÂÃÂÃÂ«ÃÂ£ÃÂ' : `ÃÂ¢ÃÂÃÂ ${r.message}`);
-  if(r.ok) setTimeout(renderMigration, 800);
-}
-
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂ¬ÃÂ­ÃÂÃÂ¼ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ 헬퍼 ════════════════════════════════════════════
 function setContent(html) { document.getElementById('content').innerHTML = html; }
 function setActions(html) { document.getElementById('topbar-actions').innerHTML = html; }
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ GitHub Token ÃÂ¬ÃÂÃÂ¤ÃÂ¬ÃÂ ÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ GitHub Token 설정 ════════════════════════════════
 function checkToken() {
   if (!window.PORTAL_CONFIG.GITHUB_TOKEN) {
-    const t = prompt('ÃÂ¬ÃÂÃÂ°ÃÂªÃÂ¸ÃÂ° ÃÂªÃÂ¸ÃÂ°ÃÂ«ÃÂÃÂ¥ÃÂ¬ÃÂÃÂ ÃÂ¬ÃÂÃÂÃÂ­ÃÂÃÂ´ GitHub PATÃÂ«ÃÂ¥ÃÂ¼ ÃÂ¬ÃÂÃÂÃÂ«ÃÂ ÃÂ¥ÃÂ­ÃÂÃÂÃÂ¬ÃÂÃÂ¸ÃÂ¬ÃÂÃÂ.\n(ÃÂ¬ÃÂÃÂ½ÃÂªÃÂ¸ÃÂ°ÃÂ«ÃÂ§ÃÂ ÃÂ¬ÃÂÃÂ¬ÃÂ¬ÃÂÃÂ©ÃÂ­ÃÂÃÂÃÂ«ÃÂÃÂ¤ÃÂ«ÃÂ©ÃÂ´ ÃÂ¬ÃÂ·ÃÂ¨ÃÂ¬ÃÂÃÂ)');
-    if(t) { localStorage.setItem('portal_gh_token',t); window.PORTAL_CONFIG.GITHUB_TOKEN=t; toast('ÃÂ¢ÃÂÃÂ ÃÂ­ÃÂÃÂ ÃÂ­ÃÂÃÂ° ÃÂ¬ÃÂ ÃÂÃÂ¬ÃÂÃÂ¥ÃÂ«ÃÂÃÂ¨'); }
+    const t = prompt('쓰기 기능을 위해 GitHub PAT를 입력하세요.\n(읽기만 사용한다면 취소)');
+    if(t) { localStorage.setItem('portal_gh_token',t); window.PORTAL_CONFIG.GITHUB_TOKEN=t; toast('✅ 토큰 저장됨'); }
   }
 }
 
-// ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ ÃÂ¬ÃÂ´ÃÂÃÂªÃÂ¸ÃÂ°ÃÂ­ÃÂÃÂ ÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂÃÂ¢ÃÂÃÂ
+// ══ 초기화 ═══════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
   const d = new Date();
-  document.getElementById('sidebar-footer').textContent = d.toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'short'});
+  document.getElementById('sidebar-footer').textContent =
+    d.toLocaleDateString('ko-KR',{month:'long',day:'numeric',weekday:'short'});
   checkToken();
   showPage('home');
 });
 </script>
-<script src="js/product_impact.js"></script>
 </body>
 </html>
