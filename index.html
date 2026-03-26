@@ -360,6 +360,9 @@ async function renderHome() {
   const pendingMig = S.migrations.filter(m => m['준비상태']!=='완료');
   const doneSch = S.schedules.filter(s => s['상태']==='완료').length;
 
+  // 미래 이관 건수 (오늘 이후)
+  const futureMig = S.migrations.filter(m => (m['이관일']||'') >= todayStr);
+
   setContent(`
     <div class="grid-4" style="margin-bottom:16px">
       <div class="stat-card">
@@ -381,41 +384,91 @@ async function renderHome() {
         <span class="stat-link" onclick="showPage('defect')">전체보기 →</span>
       </div>
       <div class="stat-card">
-        <div class="stat-label">🔄 이관 미완료</div>
-        <div class="stat-value" style="color:var(--warning)">${pendingMig.length}</div>
-        <div class="stat-sub">전체 ${S.migrations.length}건</div>
+        <div class="stat-label">🔄 이관 예정</div>
+        <div class="stat-value" style="color:var(--warning)">${futureMig.length}</div>
+        <div class="stat-sub">미완료 ${pendingMig.length}건 포함</div>
         <span class="stat-link" onclick="showPage('migration')">전체보기 →</span>
       </div>
     </div>
     <div class="grid-2">
       <div class="card">
-        <div class="card-title">오늘 일정</div>
-        <div class="tbl-wrap"><table>
-          <thead><tr><th>제목</th><th>담당자</th><th>마감일</th><th>상태</th></tr></thead>
-          <tbody>${todaySch.slice(0,6).map(s=>`<tr>
-            <td style="font-weight:500">${s['제목']||''}</td>
-            <td>${s['담당자']||''}</td>
-            <td>${s['마감일']||''}</td>
-            <td>${severityBadge(s['상태']||'')}</td>
-          </tr>`).join('')||`<tr class="empty-row"><td colspan="4">오늘 일정 없음</td></tr>`}
-          </tbody>
-        </table></div>
+        <div class="card-title" style="display:flex;align-items:center;justify-content:space-between">
+          <span>오늘 일정</span>
+          <div style="display:flex;align-items:center;gap:6px">
+            <label style="font-size:11px;color:var(--muted);font-weight:400">담당자</label>
+            <select id="home-assignee-filter" onchange="filterHomeTodaySchedule()"
+              style="font-size:11px;padding:2px 6px;border:1px solid var(--border);border-radius:4px;background:#fff;color:var(--text);font-family:inherit">
+              ${['전체',...new Set(todaySch.map(s=>s['담당자']).filter(Boolean))].map(a=>`<option value="${a}">${a}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+        <div id="home-today-wrap" class="tbl-wrap"></div>
       </div>
       <div class="card">
-        <div class="card-title">미처리 긴급/높음 결함</div>
-        <div class="tbl-wrap"><table>
-          <thead><tr><th>제목</th><th>심각도</th><th>담당자</th></tr></thead>
-          <tbody>${criticalDef.filter(d=>d['상태']!=='해결').slice(0,6).map(d=>`<tr>
-            <td style="font-weight:500">${d['제목']||''}</td>
-            <td>${severityBadge(d['심각도']||'')}</td>
-            <td>${d['담당자']||''}</td>
-          </tr>`).join('')||`<tr class="empty-row"><td colspan="3">없음 ✅</td></tr>`}
-          </tbody>
-        </table></div>
+        <div class="card-title" style="display:flex;align-items:center;justify-content:space-between">
+          <span>🔄 이관 예정 현황</span>
+          <div style="display:flex;align-items:center;gap:4px">
+            <input type="date" id="mig-from" value="${todayStr}"
+              onchange="filterMigDashboard()"
+              style="font-size:11px;padding:2px 6px;border:1px solid var(--border);border-radius:4px;font-family:inherit">
+            <span style="font-size:11px;color:var(--muted)">~</span>
+            <input type="date" id="mig-to" value="${new Date(Date.now()+30*864e5).toISOString().slice(0,10)}"
+              onchange="filterMigDashboard()"
+              style="font-size:11px;padding:2px 6px;border:1px solid var(--border);border-radius:4px;font-family:inherit">
+          </div>
+        </div>
+        <div id="home-mig-wrap" class="tbl-wrap"></div>
       </div>
     </div>`);
+
+  // 초기 렌더
+  window._homeTodaySch = todaySch;
+  window._homeMigRows  = S.migrations;
+  filterHomeTodaySchedule();
+  filterMigDashboard();
 }
 
+function filterHomeTodaySchedule() {
+  const val = (document.getElementById('home-assignee-filter')||{}).value || '전체';
+  const rows = val === '전체' ? window._homeTodaySch : (window._homeTodaySch||[]).filter(s => s['담당자'] === val);
+  document.getElementById('home-today-wrap').innerHTML = `<table>
+    <thead><tr><th>제목</th><th>담당자</th><th>마감일</th><th>상태</th></tr></thead>
+    <tbody>${rows.slice(0,6).map(s=>`<tr>
+      <td style="font-weight:500">${s['제목']||''}</td>
+      <td>${s['담당자']||''}</td>
+      <td>${s['마감일']||''}</td>
+      <td>${severityBadge(s['상태']||'')}</td>
+    </tr>`).join('')||`<tr class="empty-row"><td colspan="4">해당 담당자 일정 없음</td></tr>`}
+    </tbody>
+  </table>`;
+}
+
+function filterMigDashboard() {
+  const todayStr = today();
+  const from = (document.getElementById('mig-from')||{}).value || todayStr;
+  const to   = (document.getElementById('mig-to')||{}).value   || '';
+  const rows = (window._homeMigRows||[]).filter(m => {
+    const d = m['이관일'] || '';
+    if (!d || d < todayStr) return false;  // 지난 건 무조건 제외
+    if (d < from) return false;
+    if (to && d > to) return false;
+    return true;
+  });
+  const wrap = document.getElementById('home-mig-wrap');
+  if (!wrap) return;
+  wrap.innerHTML = rows.length === 0
+    ? `<p style="text-align:center;color:var(--muted);padding:28px 0;font-size:13px">해당 기간 이관 예정 없음 ✅</p>`
+    : `<table>
+        <thead><tr><th>항목명</th><th>담당자</th><th>이관일</th><th>준비상태</th></tr></thead>
+        <tbody>${rows.map(m=>`<tr>
+          <td style="font-weight:500">${m['항목명']||''}</td>
+          <td>${m['담당자']||''}</td>
+          <td>${m['이관일']||''}</td>
+          <td>${severityBadge(m['준비상태']||'')}</td>
+        </tr>`).join('')}
+        </tbody>
+      </table>`;
+}
 // ══ 일정관리 ══════════════════════════════════════════
 let schFiltered = [];
 async function renderSchedule() {
