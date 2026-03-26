@@ -134,7 +134,7 @@ async function _loadPrdTab() {
   try {
     const rows = await _gvizFetch("상품화면매핑");
     window._mapData = rows;
-    const prds = [...new Set(rows.map(r=>r["상품명"]))].filter(Boolean)
+    const prds = [...new Set(rows.map(r=>r["상품및서비스명"]))].filter(Boolean)
                    .sort((a,b)=>a.localeCompare(b,"ko"));
     const opts = prds.map(p=>'<option value="'+p+'">'+p+'</option>').join("");
     body.innerHTML =
@@ -170,7 +170,7 @@ function _showPrd(product) {
     el.innerHTML='<div style="padding:40px;text-align:center;color:#aaa">상품을 선택하면 영향받는 화면 목록이 표시됩니다</div>';
     return;
   }
-  const rows = (window._mapData||[]).filter(r=>r["상품명"]===product);
+  const rows = (window._mapData||[]).filter(r=>r["상품및서비스명"]===product);
   if (!rows.length) {
     el.innerHTML='<div style="padding:32px;text-align:center;color:#888">해당 상품의 영향 화면이 없습니다</div>';
     return;
