@@ -484,35 +484,32 @@
 
   /* 사이드바 캐릭터 */
   .sidebar-char {
-    padding: 0 0 4px;
+    padding: 0 0 0;
     display: flex;
     justify-content: center;
     pointer-events: none;
+    margin-top: -10px;
   }
   .sidebar-char-img {
-    width: 90px;
+    width: 150px;
     height: auto;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,.25));
+    filter: drop-shadow(0 4px 16px rgba(0,0,0,.3));
     transition: transform .3s ease;
   }
   .sidebar-char-img:hover {
-    transform: translateY(-4px) scale(1.05);
+    transform: translateY(-4px) scale(1.04);
   }
 
-  /* 홈 쏠 플로팅 장식 */
+  /* 우하단 쏠 배경 장식 */
   .sol-float {
     position: fixed;
-    right: 24px;
-    bottom: 60px;
-    width: 72px;
+    right: -20px;
+    bottom: -10px;
+    width: 260px;
     pointer-events: none;
-    z-index: 10;
-    filter: drop-shadow(0 4px 16px rgba(0,70,255,.15));
-    animation: solBob 3s ease-in-out infinite;
-  }
-  @keyframes solBob {
-    0%,100% { transform: translateY(0); }
-    50%      { transform: translateY(-8px); }
+    z-index: 5;
+    opacity: 0.18;
+    filter: drop-shadow(0 8px 32px rgba(0,70,255,.1));
   }
 
 </style>
@@ -740,7 +737,7 @@ function showPage(page) {
 // ══ 홈 ══════════════════════════════════════════════
 async function renderHome() {
   setActions('');
-  setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:48px;margin-bottom:12px;animation:solBob 1s ease-in-out infinite"><br>데이터 로딩 중...</div>');
+  setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:56px;margin-bottom:12px"><br>데이터 로딩 중...</div>');
   await Promise.all([
     SheetsAPI.getSchedules().then(d=>S.schedules=d).catch(()=>{}),
     SheetsAPI.getDefects().then(d=>S.defects=d).catch(()=>{}),
@@ -869,7 +866,7 @@ async function renderSchedule() {
   setActions(`
     <button class="btn btn-outline" onclick="exportCSV(schFiltered,'일정_${today()}.csv')">CSV</button>
     <button class="btn btn-primary" onclick="openSchModal()">+ 일정 등록</button>`);
-  setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:48px;margin-bottom:12px;animation:solBob 1s ease-in-out infinite"><br>로딩 중...</div>');
+  setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:56px;margin-bottom:12px"><br>로딩 중...</div>');
   S.schedules = await SheetsAPI.getSchedules().catch(()=>[]);
   schFiltered = [...S.schedules];
   renderSchTable();
@@ -923,7 +920,7 @@ function openSchModal() {
 let pgFiltered = [];
 async function renderImpact() {
   setActions(`<button class="btn btn-primary" onclick="openPgModal()">+ 페이지 등록</button>`);
-  setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:48px;margin-bottom:12px;animation:solBob 1s ease-in-out infinite"><br>로딩 중...</div>');
+  setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:56px;margin-bottom:12px"><br>로딩 중...</div>');
   await Promise.all([
     SheetsAPI.getPages().then(d=>S.pages=d).catch(()=>{}),
     SheetsAPI.getDefects().then(d=>S.defects=d).catch(()=>{}),
@@ -992,7 +989,7 @@ async function renderDefect() {
   setActions(`
     <button class="btn btn-outline" onclick="exportCSV(defFiltered,'결함_${today()}.csv')">CSV</button>
     <button class="btn btn-primary" onclick="openDefModal()">+ 결함 등록</button>`);
-  setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:48px;margin-bottom:12px;animation:solBob 1s ease-in-out infinite"><br>로딩 중...</div>');
+  setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:56px;margin-bottom:12px"><br>로딩 중...</div>');
   S.defects = await SheetsAPI.getDefects().catch(()=>[]);
   defFiltered = [...S.defects];
   renderDefTable();
@@ -1079,7 +1076,7 @@ function checkDefectStatus() {
 // ══ 이관항목 ══════════════════════════════════════════
 async function renderMigration() {
   setActions('<button class="btn btn-primary" onclick="openMigrationModal()">+ 등록</button>');
-  setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:48px;margin-bottom:12px;animation:solBob 1s ease-in-out infinite"><br>로딩 중...</div>');
+  setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:56px;margin-bottom:12px"><br>로딩 중...</div>');
   S.migrations = await SheetsAPI.getMigrations().catch(()=>[]);
   setContent(`
     <div class="card">
@@ -1104,7 +1101,7 @@ async function renderMigration() {
 // ══ 운영링크 ══════════════════════════════════════════
 async function renderLinks() {
   setActions('');
-  setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:48px;margin-bottom:12px;animation:solBob 1s ease-in-out infinite"><br>로딩 중...</div>');
+  setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:56px;margin-bottom:12px"><br>로딩 중...</div>');
   S.links = await SheetsAPI.getLinks().catch(()=>[]);
 
   const cats = [...new Set(S.links.map(l=>l['분류']).filter(Boolean))];
