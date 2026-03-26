@@ -1217,6 +1217,32 @@ document.addEventListener('DOMContentLoaded', () => {
   checkToken();
   showPage('home');
 });
+// ── 상품목록 동적 로딩 ──────────────────────────────────
+async function loadProductOptions() {
+  const PRODUCT_GID = '1895436771';
+  const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv&gid=${PRODUCT_GID}`;
+  try {
+    const res = await fetch(url);
+    const text = await res.text();
+    const rows = text.trim().split('\n').slice(1);
+    const names = rows.map(r => r.replace(/"/g, '').trim()).filter(Boolean);
+
+    const sel = document.getElementById('def-severity');
+    if (sel) {
+      sel.innerHTML = '<option value="">-- 선택 --</option>';
+      names.forEach(n => sel.innerHTML += `<option value="${n}">${n}</option>`);
+    }
+
+    const filterSel = document.getElementById('def-filter-severity');
+    if (filterSel) {
+      filterSel.innerHTML = '<option value="">전체 상품명</option>';
+      names.forEach(n => filterSel.innerHTML += `<option value="${n}">${n}</option>`);
+    }
+  } catch(e) {
+    console.error('상품목록 로딩 실패:', e);
+  }
+}
+
 </script>
 <script src="js/product_impact.js"></script>
 
