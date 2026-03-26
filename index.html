@@ -592,7 +592,7 @@ function checkDefectStatus() {
 
 // ══ 이관항목 ══════════════════════════════════════════
 async function renderMigration() {
-  setActions('');
+  setActions('<button class="btn btn-primary" onclick="openMigrationModal()">+ 등록</button>');
   setContent('<div class="loading">⏳ 로딩 중...</div>');
   S.migrations = await SheetsAPI.getMigrations().catch(()=>[]);
   setContent(`
