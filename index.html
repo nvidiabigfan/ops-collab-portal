@@ -822,14 +822,18 @@ async function renderHome() {
 function filterHomeTodaySchedule() {
   const val = (document.getElementById('home-assignee-filter')||{}).value || '전체';
   const rows = val === '전체' ? window._homeTodaySch : (window._homeTodaySch||[]).filter(s => s['담당자'] === val);
+  const sortedRows = [...rows].sort((a,b)=>(a['마감일']||'').localeCompare(b['마감일']||''));
+  const topRows = sortedRows.slice(0,10);
+  const emptyCount = 10 - topRows.length;
+  const emptyRows = Array(emptyCount).fill(`<tr class="empty-row"><td colspan="4"></td></tr>`).join('');
   document.getElementById('home-today-wrap').innerHTML = `<table>
     <thead><tr><th>제목</th><th>담당자</th><th>마감일</th><th>상태</th></tr></thead>
-    <tbody>${rows.slice(0,6).map(s=>`<tr>
+    <tbody>${topRows.length > 0 ? topRows.map(s=>`<tr>
       <td style="font-weight:500">${s['제목']||''}</td>
       <td>${s['담당자']||''}</td>
       <td>${s['마감일']||''}</td>
       <td>${severityBadge(s['상태']||'')}</td>
-    </tr>`).join('')||`<tr class="empty-row"><td colspan="4">해당 담당자 일정 없음</td></tr>`}
+    </tr>`).join('') : `<tr class="empty-row"><td colspan="4">해당 담당자 일정 없음</td></tr>`}${emptyRows}
     </tbody>
   </table>`;
 }
