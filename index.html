@@ -1220,7 +1220,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── 상품목록 동적 로딩 ──────────────────────────────────
 async function loadProductOptions() {
   const PRODUCT_GID = '1895436771';
-  const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv&gid=${PRODUCT_GID}`;
+  const sid = (window.PORTAL_CONFIG || {}).SPREADSHEET_ID;
+  if (!sid) { console.error("PORTAL_CONFIG 미설정"); return; }
+  const url = `https://docs.google.com/spreadsheets/d/${sid}/gviz/tq?tqx=out:csv&gid=${PRODUCT_GID}`;
   try {
     const res = await fetch(url);
     const text = await res.text();
