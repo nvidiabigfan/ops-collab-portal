@@ -593,8 +593,8 @@
           <select id="def-category"><option>UI/UX</option><option>기능오류</option><option>성능</option><option>보안</option><option>데이터</option><option>기타</option></select>
         </div>
         <div class="form-group">
-          <label>심각도 <span class="req">*</span></label>
-          <select id="def-severity" onchange="checkSeverity()"><option>긴급</option><option>높음</option><option>중간</option><option>낮음</option></select>
+          <label>상품명 <span class="req">*</span></label>
+          <select id="def-severity"><option value="">-- 선택 --</option></select>
         </div>
       </div>
       <div class="form-row">
@@ -747,7 +747,7 @@ async function renderHome() {
 
   const todayStr = today();
   const todaySch = S.schedules.filter(s => s['시작일'] <= todayStr && (s['마감일']||todayStr) >= todayStr);
-  const criticalDef = S.defects.filter(d => d['심각도']==='긴급' || d['심각도']==='높음');
+  const criticalDef = S.defects.filter(d => d['상품명']==='긴급' || d['상품명']==='높음');
   const pendingMig = S.migrations.filter(m => m['준비상태']!=='완료');
   const doneSch = S.schedules.filter(s => s['상태']==='완료').length;
 
@@ -1001,9 +1001,9 @@ function renderDefTable() {
   const st = (document.getElementById('def-st-f')||{}).value||'';
   defFiltered = S.defects.filter(d =>
     (!q || (d['제목']||'').includes(q)||(d['담당자']||'').includes(q)) &&
-    (!sv || d['심각도']===sv) && (!st || d['상태']===st));
+    (!sv || d['상품명']===sv) && (!st || d['상태']===st));
 
-  const cnt = (sev) => S.defects.filter(d=>d['심각도']===sev && d['상태']!=='해결').length;
+  const cnt = (sev) => S.defects.filter(d=>d['상품명']===sev && d['상태']!=='해결').length;
   setContent(`
     <div class="grid-4" style="margin-bottom:14px">
       <div class="stat-card"><div class="stat-label">🔴 긴급</div><div class="stat-value" style="color:var(--danger)">${cnt('긴급')}</div></div>
@@ -1015,7 +1015,7 @@ function renderDefTable() {
       <div class="filter-bar">
         <input id="def-q" placeholder="🔍 제목, 담당자 검색" oninput="renderDefTable()" value="${(document.getElementById('def-q')||{}).value||''}">
         <select id="def-sv" onchange="renderDefTable()">
-          <option value="">전체 심각도</option><option>긴급</option><option>높음</option><option>중간</option><option>낮음</option>
+          <option value="">전체 상품명</option>
         </select>
         <select id="def-st-f" onchange="renderDefTable()">
           <option value="">전체 상태</option><option>미처리</option><option>처리중</option><option>해결</option><option>보류</option>
@@ -1023,12 +1023,12 @@ function renderDefTable() {
         <span class="filter-count">${defFiltered.length}건</span>
       </div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>결함ID</th><th>제목</th><th>카테고리</th><th>심각도</th><th>상태</th><th>담당자</th><th>등록일</th><th>관련페이지</th></tr></thead>
+        <thead><tr><th>결함ID</th><th>제목</th><th>카테고리</th><th>상품명</th><th>상태</th><th>담당자</th><th>등록일</th><th>관련페이지</th></tr></thead>
         <tbody>${defFiltered.map(d=>`<tr>
           <td style="color:var(--muted);font-size:11px">${d['결함ID']||''}</td>
           <td style="font-weight:500">${d['제목']||''}</td>
           <td><span class="badge badge-gray">${d['카테고리']||''}</span></td>
-          <td>${severityBadge(d['심각도']||'')}</td>
+          <td>${severityBadge(d['상품명']||'')}</td>
           <td>${severityBadge(d['상태']||'미처리')}</td>
           <td>${d['담당자']||''}</td>
           <td>${d['등록일']||''}</td>
@@ -1052,6 +1052,7 @@ function submitMigration() {
   SheetsAPI.appendRow("이관항목", row).then(()=>renderMigration());
 }
 function openDefModal() {
+  loadProductOptions();
   const nextId = 'DEF-' + pad4(S.defects.length + 1);
   document.getElementById('def-id').value = nextId;
   document.getElementById('def-date').value = today();
@@ -1157,7 +1158,7 @@ async function submitDefect() {
   const row = {
     '결함ID':document.getElementById('def-id').value,
     '제목':title,'카테고리':document.getElementById('def-category').value,
-    '심각도':document.getElementById('def-severity').value,
+    '상품명':document.getElementById('def-severity').value,
     '상태':status,
     '증상':document.getElementById('def-symptom').value,
     '원인':document.getElementById('def-cause').value,
