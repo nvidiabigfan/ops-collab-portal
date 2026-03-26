@@ -444,12 +444,12 @@ function filterHomeTodaySchedule() {
 }
 
 function filterMigDashboard() {
-  const todayStr = today();
+  
   const from = (document.getElementById('mig-from')||{}).value || todayStr;
   const to   = (document.getElementById('mig-to')||{}).value   || '';
   const rows = (window._homeMigRows||[]).filter(m => {
     const d = m['이관일'] || '';
-    if (!d || d < todayStr) return false;  // 지난 건 무조건 제외
+    if (!d) return false;
     if (d < from) return false;
     if (to && d > to) return false;
     return true;
