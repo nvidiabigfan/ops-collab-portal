@@ -228,6 +228,33 @@
     </div>
   </div>
 </div>
+<div class="modal-bg" id="modal-migration">
+  <div class="modal">
+    <div class="modal-header"><h3>🔄 이관항목 등록</h3><button class="close-btn" onclick="closeModal('modal-migration')">✕</button></div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label>이관ID</label><input type="text" id="mig-id" class="auto-id" readonly></div>
+        <div class="form-group"><label>담당자 <span class="req">*</span></label><input type="text" id="mig-owner" placeholder="홍길동"></div>
+      </div>
+      <div class="form-group"><label>항목명 <span class="req">*</span></label><input type="text" id="mig-title" placeholder="이관 항목명"></div>
+      <div class="form-row">
+        <div class="form-group"><label>이관일 <span class="req">*</span></label><input type="date" id="mig-date"></div>
+        <div class="form-group"><label>준비상태</label><select id="mig-status"><option>예정</option><option>진행중</option><option>완료</option><option>보류</option></select></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>관련일정ID</label><input type="text" id="mig-sch" placeholder="SCH-0001"></div>
+        <div class="form-group"><label>관련페이지ID</label><input type="text" id="mig-page" placeholder="PG-0001"></div>
+      </div>
+      <div class="form-group"><label>관련결함ID</label><input type="text" id="mig-defect" placeholder="DEF-0001"></div>
+      <div class="form-group"><label>위험요소</label><input type="text" id="mig-risk" placeholder="예: 기한경과시 판매중단"></div>
+      <div class="form-group"><label>메모</label><textarea id="mig-memo" rows="2" placeholder="기타 메모"></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modal-migration')">취소</button>
+      <button class="btn btn-primary" onclick="submitMigration()">등록</button>
+    </div>
+  </div>
+</div>
 
 <!-- 모달: 영향페이지 등록 -->
 <div class="modal-bg" id="modal-impact">
@@ -568,6 +595,18 @@ function renderDefTable() {
     </div>`);
 }
 
+function openMigrationModal() {
+  const nextId = "MIG-" + pad4(S.migrations.length + 1);
+  document.getElementById("mig-id").value = nextId;
+  document.getElementById("mig-date").value = today();
+  openModal("modal-migration");
+}
+function submitMigration() {
+  const row = {"이관ID":document.getElementById("mig-id").value,"항목명":document.getElementById("mig-title").value,"담당자":document.getElementById("mig-owner").value,"이관일":document.getElementById("mig-date").value,"준비상태":document.getElementById("mig-status").value,"관련일정ID":document.getElementById("mig-sch").value,"관련페이지ID":document.getElementById("mig-page").value,"관련결함ID":document.getElementById("mig-defect").value,"위험요소":document.getElementById("mig-risk").value,"메모":document.getElementById("mig-memo").value};
+  if(!row["항목명"]||!row["담당자"]||!row["이관일"]){alert("항목명, 담당자, 이관일은 필수입니다");return;}
+  closeModal("modal-migration");
+  SheetsAPI.appendRow("이관항목", row).then(()=>renderMigration());
+}
 function openDefModal() {
   const nextId = 'DEF-' + pad4(S.defects.length + 1);
   document.getElementById('def-id').value = nextId;
