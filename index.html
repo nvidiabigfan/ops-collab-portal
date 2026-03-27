@@ -1248,6 +1248,7 @@ function checkDefectStatus() {
 
 // ══ 이관항목 ══════════════════════════════════════════
 let migFiltered = [];
+let _migFrom = ""; let _migTo = "";
 let migPage = 1;
 const MIG_PAGE_SIZE = 15;
 
@@ -1255,7 +1256,7 @@ async function renderMigration() {
   setActions('<button class="btn btn-primary" onclick="openMigrationModal()">+ 등록</button>');
   setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:56px;margin-bottom:12px"><br>로딩 중...</div>');
   S.migrations = await SheetsAPI.getMigrations().catch(()=>[]);
-  const _mf = today(); const _mt = monthLater(); migFiltered = S.migrations.filter(m => { const md = m["이관일"]||""; return md >= _mf && md <= _mt; });
+  _migFrom = today(); _migTo = monthLater(); migFiltered = S.migrations.filter(m => { const md = m["이관일"]||""; return md >= _migFrom && md <= _migTo; });
   migPage = 1;
   renderMigTable();
 }
@@ -1283,8 +1284,8 @@ function renderMigTable(pageNum) {
 
   const prevQ    = (document.getElementById('mig-q')||{}).value||'';
   const prevSt   = (document.getElementById('mig-st-f')||{}).value||'';
-  const prevFrom = (document.getElementById('mig-dfrom')||{}).value || today();
-  const prevTo   = (document.getElementById('mig-dto')||{}).value   || monthLater();
+  const prevFrom = (document.getElementById('mig-dfrom')||{}).value || _migFrom || today();
+  const prevTo   = (document.getElementById('mig-dto')||{}).value   || _migTo || monthLater();
 
   setContent(`
     <div class="card" style="margin-bottom:0">
