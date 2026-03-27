@@ -1428,11 +1428,9 @@ function setContent(html) { document.getElementById('content').innerHTML = html;
 function setActions(html) { document.getElementById('topbar-actions').innerHTML = html; }
 
 // ── 날짜 유틸 ──────────────────────────────────────
-function monthAgo() {
+function monthAgo() { const d = new Date(); d.setMonth(d.getMonth() - 1); return d.toISOString().slice(0,10); }
 function monthLater() {
   const d = new Date(); d.setMonth(d.getMonth() + 1); return d.toISOString().slice(0,10);
-}
-  const d = new Date(); d.setMonth(d.getMonth() - 1); return d.toISOString().slice(0,10);
 }
 
 // ── 공통 페이지네이션 렌더 ─────────────────────────
