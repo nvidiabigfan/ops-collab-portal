@@ -1255,7 +1255,7 @@ async function renderMigration() {
   setActions('<button class="btn btn-primary" onclick="openMigrationModal()">+ 등록</button>');
   setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:56px;margin-bottom:12px"><br>로딩 중...</div>');
   S.migrations = await SheetsAPI.getMigrations().catch(()=>[]);
-  migFiltered = [...S.migrations];
+  const _mf = today(); const _mt = monthLater(); migFiltered = S.migrations.filter(m => { const md = m["이관일"]||""; return md >= _mf && md <= _mt; });
   migPage = 1;
   renderMigTable();
 }
