@@ -1264,9 +1264,9 @@ async function renderMigration() {
 function renderMigTable(pageNum) {
   if (pageNum !== undefined) migPage = pageNum;
   const q     = (document.getElementById('mig-q')||{}).value||'';
-  const st    = (document.getElementById('mig-st-f')||{}).value||'';
-  const dfrom = (document.getElementById('mig-dfrom')||{}).value||'';
-  const dto   = (document.getElementById('mig-dto')||{}).value||'';
+  const st    = (document.getElementById("mig-st-f")||{}).value||"";
+  const dfrom = (document.getElementById("mig-dfrom")||{}).value || _migFrom || today();
+  const dto   = (document.getElementById("mig-dto")||{}).value   || _migTo   || monthLater();
 
   migFiltered = S.migrations.filter(m => {
     const md = m['이관일']||'';
