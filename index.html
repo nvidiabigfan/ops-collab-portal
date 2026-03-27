@@ -940,14 +940,14 @@ function renderSchTable(pageNum) {
   const dto   = (document.getElementById('sch-dto')||{}).value||'';
 
   schFiltered = S.schedules.filter(s => {
-    const sd = s['시작일']||'';
+    const sd = s['마감일']||'';
     return (!q  || (s['제목']||'').includes(q) || (s['담당자']||'').includes(q)) &&
            (!st || s['상태']===st) &&
            (!tp || s['업무유형']===tp) &&
            (!dfrom || sd >= dfrom) &&
            (!dto   || sd <= dto);
   });
-  schFiltered.sort((a,b)=>(a["시작일"]||"").localeCompare(b["시작일"]||""));
+  schFiltered.sort((a,b)=>(a["마감일"]||"").localeCompare(b["마감일"]||""));
 
   const total = schFiltered.length;
   const totalPages = Math.max(1, Math.ceil(total / SCH_PAGE_SIZE));
@@ -980,7 +980,7 @@ function renderSchTable(pageNum) {
           <option${'기타'===prevTp?' selected':''}>기타</option>
         </select>
         <div class="date-range">
-          <span>시작일</span>
+          <span>마감일</span>
           <input type="date" id="sch-dfrom" value="${prevFrom}" onchange="schPage=1;renderSchTable()">
           <span>~</span>
           <input type="date" id="sch-dto"   value="${prevTo}"   onchange="schPage=1;renderSchTable()">
