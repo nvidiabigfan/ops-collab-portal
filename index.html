@@ -936,8 +936,8 @@ function renderSchTable(pageNum) {
   const q   = (document.getElementById('sch-q')||{}).value||'';
   const st  = (document.getElementById('sch-st')||{}).value||'';
   const tp  = (document.getElementById('sch-tp')||{}).value||'';
-  const dfrom = (document.getElementById('sch-dfrom')||{}).value||'';
-  const dto   = (document.getElementById('sch-dto')||{}).value||'';
+  const dfrom = (document.getElementById('sch-dfrom')||{}).value || today();
+  const dto   = (document.getElementById('sch-dto')||{}).value   || monthLater();
 
   schFiltered = S.schedules.filter(s => {
     const sd = s['마감일']||'';
