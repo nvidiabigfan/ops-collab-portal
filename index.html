@@ -926,7 +926,7 @@ async function renderSchedule() {
     <button class="btn btn-primary" onclick="openSchModal()">+ 일정 등록</button>`);
   setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:56px;margin-bottom:12px"><br>로딩 중...</div>');
   S.schedules = await SheetsAPI.getSchedules().catch(()=>[]);
-  schFiltered = S.schedules.filter(s => { const sd = s["시작일"]||""; return sd >= today() && sd <= monthLater(); });
+  schFiltered = [...S.schedules];
   schPage = 1;
   renderSchTable();
 }
@@ -1027,7 +1027,7 @@ async function renderImpact() {
     SheetsAPI.getDefects().then(d=>S.defects=d).catch(()=>{}),
     SheetsAPI.getSchedules().then(d=>S.schedules=d).catch(()=>{}),
   ]);
-  pgFiltered = S.pages.filter(p => { const cd = p["최근변경일"]||""; return cd >= today() && cd <= monthLater(); });
+  pgFiltered = [...S.pages];
   pgPage = 1;
   renderPgTable();
 }
@@ -1123,7 +1123,7 @@ async function renderDefect() {
     <button class="btn btn-primary" onclick="openDefModal()">+ 결함 등록</button>`);
   setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:56px;margin-bottom:12px"><br>로딩 중...</div>');
   S.defects = await SheetsAPI.getDefects().catch(()=>[]);
-  defFiltered = S.defects.filter(d => { const dd = d["등록일"]||""; return dd >= today() && dd <= monthLater(); });
+  defFiltered = [...S.defects];
   defPage = 1;
   renderDefTable();
 }
@@ -1256,7 +1256,7 @@ async function renderMigration() {
   setActions('<button class="btn btn-primary" onclick="openMigrationModal()">+ 등록</button>');
   setContent('<div class="loading"><img src="https://www.shinhangroup.com/resources/publish/kr/images/about/character_sol.png" style="width:56px;margin-bottom:12px"><br>로딩 중...</div>');
   S.migrations = await SheetsAPI.getMigrations().catch(()=>[]);
-  _migFrom = today(); _migTo = monthLater(); migFiltered = S.migrations.filter(m => { const md = m["이관일"]||""; return md >= _migFrom && md <= _migTo; });
+  _migFrom = today(); _migTo = monthLater(); migFiltered = [...S.migrations];
   migPage = 1;
   renderMigTable();
 }
